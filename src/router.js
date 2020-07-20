@@ -21,6 +21,12 @@ export default new Router({
           component: () => import("@/view/pages/Builder.vue")
         },
         {
+          path: "/product",
+          name: "product",
+          component: () => import("@/view/pages/product/List.vue"),
+          children: []
+        },
+        {
           path: "/vue-bootstrap",
           name: "vue-bootstrap",
           component: () =>
@@ -375,6 +381,7 @@ export default new Router({
         }
       ]
     },
+
     {
       path: "/error",
       name: "error",
@@ -412,6 +419,7 @@ export default new Router({
         }
       ]
     },
+
     {
       path: "/",
       component: () => import("@/view/pages/auth/Auth"),
@@ -428,10 +436,12 @@ export default new Router({
         }
       ]
     },
+
     {
       path: "*",
       redirect: "/404"
     },
+
     {
       // the 404 route, when none of the above matches
       path: "/404",
