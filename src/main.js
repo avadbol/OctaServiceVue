@@ -6,9 +6,17 @@ import ApiService from "./core/services/api.service";
 import MockService from "./core/mock/mock.service";
 import { VERIFY_AUTH } from "./core/services/store/auth.module";
 import { RESET_LAYOUT_CONFIG } from "@/core/services/store/config.module";
-import Datatable from 'vue2-datatable-component'
+import '@progress/kendo-ui'
+import '@progress/kendo-theme-default/dist/all.css'
 
-Vue.use(Datatable)
+
+import { Calendar } from '@progress/kendo-dateinputs-vue-wrapper'
+import { WindowInstaller } from '@progress/kendo-window-vue-wrapper'
+
+Vue.component(Calendar.name, Calendar)
+Vue.use(WindowInstaller)
+
+
 Vue.config.productionTip = false;
 
 // Global 3rd party plugins

@@ -378,6 +378,33 @@ export default new Router({
               component: () => import("@/view/pages/wizard/Wizard-4.vue")
             }
           ]
+        },
+        {
+          path: "/define",
+          name: "define",
+          component: () => import("@/view/pages/wizard/Wizard.vue"),
+          children: [
+            {
+              path: "rayon",
+              name: "rayon",
+              component: () => import("@/view/pages/define/rayon/RayonList.vue")
+            },
+            {
+              path: "wizard-2",
+              name: "wizard-2",
+              component: () => import("@/view/pages/wizard/Wizard-2.vue")
+            },
+            {
+              path: "wizard-3",
+              name: "wizard-3",
+              component: () => import("@/view/pages/wizard/Wizard-3.vue")
+            },
+            {
+              path: "wizard-4",
+              name: "wizard-4",
+              component: () => import("@/view/pages/wizard/Wizard-4.vue")
+            }
+          ]
         }
       ]
     },
