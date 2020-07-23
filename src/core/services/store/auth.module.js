@@ -16,7 +16,9 @@ export const SET_ERROR = "setError";
 const state = {
   errors: null,
   user: {},
-  isAuthenticated: !!JwtService.getToken()
+  isAuthenticated: true
+  // isAuthenticated: !!JwtService.getToken()
+
 };
 
 const getters = {
@@ -70,7 +72,8 @@ const actions = {
     } else {
       context.commit(PURGE_AUTH);
     }
-  },
+
+   },
   [UPDATE_USER](context, payload) {
     const { email, username, password, image, bio } = payload;
     const user = { email, username, bio, image };

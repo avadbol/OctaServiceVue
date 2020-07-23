@@ -2,10 +2,11 @@
     <div>
         <div>
             <b-card no-body>
-                <b-tabs card>
+                <b-tabs vertical  card>
                     <b-tab title="Depolar">
                         <b-card-text>
                            <div class="row">
+
                                <div class="col-md-6 col-sm-12">
                                    <label >Depo Adı</label>
                                    <b-input placeholder="Lütfen depo adını yazınız"></b-input>
@@ -24,11 +25,12 @@
 
                     <b-tab title="Reyon">
                         <div class="row">
-                            <div class="col-md-6">
-                                <Rayon-Add></Rayon-Add>
 
+
+                            <div class="col-md-12">
+                                <Rayon-Add></Rayon-Add>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <Rayon-List></Rayon-List>
 
                             </div>

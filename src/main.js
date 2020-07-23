@@ -2,10 +2,10 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./core/services/store";
-import ApiService from "./core/services/api.service";
-import MockService from "./core/mock/mock.service";
-import { VERIFY_AUTH } from "./core/services/store/auth.module";
-import { RESET_LAYOUT_CONFIG } from "@/core/services/store/config.module";
+// import ApiService from "./core/services/api.service";
+// import MockService from "./core/mock/mock.service";
+// import { VERIFY_AUTH } from "./core/services/store/auth.module";
+// import { RESET_LAYOUT_CONFIG } from "@/core/services/store/config.module";
 import '@progress/kendo-ui'
 import '@progress/kendo-theme-default/dist/all.css'
 
@@ -39,24 +39,24 @@ import "./core/plugins/apexcharts";
 import "./core/plugins/metronic";
 import "@mdi/font/css/materialdesignicons.css";
 
-// API service init
-ApiService.init();
+// // API service init
+// ApiService.init();
+//
+// // Remove this to disable mock API
+// MockService.init();
 
-// Remove this to disable mock API
-MockService.init();
-
-router.beforeEach((to, from, next) => {
-  // Ensure we checked auth before each page load.
-  Promise.all([store.dispatch(VERIFY_AUTH)]).then(next);
-
-  // reset config to initial state
-  store.dispatch(RESET_LAYOUT_CONFIG);
-
-  // Scroll page to top on every route change
-  setTimeout(() => {
-    window.scrollTo(0, 0);
-  }, 100);
-});
+// router.beforeEach((to, from, next) => {
+//   // Ensure we checked auth before each page load.
+//   Promise.all([store.dispatch(VERIFY_AUTH)]).then(next);
+//
+//   // reset config to initial state
+//   store.dispatch(RESET_LAYOUT_CONFIG);
+//
+//   // Scroll page to top on every route change
+//   setTimeout(() => {
+//     window.scrollTo(0, 0);
+//   }, 100);
+// });
 
 new Vue({
   router,

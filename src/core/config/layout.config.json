@@ -20,9 +20,9 @@
     "theme": {
       "base": {
         "white": "#ffffff",
-        "primary": "#1BC5BD",
+        "primary": "#032e9c",
         "secondary": "#E5EAEE",
-        "success": "#1BC5BD",
+        "success": "#032e9c",
         "info": "#6993FF",
         "warning": "#FFA800",
         "danger": "#F64E60",
@@ -31,7 +31,7 @@
       },
       "light": {
         "white": "#ffffff",
-        "primary": "#1BC5BD",
+        "primary": "#032e9c",
         "secondary": "#ECF0F3",
         "success": "#C9F7F5",
         "info": "#E1E9FF",

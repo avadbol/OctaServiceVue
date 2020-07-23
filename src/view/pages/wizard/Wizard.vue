@@ -1,7 +1,9 @@
 <!-- Wizard demo pages -->
 <template>
   <transition name="fade-in-up">
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </transition>
 </template>
 

@@ -16,7 +16,6 @@ export function rayonGetById(rayonId){
 }
 
 export function rayonAdd(data){
-    console.log(data.name);
     return request({
         url:"/defines/rayonadd",
         method:"post",
