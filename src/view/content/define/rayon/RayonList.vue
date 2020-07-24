@@ -8,30 +8,21 @@
                 </div>
             </template>
         </b-table>
-        <b-modal id="modal-rayon-edit" ref="modal" title="Reyon Güncelleme İşlemi" no-close-on-backdrop ok-title="Güncelle" cancel-title="Vazgeç">
+        <b-modal id="modal-rayon-edit" ref="modal" title="Reyon Güncelleme İşlemi" @ok="updateRayon" no-close-on-backdrop ok-title="Güncelle" cancel-title="Vazgeç">
             <b-form-input v-model="modalData.name"></b-form-input>
         </b-modal>
     </div>
 </template>
 
 <script>
-    import {rayonGetList} from "../../../../api/define/rayon"
-    import { rayonAdd } from "../../../../api/define/rayon"
-
+    import {rayonGetList, rayonUpdate, rayonDelete} from "../../../../api/define/rayon"
 
     export default {
         data() {
             return {
                 rayons: null,
-
-
                 fields: [
                     {
-                        key: "id",
-                        label: "Kimlik",
-                        sortable:true,
-
-                    }, {
                         key: "name",
                         label: "Adı",
                         colType: "button",
@@ -50,6 +41,7 @@
         methods: {
             rayonList() {
                 rayonGetList().then(response => {
+                    console.log("evet burası çalıştı");
                     this.rayons = response.data;
                 })
             },
@@ -58,24 +50,30 @@
                 this.$bvModal.show("modal-rayon-edit")
             },
             updateRayon(){
-
+                rayonUpdate(this.modalData).then(response => {
+                    if(response.status == 200){
+                        this.$bvToast.toast(this.modalData.name+' reyonu güncellendi', {
+                            title: `Güncelleme İşlemi`,
+                            variant: 'success',
+                            solid: true
+                        })
+                    }
+                })
             },
             deleteItem(data){
                 this.$bvModal.msgBoxConfirm(data.item.name+" öğesi silinecektir onaylıyor musunuz?", {
                     okTitle: 'Evet',
                     cancelTitle: 'Vazgeç',
                 })
-                    .then(value => {
-                        this.boxTwo = value
-                        console.log("evet geldi la");
+                    .then(value =>{
+                        if(value){
+                            rayonDelete(data.item).then(response => {
+                                this.rayonList();
+                            })
+                        }
                     })
-                    .catch(err => {
-                        // An error occurred
-                    })
-            }
 
-        },
-        actions:{
+            }
 
         },
         created() {

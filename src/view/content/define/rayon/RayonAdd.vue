@@ -42,6 +42,9 @@
                     }
                 })
                 this.isDisable = false;
+            },
+            sendToRayonList(){
+
             }
         },
         computed:{
