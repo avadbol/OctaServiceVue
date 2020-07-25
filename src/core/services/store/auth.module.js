@@ -16,9 +16,7 @@ export const SET_ERROR = "setError";
 const state = {
   errors: null,
   user: {},
-  isAuthenticated: true
-  // isAuthenticated: !!JwtService.getToken()
-
+  isAuthenticated: !!JwtService.getToken()
 };
 
 const getters = {
@@ -26,7 +24,7 @@ const getters = {
     return state.user;
   },
   isAuthenticated(state) {
-    return true;
+    return state.isAuthenticated;
   }
 };
 
@@ -72,8 +70,7 @@ const actions = {
     } else {
       context.commit(PURGE_AUTH);
     }
-
-   },
+  },
   [UPDATE_USER](context, payload) {
     const { email, username, password, image, bio } = payload;
     const user = { email, username, bio, image };
@@ -99,7 +96,7 @@ const mutations = {
     JwtService.saveToken(state.user.token);
   },
   [PURGE_AUTH](state) {
-    state.isAuthenticated = true;
+    state.isAuthenticated = false;
     state.user = {};
     state.errors = {};
     JwtService.destroyToken();
