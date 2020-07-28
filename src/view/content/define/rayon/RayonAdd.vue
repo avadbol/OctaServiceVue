@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import { rayonAdd } from "../../../../api/define/rayon"
+    import {mapGetters} from "vuex";
 
     export default {
         name: "RayonAdd",
@@ -31,16 +31,23 @@
         methods:{
             saveRayon(){
                 this.isDisable = true;
-                rayonAdd(this.rayon).then(response => {
-                    if(response.status == 200){
-                        this.$bvToast.toast(this.rayon.name+' reyonu tanımlanadı', {
-                            title: `Ekleme işlemi`,
-                            variant: 'success',
-                            solid: true
-                        })
-                        this.rayon.name = null;
-                    }
-                })
+                // rayonAdd(this.rayon).then(response => {
+                //     if(response.status == 200){
+                //         this.$bvToast.toast(this.rayon.name+' reyonu tanımlanadı', {
+                //             title: `Ekleme işlemi`,
+                //             variant: 'success',
+                //             solid: true
+                //         })
+                //         this.rayon.name = null;
+                //     }
+                // })
+                //
+                // this.$store.dispatch("rayonAdd",this.rayon).then(response => {
+                //     console.log(response);
+                // })
+
+                this.$store.dispatch("rayonAdd", this.user);
+
                 this.isDisable = false;
             },
             sendToRayonList(){
@@ -50,7 +57,10 @@
         computed:{
             isDisabled:function(){
                 return this.isDisable
-            }
+            },
+        },
+        created:{
+            ...mapGetters(["initRayon"]),
         }
     }
 </script>
