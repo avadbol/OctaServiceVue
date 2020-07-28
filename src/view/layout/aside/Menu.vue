@@ -1,7 +1,8 @@
 <template>
     <ul class="menu-nav">
 
-        <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item menu-item-submenu" v-bind:class="{ 'menu-item-open': hasActiveChildren('/error/error') }" >
+        <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item menu-item-submenu"
+            v-bind:class="{ 'menu-item-open': hasActiveChildren('/error/error') }">
             <a href="#" class="menu-link menu-toggle">
                 <i class="menu-icon flaticon2-list-2"></i>
                 <span class="menu-text">Stok</span>
@@ -110,109 +111,17 @@
             </span>
                     </li>
 
-                    <router-link to="/wizard/wizard-1" v-slot="{ href, navigate, isActive, isExactActive }">
-                        <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item" :class="[isActive && 'menu-item-active',isExactActive && 'menu-item-active']">
+                    <router-link to="/define/unit" v-slot="{ href, navigate, isActive, isExactActive }">
+                        <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item"
+                            :class="[isActive && 'menu-item-active',isExactActive && 'menu-item-active']">
                             <a :href="href" class="menu-link" @click="navigate">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Depolar</span>
+                                <span class="menu-text">Birimler</span>
                             </a>
                         </li>
                     </router-link>
-
-                    <router-link to="/wizard/wizard-1" v-slot="{ href, navigate, isActive, isExactActive }">
-                        <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item" :class="[isActive && 'menu-item-active',isExactActive && 'menu-item-active']">
-                            <a :href="href" class="menu-link" @click="navigate">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="menu-text">Departmanlar</span>
-                            </a>
-                        </li>
-                    </router-link>
-
-
-
-                    <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item menu-item-submenu" v-bind:class="{'menu-item-open': hasActiveChildren('/vue-bootstrap/form')}">
-                        <a href="#" class="menu-link menu-toggle">
-                            <i class="menu-bullet menu-bullet-dot">
-                                <span></span>
-                            </i>
-                            <span class="menu-text">Stok</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="menu-submenu">
-                            <span class="menu-arrow"></span>
-                            <ul class="menu-subnav">
-                                <li aria-haspopup="true" class="menu-item menu-item-parent">
-                                  <span class="menu-link">
-                                    <span class="menu-text"></span>
-                                  </span>
-                                </li>
-                                <router-link to="/define/rayon" v-slot="{ href, navigate, isActive, isExactActive }">
-                                    <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item" :class="[isActive && 'menu-item-active',isExactActive && 'menu-item-active']">
-                                        <a :href="href" class="menu-link" @click="navigate">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                <span></span>
-                                            </i>
-                                            <span class="menu-text">Reyon Tanımlamaları</span>
-
-                                        </a>
-                                    </li>
-                                </router-link>
-                                <router-link to="/vue-bootstrap/form" v-slot="{ href, navigate, isActive, isExactActive }">
-                                    <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item" :class="[isActive && 'menu-item-active',isExactActive && 'menu-item-active']">
-                                        <a :href="href" class="menu-link" @click="navigate">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                <span></span>
-                                            </i>
-                                            <span class="menu-text">Grup Tanımlamaları</span>
-
-                                        </a>
-                                    </li>
-                                </router-link>
-
-                                <router-link to="/vue-bootstrap/form" v-slot="{ href, navigate, isActive, isExactActive }">
-                                    <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item" :class="[isActive && 'menu-item-active',isExactActive && 'menu-item-active']">
-                                        <a :href="href" class="menu-link" @click="navigate">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                <span></span>
-                                            </i>
-                                            <span class="menu-text">Renk Tanımlamaları</span>
-                                        </a>
-                                    </li>
-                                </router-link>
-
-                                <router-link to="/vue-bootstrap/form" v-slot="{ href, navigate, isActive, isExactActive }">
-                                    <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item" :class="[isActive && 'menu-item-active',isExactActive && 'menu-item-active']">
-                                        <a :href="href" class="menu-link" @click="navigate">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                <span></span>
-                                            </i>
-                                            <span class="menu-text">Beden Tanımlamaları</span>
-                                        </a>
-                                    </li>
-                                </router-link>
-
-                                <router-link to="/vue-bootstrap/form" v-slot="{ href, navigate, isActive, isExactActive }">
-                                    <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item" :class="[isActive && 'menu-item-active',isExactActive && 'menu-item-active']">
-                                        <a :href="href" class="menu-link" @click="navigate">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                <span></span>
-                                            </i>
-                                            <span class="menu-text">Birim Tanımlamaları</span>
-                                        </a>
-                                    </li>
-                                </router-link>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-
-
 
                 </ul>
             </div>
@@ -226,7 +135,7 @@
             hasActiveChildren(match) {
                 return this.$route["path"].indexOf(match) !== -1;
             },
-            onOpen (e) {
+            onOpen(e) {
                 console.log('Window is about to be opened.');
             }
 

@@ -22,15 +22,15 @@ export default new Router({
           children: []
         },
         {
-          path: "/vue-bootstrap",
-          name: "vue-bootstrap",
+          path: "/define",
+          name: "define",
           component: () =>
             import("@/view/pages/vue-bootstrap/VueBootstrap.vue"),
           children: [
             {
-              path: "alert",
-              name: "vue-bootstrap-alert",
-              component: () => import("@/view/pages/vue-bootstrap/Alert.vue")
+              path: "unit",
+              name: "unit-define",
+              component: () => import("@/view/pages/define/rayon/RayonList.vue")
             },
           ]
         },
