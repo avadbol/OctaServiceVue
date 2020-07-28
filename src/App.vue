@@ -24,7 +24,7 @@
 </style>
 
 <script>
-import { OVERRIDE_LAYOUT_CONFIG } from "@/core/services/store/config.module";
+import { OVERRIDE_LAYOUT_CONFIG } from "@/core/services/store/modules/config.module";
 import { mapGetters } from "vuex";
 
 export default {

@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
+import { SET_BREADCRUMB } from "@/core/services/store/modules/breadcrumbs.module";
 import AdvancedTableWidget2 from "@/view/content/widgets/advance-table/Widget2.vue";
 import MixedWidget1 from "@/view/content/widgets/mixed/Widget1.vue";
 import ListWidget1 from "@/view/content/widgets/list/Widget1.vue";

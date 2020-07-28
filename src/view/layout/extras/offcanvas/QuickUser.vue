@@ -257,7 +257,7 @@
 </style>
 
 <script>
-import { LOGOUT } from "@/core/services/store/auth.module";
+import { LOGOUT } from "@/core/services/store/modules/auth.module";
 import KTLayoutQuickUser from "@/assets/js/layout/extended/quick-user.js";
 import KTOffcanvas from "@/assets/js/components/offcanvas.js";
 
