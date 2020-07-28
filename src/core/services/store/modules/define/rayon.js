@@ -27,6 +27,7 @@ const mutations = {
 const actions = {
     initRayons({commit}){
         rayonGetList().then(response => {
+            this.rayons = []
             let data = response.data;
             for(let key in data){
                 data[key].key = key;
@@ -35,19 +36,19 @@ const actions = {
         })
     },
     rayonAdd({dispatch, commit,state},rayon){
-        console.log("store içine girdi pampa")
-        const result = rayonAdd(rayon);
-        result.then(response => {
-
-        })
+        rayonAdd(rayon).then(response => {
+            if(response.status == 200){
+                dispatch("initRayons")
+                return 200;
+            }
+        });
+        return false;
     },
     rayonUpdate({dispatch, commit,state}, rayon){
-        const result = rayonUpdate(rayon);
-        console.log(result);
+        return rayonUpdate(rayon);
     },
     rayonDelete({dispatch,commit,state},rayon){
-        const result =  rayonDelete(rayon)
-        console.log(result);
+        return rayonDelete(rayon);
     }
 }
 

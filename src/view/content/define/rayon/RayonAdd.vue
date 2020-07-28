@@ -31,22 +31,17 @@
         methods:{
             saveRayon(){
                 this.isDisable = true;
-                // rayonAdd(this.rayon).then(response => {
-                //     if(response.status == 200){
-                //         this.$bvToast.toast(this.rayon.name+' reyonu tanımlanadı', {
-                //             title: `Ekleme işlemi`,
-                //             variant: 'success',
-                //             solid: true
-                //         })
-                //         this.rayon.name = null;
-                //     }
-                // })
-                //
-                // this.$store.dispatch("rayonAdd",this.rayon).then(response => {
-                //     console.log(response);
-                // })
-
-                this.$store.dispatch("rayonAdd", this.user);
+                this.$store.dispatch("rayonAdd", this.rayon).then(response => {
+                    console.log(response);
+                        if(response == 200){
+                            this.$bvToast.toast(this.rayon.name+' reyonu tanımlanadı', {
+                                title: `Ekleme işlemi`,
+                                variant: 'success',
+                                solid: true
+                            })
+                            this.rayon.name = null;
+                        }
+                });
 
                 this.isDisable = false;
             },
@@ -58,9 +53,7 @@
             isDisabled:function(){
                 return this.isDisable
             },
-        },
-        created:{
-            ...mapGetters(["initRayon"]),
         }
+
     }
 </script>
