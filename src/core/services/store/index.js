@@ -5,18 +5,19 @@ import auth from "./auth.module";
 import htmlClass from "./htmlclass.module";
 import config from "./config.module";
 import breadcrumbs from "./breadcrumbs.module";
+import rayon from "./modules/define/rayon"
 
 Vue.use(Vuex);
 
-const modulesFiles = require.context('./modules', true, /\.js$/)
-
-const modules = modulesFiles.keys().reduce((modules, modulePath) => {
-    // set './app.js' => 'app'
-    const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
-    const value = modulesFiles(modulePath)
-    modules[moduleName] = value.default
-    return modules
-}, {})
+// const modulesFiles = require.context('./modules', true, /\.js$/)
+//
+// const modules = modulesFiles.keys().reduce((modules, modulePath) => {
+//     // set './app.js' => 'app'
+//     const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
+//     const value = modulesFiles(modulePath)
+//     modules[moduleName] = value.default
+//     return modules
+// }, {})
 
 
 
@@ -26,6 +27,8 @@ export default new Vuex.Store({
         htmlClass,
         config,
         breadcrumbs,
+        rayon
+
     }
 });
 

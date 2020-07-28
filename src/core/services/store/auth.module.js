@@ -32,13 +32,13 @@ const actions = {
   [LOGIN](context, credentials) {
     return new Promise(resolve => {
       ApiService.post("login", credentials)
-        .then(({ data }) => {
-          context.commit(SET_AUTH, data);
-          resolve(data);
-        })
-        .catch(({ response }) => {
-          context.commit(SET_ERROR, response.data.errors);
-        });
+          .then(({ data }) => {
+            context.commit(SET_AUTH, data);
+            resolve(data);
+          })
+          .catch(({ response }) => {
+            context.commit(SET_ERROR, response.data.errors);
+          });
     });
   },
   [LOGOUT](context) {
@@ -47,26 +47,26 @@ const actions = {
   [REGISTER](context, credentials) {
     return new Promise((resolve, reject) => {
       ApiService.post("users", { user: credentials })
-        .then(({ data }) => {
-          context.commit(SET_AUTH, data);
-          resolve(data);
-        })
-        .catch(({ response }) => {
-          context.commit(SET_ERROR, response.data.errors);
-          reject(response);
-        });
+          .then(({ data }) => {
+            context.commit(SET_AUTH, data);
+            resolve(data);
+          })
+          .catch(({ response }) => {
+            context.commit(SET_ERROR, response.data.errors);
+            reject(response);
+          });
     });
   },
   [VERIFY_AUTH](context) {
     if (JwtService.getToken()) {
       ApiService.setHeader();
       ApiService.get("verify")
-        .then(({ data }) => {
-          context.commit(SET_AUTH, data);
-        })
-        .catch(({ response }) => {
-          context.commit(SET_ERROR, response.data.errors);
-        });
+          .then(({ data }) => {
+            context.commit(SET_AUTH, data);
+          })
+          .catch(({ response }) => {
+            context.commit(SET_ERROR, response.data.errors);
+          });
     } else {
       context.commit(PURGE_AUTH);
     }
