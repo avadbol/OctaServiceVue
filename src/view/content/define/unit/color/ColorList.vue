@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-table :items="rayonGetlist" :fields="fields" class="mx-1 mt-2" sort-icon-left >
+        <b-table :items="colorGetlist" :fields="fields" class="mx-1 mt-2" sort-icon-left >
             <template v-slot:cell(action)="data">
                 <div>
                     <b-button class="btn-sm mr-1" @click="detailOpenModal(data)">Düzelt</b-button>
@@ -8,7 +8,7 @@
                 </div>
             </template>
         </b-table>
-        <b-modal id="modal-rayon-edit" ref="modal" title="Reyon Güncelleme İşlemi" no-close-on-backdrop ok-title="Güncelle" cancel-title="Vazgeç">
+        <b-modal id="modal-color-edit" ref="modal" title="Renk Güncelleme İşlemi"  @ok="updateColor" no-close-on-backdrop ok-title="Güncelle" cancel-title="Vazgeç">
             <b-form-input v-model="modalData.name"></b-form-input>
         </b-modal>
     </div>
@@ -38,12 +38,12 @@
         methods: {
             detailOpenModal(data){
                 this.modalData = data.item;
-                this.$bvModal.show("modal-rayon-edit")
+                this.$bvModal.show("modal-color-edit")
             },
-            updateRayon(){
-                rayonUpdate(this.modalData).then(response => {
-                    if(response.status == 200){
-                        this.$bvToast.toast(this.modalData.name+' reyonu güncellendi', {
+            updateColor(){
+                this.$store.dispatch("colorUpdate",this.modalData).then(response => {
+                    if(response == 200){
+                        this.$bvToast.toast(this.modalData.name+' rengi güncellendi', {
                             title: `Güncelleme İşlemi`,
                             variant: 'success',
                             solid: true
@@ -58,21 +58,17 @@
                 })
                     .then(value =>{
                         if(value){
-                            rayonDelete(data.item).then(response => {
-                                this.rayonList();
-                            })
+                            this.$store.dispatch("colorDelete",data.item)
                         }
                     })
-
             }
-
         },
         computed:{
-            ...mapGetters(["rayonGetlist"]),
+            ...mapGetters(["colorGetlist"]),
 
         },
         created() {
-            this.$store.dispatch("initRayons");
+            this.$store.dispatch("initColors");
         }
     }
 </script>

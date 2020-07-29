@@ -16,8 +16,6 @@
 </template>
 
 <script>
-    import {mapGetters} from "vuex";
-
     export default {
         name: "RayonAdd",
         data(){
@@ -32,8 +30,7 @@
             saveRayon(){
                 this.isDisable = true;
                 this.$store.dispatch("rayonAdd", this.rayon).then(response => {
-                    console.log(response);
-                        if(response == 200){
+                    if(response == 200){
                             this.$bvToast.toast(this.rayon.name+' reyonu tanımlanadı', {
                                 title: `Ekleme işlemi`,
                                 variant: 'success',
@@ -42,11 +39,7 @@
                             this.rayon.name = null;
                         }
                 });
-
                 this.isDisable = false;
-            },
-            sendToRayonList(){
-
             }
         },
         computed:{
@@ -54,6 +47,5 @@
                 return this.isDisable
             },
         }
-
     }
 </script>

@@ -118,7 +118,7 @@
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Birimler</span>
+                                <span class="menu-text">Stok Arabirimler</span>
                             </a>
                         </li>
                     </router-link>

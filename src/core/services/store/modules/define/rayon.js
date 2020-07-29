@@ -1,58 +1,70 @@
-import {rayonAdd,rayonDelete,rayonGetList,rayonUpdate,rayonGetById} from "../../../../../api/define/rayon";
+import {rayonAdd, rayonDelete, rayonGetList, rayonUpdate, rayonGetById} from "../../../../../api/define/rayon";
 
 const state = {
-    rayons:[]
+    rayons: []
 }
 
-const getters ={
+const getters = {
     rayonGetlist: state => {
         return state.rayons;
     },
-    rayonGet:state => {
+    rayonGet: state => {
         return key = state.rayon.filter(element => {
             return element.key == key;
         })
     },
     rayonGetById: (state) => (id) => {
-        return state.rayons.find(x=> x.id == id)
+        return state.rayons.find(x => x.id == id)
     }
 }
 
 const mutations = {
-    rayonUpdate(state, rayon){
+    rayonUpdate(state, rayon) {
         state.rayons.push(rayon)
     }
 }
 
 const actions = {
-    initRayons({commit}){
+    initRayons({commit}) {
         rayonGetList().then(response => {
-            this.rayons = []
+            state.rayons = [];
             let data = response.data;
-            for(let key in data){
+            for (let key in data) {
                 data[key].key = key;
-                commit("rayonUpdate",data[key])
+                commit("rayonUpdate", data[key])
             }
         })
     },
-    rayonAdd({dispatch, commit,state},rayon){
-        rayonAdd(rayon).then(response => {
-            if(response.status == 200){
-                dispatch("initRayons")
+    rayonAdd({dispatch, commit, state}, rayon) {
+        const result = rayonAdd(rayon).then(response => {
+            if (response.status == 200) {
+                dispatch('initRayons');
                 return 200;
-            }
+            } else return 505;
         });
-        return false;
+        return result;
     },
-    rayonUpdate({dispatch, commit,state}, rayon){
-        return rayonUpdate(rayon);
+    rayonUpdate({dispatch, commit, state}, rayon) {
+        const result = rayonUpdate(rayon).then(response => {
+            if (response.status == 200) {
+                dispatch('initRayons')
+                return 200;
+            } else return false;
+        })
+        return result;
     },
-    rayonDelete({dispatch,commit,state},rayon){
-        return rayonDelete(rayon);
+    rayonDelete({dispatch, commit, state}, rayon) {
+        const result = rayonDelete(rayon).then(response => {
+            if (response.status == 200) {
+                dispatch('initRayons')
+                return 200;
+            } else return false;
+        })
+        return result;
     }
 }
 
-export default{
+export default {
     state,
     getters,
     mutations,

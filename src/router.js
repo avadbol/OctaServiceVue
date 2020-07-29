@@ -16,12 +16,6 @@ export default new Router({
           component: () => import("@/view/pages/Dashboard.vue")
         },
         {
-          path: "/product",
-          name: "product",
-          component: () => import("@/view/pages/product/List.vue"),
-          children: []
-        },
-        {
           path: "/define",
           name: "define",
           component: () =>
@@ -30,7 +24,7 @@ export default new Router({
             {
               path: "unit",
               name: "unit-define",
-              component: () => import("@/view/pages/define/rayon/RayonList.vue")
+              component: () => import("@/view/pages/define/unit/UnitList.vue")
             },
           ]
         },
