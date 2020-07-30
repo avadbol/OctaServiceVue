@@ -2,23 +2,26 @@
     <div>
         <div>
             <b-card no-body>
-                <b-tabs vertical  card>
+                <b-tabs vertical card>
                     <b-tab title="Depolar">
-                        <b-card-text>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-12">
-                                    <label >Depo Adı</label>
-                                    <b-input placeholder="Lütfen depo adını yazınız"></b-input>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <label> Depo Listesi</label>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <Storage-Add></Storage-Add>
                             </div>
-                        </b-card-text>
+                            <div class="col-md-12">
+                                <Storage-List></Storage-List>
+                            </div>
+                        </div>
                     </b-tab>
-                    <b-tab no-body title="Departmanlar">
-                        <b-card-img bottom src="https://picsum.photos/600/200/?image=25" alt="Image 25"></b-card-img>
-                        <b-card-footer>Picture 2 footer</b-card-footer>
+                    <b-tab title="Departmanlar">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <Departmen-Add></Departmen-Add>
+                            </div>
+                            <div class="col-md-12">
+                                <Departmen-List></Departmen-List>
+                            </div>
+                        </div>
                     </b-tab>
                     <b-tab title="Reyon">
                         <div class="row">
@@ -54,7 +57,7 @@
                         </div>
                     </b-tab>
 
-                    <b-tab  title="Beden">
+                    <b-tab title="Beden">
                         <div class="row">
                             <div class="col-md-12">
                                 <Body-Add></Body-Add>
@@ -76,8 +79,6 @@
                             </div>
                         </div>
                     </b-tab>
-
-
                 </b-tabs>
             </b-card>
         </div>
@@ -94,12 +95,14 @@
     import BodyList from "../../../content/define/unit/body/BodyList"
     import UnitAdd from "../../../content/define/unit/unit/UnitAdd"
     import UnitList from "../../../content/define/unit/unit/UnitList"
-
-
+    import StorageAdd from "../../../content/define/unit/storage/StorageAdd";
+    import StorageList from "../../../content/define/unit/storage/StorageList";
+    import DepartmenAdd from "../../../content/define/unit/department/DepartmenAdd";
+    import DepartmenList from "../../../content/define/unit/department/DepartmenList";
 
 
     export default {
-        components:{
+        components: {
             RayonList,
             RayonAdd,
             GroupAdd,
@@ -109,7 +112,11 @@
             BodyAdd,
             BodyList,
             UnitAdd,
-            UnitList
+            UnitList,
+            StorageAdd,
+            StorageList,
+            DepartmenAdd,
+            DepartmenList
         },
     }
 
