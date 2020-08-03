@@ -18,14 +18,37 @@ export default new Router({
         {
           path: "/define",
           name: "define",
-          component: () =>
-            import("@/view/pages/vue-bootstrap/VueBootstrap.vue"),
+          redirect:"/define/unit",
+          component: () => import("@/view/pages/define/unit/UnitList.vue"),
           children: [
             {
               path: "unit",
               name: "unit-define",
               component: () => import("@/view/pages/define/unit/UnitList.vue")
             },
+          ]
+        },
+        {
+          path: "/stock",
+          name: "stock",
+          redirect:"/stock/list",
+          component: () => import("@/view/pages/stock/create.vue"),
+          children: [
+            {
+              path: "create",
+              name: "stock-create",
+              component: () => import("@/view/pages/stock/create.vue")
+            },
+            {
+              path: "edit",
+              name: "stock-edit",
+              component: () => import("@/view/pages/stock/edit.vue")
+            },
+            {
+              path: "edit",
+              name: "stock-edit",
+              component: () => import("@/view/pages/stock/list.vue")
+            }
           ]
         },
 

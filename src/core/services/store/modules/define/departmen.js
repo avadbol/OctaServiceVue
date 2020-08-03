@@ -45,7 +45,6 @@ const actions = {
         return result;
     },
     departmentUpdate({dispatch, commit, state}, department) {
-        console.log(department)
         const result = departmentUpdate(department).then(response => {
             if (response.status == 200) {
                 dispatch('initDepartments')
