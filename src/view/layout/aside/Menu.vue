@@ -29,7 +29,7 @@
                         </li>
                     </router-link>
 
-                    <router-link to="/stock/add" v-slot="{ href, navigate, isActive, isExactActive }">
+                    <router-link to="/stock/create" v-slot="{ href, navigate, isActive, isExactActive }">
                         <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item"
                             :class="[isActive && 'menu-item-active',isExactActive && 'menu-item-active']">
                             <a :href="href" class="menu-link" @click="navigate">
