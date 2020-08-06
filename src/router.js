@@ -2,13 +2,14 @@ import Vue from "vue";
 import Router from "vue-router";
 
 Vue.use(Router);
+import Layout from "./view/layout/Layout"
 
 export default new Router({
   routes: [
     {
       path: "/",
       redirect: "/dashboard",
-      component: () => import("@/view/layout/Layout"),
+      component: Layout,
       children: [
         {
           path: "/dashboard",
@@ -32,7 +33,7 @@ export default new Router({
           path: "/stock",
           name: "stock",
           redirect:"/stock/list",
-          component: () => import("@/view/pages/stock/create.vue"),
+          component: () => import("@/view/pages/error/Error.vue"),
           children: [
             {
               path: "create",
@@ -45,8 +46,8 @@ export default new Router({
               component: () => import("@/view/pages/stock/edit.vue")
             },
             {
-              path: "edit",
-              name: "stock-edit",
+              path: "list",
+              name: "stock-list",
               component: () => import("@/view/pages/stock/list.vue")
             }
           ]

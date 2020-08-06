@@ -26,7 +26,7 @@ const mutations = {
 
 const actions = {
     initStocks({commit}) {
-        stockGetList().then(response => {
+        stockGetlist().then(response => {
             state.stocks = [];
             let data = response.data;
             for (let key in data) {

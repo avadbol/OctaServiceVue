@@ -1,5 +1,5 @@
 <template>
-    <stock-detail></stock-detail>
+    <stock-detail :is-edit="true"></stock-detail>
 </template>
 
 <script>
