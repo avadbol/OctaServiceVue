@@ -41,7 +41,7 @@
                         </li>
                     </router-link>
 
-                    <router-link to="/product" v-slot="{ href, navigate, isActive, isExactActive }">
+                    <router-link to="/stock/list" v-slot="{ href, navigate, isActive, isExactActive }">
                         <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item"
                             :class="[isActive && 'menu-item-active',isExactActive && 'menu-item-active']">
                             <a :href="href" class="menu-link" @click="navigate">
@@ -49,18 +49,6 @@
                                     <span></span>
                                 </i>
                                 <span class="menu-text">Stok Listesi</span>
-                            </a>
-                        </li>
-                    </router-link>
-
-                    <router-link to="/stock/add" v-slot="{ href, navigate, isActive, isExactActive }">
-                        <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item"
-                            :class="[isActive && 'menu-item-active',isExactActive && 'menu-item-active']">
-                            <a :href="href" class="menu-link" @click="navigate">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="menu-text">Detaylı Stok Listesi</span>
                             </a>
                         </li>
                     </router-link>

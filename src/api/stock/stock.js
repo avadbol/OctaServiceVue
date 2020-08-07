@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function stockGetlist(){
     return request({
-        url:"/stocks/getlist",
+        url:"/stocks/getlistDto",
         method:"get"
     })
 }
