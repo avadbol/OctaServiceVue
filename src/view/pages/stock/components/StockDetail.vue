@@ -210,7 +210,7 @@
             </b-tabs>
             <div class="row ml-3 mt-0 mb-3">
                 <div class="col-md-12">
-                    <div class="btn btn-primary" @click="save">Kaydet</div>
+                    <div class="btn btn-primary" @click="save">Kaydet {{isEdit}}</div>
                 </div>
             </div>
 
@@ -258,10 +258,7 @@
             }
         },
         props: {
-            isEdit: {
-                type: Boolean,
-                default: false
-            }
+            isEdit: null,
         },
         mounted() {
             this.$store.dispatch(SET_BREADCRUMB, [
@@ -284,12 +281,21 @@
                 })
             }
         },
+
+
+        updated() {
+            // if(this.isEdit)
+            //     this.stock = this.selectItem;
+            // else this.stock = {}
+        },
         computed: {
             ...mapGetters(["departmentGetlist"]),
             ...mapGetters(["storageGetlist"]),
             ...mapGetters(["groupGetlist"]),
             ...mapGetters(["colorGetlist"]),
             ...mapGetters(["bodyGetlist"]),
+
+
 
         },
         created() {
@@ -298,9 +304,9 @@
             this.$store.dispatch("initGroups");
             this.$store.dispatch("initColors");
             this.$store.dispatch("initBodys");
+        },
 
 
-        }
     }
 </script>
 

@@ -1,8 +1,7 @@
 <template>
     <div>
         <modal :show="show" @close="close">
-            Geldi: {{itemId}}
-            <stock-detail is-edit="true"></stock-detail>
+            <stock-detail ref="stockDetail" :is-edit="isEdit" :select-item="item"></stock-detail>
         </modal>
     </div>
 </template>
@@ -12,7 +11,7 @@
     import StockDetail from "../../../pages/stock/components/StockDetail";
     export default {
         name: "StockDetailModal",
-        props: ['show',"itemId"],
+        props: ['show',"item",'isEdit'],
         components:{
             Modal,
             StockDetail
@@ -20,6 +19,9 @@
         methods:{
             close: function() {
                 this.$emit('close')
+            },
+            adnan:function(){
+                console.log("adnan!!!")
             }
         }
     }
