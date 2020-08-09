@@ -16,7 +16,7 @@
             <template v-slot:cell(action)="data">
                 <div>
                     <b-button class="btn-sm mr-1" v-b-tooltip.hover.bottom="'Ürünü Güncelle'"
-                              @click="toggleModal('stockModal',true,true,data.item)"><span class="fas fa-edit"></span></b-button>
+                              @click="toggleModal('stockModal',true,true, data.item)"><span class="fas fa-edit"></span></b-button>
 
                     <b-button class="btn-sm" v-b-tooltip.hover.bottom="'Ürünü Sil'" @click="deleteItem(data)"
                               variant=""><span class="fas fa-trash"></span></b-button>
@@ -27,7 +27,7 @@
                 </div>
             </template>
         </b-table>
-        <stock-modal ref="stockModal" :show="stockModal.view" :isEdit="stockModal.isEdit"  :item="stockModal.item" @close="toggleModal('stockModal')"></stock-modal>
+        <stock-modal ref="stockModal" :show="stockModal.view"  @close="toggleModal('stockModal')"></stock-modal>
     </div>
 </template>
 
@@ -100,11 +100,7 @@
                 searchText: "",
                 stockModal:{
                     view:false,
-                    isEdit:false,
-                    item: {
-                        id:0,
-                    }
-                }
+                },
             }
         },
         components: {
@@ -113,11 +109,14 @@
         },
         methods: {
             toggleModal: function ( component, view, isEdit, item ) {
-                if(!view)
-                    this[component].item = {};
-                this[component].item = item;
-                this[component].view = view;
-                this[component].isEdit = isEdit;
+                if(!view){
+                  this[component].view = false;
+                }
+                if(view){
+                  this[component].view = view;
+                  if(view && isEdit)
+                    this.$refs[component].initItem(item);
+                }
 
             },
         },
@@ -125,7 +124,6 @@
             ...mapGetters(["stockGetlist"]),
         },
         created() {
-            console.log("oluşturma yeni ")
             this.$store.dispatch("initStocks");
         }
     }
@@ -133,7 +131,7 @@
 
 <style>
     .column-action {
-        width: 230px !important;
+        //width: 230px !important;
     }
 
     .table td {

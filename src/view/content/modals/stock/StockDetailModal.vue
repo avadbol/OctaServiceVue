@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="stockModal">
         <modal :show="show" @close="close">
-            <stock-detail ref="stockDetail" :is-edit="isEdit" :select-item="item"></stock-detail>
+            <stock-detail :is-edit="isEdit" ref="stockDetail" ></stock-detail>
         </modal>
     </div>
 </template>
@@ -11,7 +11,13 @@
     import StockDetail from "../../../pages/stock/components/StockDetail";
     export default {
         name: "StockDetailModal",
-        props: ['show',"item",'isEdit'],
+        props: ['show'],
+        data() {
+          return{
+            item:null,
+            isEdit:false,
+          }
+        },
         components:{
             Modal,
             StockDetail
@@ -19,14 +25,23 @@
         methods:{
             close: function() {
                 this.$emit('close')
+                this.$refs.stockDetail.$data.stock = {}
+                this.isEdit = false;
             },
-            adnan:function(){
-                console.log("adnan!!!")
+            initItem:function(item){
+              if(item!=null && item.id > 0)
+                this.isEdit = true;
+                this.$refs.stockDetail.getById(item.id)
             }
         }
     }
 </script>
-
 <style scoped>
-
+  .stockModal{
+    padding: 0;
+  }
+  .card-header{
+    background-color:red;
+  }
 </style>
+
