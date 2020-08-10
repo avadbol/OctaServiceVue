@@ -9,9 +9,12 @@
 <script>
     import Modal from "../../modals/Modal"
     import StockDetail from "../../../pages/stock/components/StockDetail";
+    import StockDto from "../../../mixins/dto/stockDto";
+
     export default {
         name: "StockDetailModal",
         props: ['show'],
+        mixins:[StockDto],
         data() {
           return{
             item:null,
@@ -25,8 +28,10 @@
         methods:{
             close: function() {
                 this.$emit('close')
-                this.$refs.stockDetail.$data.stock = {}
+                this.$refs.stockDetail.$data.stock = this.stock//kaldırıl çünkü sorun oluyor
                 this.isEdit = false;
+                // Object.assign(this.$refs.stockDetail.$data.stock, this.$refs.stockDetail.$options.data());
+
             },
             initItem:function(item){
               if(item!=null && item.id > 0)

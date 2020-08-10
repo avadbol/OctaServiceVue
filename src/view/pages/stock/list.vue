@@ -26,7 +26,15 @@
                     </b-dropdown>
                 </div>
             </template>
+
         </b-table>
+
+
+
+        <div class="d-flex justify-content-center mb-3">
+            <b-spinner variant="primary" v-show="loading" style="width: 3rem; height: 3rem;"  label="Yükleniyor..."></b-spinner>
+        </div>
+
         <stock-modal ref="stockModal" :show="stockModal.view"  @close="toggleModal('stockModal')"></stock-modal>
     </div>
 </template>
@@ -98,6 +106,7 @@
                 ],
                 modalData: [],
                 searchText: "",
+                loading:false,
                 stockModal:{
                     view:false,
                 },

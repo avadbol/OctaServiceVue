@@ -54,17 +54,19 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label>Kelimeler</label>
-                <b-form-input size="sm" v-model="stock.search"></b-form-input>
+                <b-form-input size="sm"  v-model="stock.search"></b-form-input>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>Departman</label>
-                <b-form-select size="sm" v-model.number="stock.department"
+                <b-form-select size="sm"  v-model.number="stock.department.id"
                                :options="departmentGetlist"
                                value-field="id"
                                text-field="name"
-                ></b-form-select>
+                >
+                  <b-form-select-option :value="0">Please select an option</b-form-select-option>
+                </b-form-select>
               </div>
             </div>
             <div class="col-md-6">
@@ -124,7 +126,7 @@
                                :options="colorGetlist"
                                value-field="id"
                                text-field="name"
-                               v-model.number="stock.color"
+                               v-model.number="stock.color.id"
                 ></b-form-select>
               </div>
             </div>
@@ -135,7 +137,7 @@
                                :options="bodyGetlist"
                                value-field="id"
                                text-field="name"
-                               v-model.number="stock.body"
+                               v-model.number="stock.body.id"
                 ></b-form-select>
               </div>
             </div>
@@ -211,7 +213,7 @@
       <div class="row ml-3 mt-0 mb-3">
         <div class="col-md-12">
           <div class="btn btn-primary" @click="save" v-show="!isEdit" >Kaydet {{ isEdit }}</div>
-          <div class="btn btn-primary" @click="save" v-show="isEdit" >Güncelle {{ isEdit }}</div>
+          <div class="btn btn-primary" @click="update" v-show="isEdit" >Güncelle {{ isEdit }}</div>
 
         </div>
       </div>
@@ -223,42 +225,12 @@
 <script>
 import {mapGetters} from "vuex";
 import {SET_BREADCRUMB} from "../../../../core/services/store/modules/breadcrumbs.module";
-
+import StockDto from "../../../../view/mixins/dto/stockDto"
+import stockDto from "../../../../view/mixins/dto/stockDto";
 
 export default {
   name: "StockDetail",
-  data() {
-    return {
-      stock: {
-        barcode: null,
-        mainBarcode: null,
-        name: null,
-        widthName: null,
-        pCode: null,
-        storageCode: null,
-        search: null,
-        department: 0,
-        buyingKdv: 0,
-        mainGroup: 0,
-        subGroup: 0,
-        privateCode: 0,
-        manufacturerCode: null,
-        shelfLife: 0,
-        category: 0,
-        subCategory: 0,
-        color: 0,
-        body: 0,
-        manufacturer: null,
-        vendor: null,
-        scalesCode: null,
-        rateOfProfit: 0,
-        width: 0,
-        height: 0,
-        size: 0,
-        kg: 0,
-      }
-    }
-  },
+  mixins:[StockDto],
   props: {
     isEdit: {
       type: Boolean,
@@ -281,37 +253,26 @@ export default {
             variant: 'success',
             solid: true
           })
+          Object.assign(this.$data, this.$options.data());
         }
-        this.stock = {}
+      })
+    },
+    update(){
+      this.$store.dispatch("stockUpdate",this.stock).then(response => {
+        this.$bvToast.toast(this.stock.name + ' stoğu güncellendi', {
+          title: `Güncelleme işlemi`,
+          variant: 'success',
+          solid: true
+        })
+        Object.assign(this.$data, this.$options.data());
       })
     },
     getById(id) {
-      this.stock = null;
-      const resultItem = this.$store.getters.stockGetById(id);
-      this.stock = resultItem;
-
-      try {
-        this.stock.department = resultItem.department.id;
-        this.stock.body = resultItem.body.id;
-        this.stock.color = resultItem.color.id;
-        this.stock.size = resultItem.size.id;
-      }
-      catch
-      {
-        console.log("hata oluştu ama gösterilmedi");
-      }
-
-
+      const result = this.$store.getters.stockGetById(id);
+      this.stock = Object.assign({}, result);
     }
-
   },
 
-
-  updated() {
-    // if(this.isEdit)
-    //     this.stock = this.selectItem;
-    // else this.stock = {}
-  },
   computed: {
     ...mapGetters(["departmentGetlist"]),
     ...mapGetters(["storageGetlist"]),
