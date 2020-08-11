@@ -1,4 +1,4 @@
-import {stockAdd,stockDelete,stockGetById,stockGetlist,stockUpdate} from "../../../../../api/stock/stock";
+import {stockAdd, stockDelete, stockGetById, stockGetlist, stockUpdate} from "../../../../../api/stock/stock";
 
 const state = {
     stocks: []
@@ -8,9 +8,9 @@ const getters = {
     stockGetlist: state => {
         return state.stocks;
     },
-    stockGet: state => {
+    stockGet(state) {
         return key = state.stock.filter(element => {
-            return element.key == key;
+            return element.id == id;
         })
     },
     stockGetById: (state) => (id) => {
@@ -27,12 +27,7 @@ const mutations = {
 const actions = {
     initStocks({commit}) {
         stockGetlist().then(response => {
-            state.stocks = [];
-            let data = response.data;
-            for (let key in data) {
-                data[key].key = key;
-                commit("stockUpdate", data[key])
-            }
+            state.stocks = response.data;
         })
     },
     stockAdd({dispatch, commit, state}, stock) {
@@ -47,7 +42,8 @@ const actions = {
     stockUpdate({dispatch, commit, state}, stock) {
         const result = stockUpdate(stock).then(response => {
             if (response.status == 200) {
-                dispatch('initStocks')
+                const resultItem = this.getters.stockGetById(stock.id)
+                Object.assign(resultItem, stock)
                 return 200;
             } else return false;
         })
@@ -56,7 +52,11 @@ const actions = {
     stockDelete({dispatch, commit, state}, stock) {
         const result = stockDelete(stock).then(response => {
             if (response.status == 200) {
-                dispatch('initStocks')
+                try {
+                    state.stocks.splice(state.id, 1);
+                } catch {
+                    dispatch('initStocks');
+                }
                 return 200;
             } else return false;
         })

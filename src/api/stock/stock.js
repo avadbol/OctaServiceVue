@@ -16,7 +16,6 @@ export function stockGetById(stockById){
 }
 
 export function stockAdd(data){
-    console.log(data);
     return request({
         url:"/stocks/stockadd",
         method:"post",

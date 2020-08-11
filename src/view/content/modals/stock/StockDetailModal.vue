@@ -1,7 +1,7 @@
 <template>
     <div class="stockModal">
         <modal :show="show" @close="close">
-            <stock-detail :is-edit="isEdit" ref="stockDetail" ></stock-detail>
+            <stock-detail :is-edit="isEdit" @close="close" ref="stockDetail" ></stock-detail>
         </modal>
     </div>
 </template>
@@ -28,10 +28,8 @@
         methods:{
             close: function() {
                 this.$emit('close')
-                this.$refs.stockDetail.$data.stock = this.stock//kaldırıl çünkü sorun oluyor
+                this.$refs.stockDetail.$data.stock = this.stock
                 this.isEdit = false;
-                // Object.assign(this.$refs.stockDetail.$data.stock, this.$refs.stockDetail.$options.data());
-
             },
             initItem:function(item){
               if(item!=null && item.id > 0)

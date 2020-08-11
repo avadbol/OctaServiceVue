@@ -265,6 +265,7 @@ export default {
           solid: true
         })
         Object.assign(this.$data, this.$options.data());
+        this.$emit('close')
       })
     },
     getById(id) {
