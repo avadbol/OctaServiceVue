@@ -34,11 +34,11 @@
                               @click="toggleModal('stockModal',true,true, data.item)"><span class="fas fa-edit"></span>
                     </b-button>
 
-                    <b-button class="btn-sm" id="adnan" v-b-tooltip.hover.bottom="'Sil'"
-                              @click="deleteItem(data.item)"
+                    <b-button class="btn-sm" v-b-tooltip.hover.bottom="'Sil'"
+                              @click="deleteItem(data.item.id)"
                               variant=""><span class="fas fa-trash"></span></b-button>
 
-                    <b-dropdown id="dropdown-dropright" size="sm" dropright text="Diğer" variant="primary" class="m-2 bg-warning">
+                    <b-dropdown id="dropdown-dropright" size="sm" dropright text="Diğer" variant="primary" class="m-2">
                         <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Stok Tanımı</b-dropdown-item>
                         <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Stok Birimi</b-dropdown-item>
                         <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Stok Resmi</b-dropdown-item>
@@ -51,50 +51,33 @@
                         <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Genel Sipariş Ekle</b-dropdown-item>
                         <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Stok Hareketini Gör</b-dropdown-item>
                     </b-dropdown>
-
-
                 </div>
-
-
             </template>
 
-            <template v-slot:row-details="row">
+            <template v-slot:row-details="data">
                 <table class="table">
                     <tbody>
-                    <tr>
-                        <th class="w-25">Kodu</th>
-                        <td>21321321</td>
+                     <tr>
+                        <th class="w-25">Stok Kodu</th>
+                        <td>{{data.item.barcode=!null?data.item.barcode:""}}</td>
                     </tr>
                     <tr>
                         <th  class="w-25">Barkod</th>
-                        <td>Mark</td>
+                        <td>{{data.item.mainBarcode=!null?data.item.mainBarcode:""}}</td>
                     </tr>
                     <tr>
-                        <th  class="w-25">Stok Kodu</th>
-                        <td>Mark</td>
+                        <th  class="w-25">Depo</th>
+                        <td>{{data.item.storageCode=!null?data.item.storageCode:""}}</td>
                     </tr>
                     <tr>
-                        <th  class="w-25">Stok Kodu</th>
-                        <td>Mark</td>
+                        <th  class="w-25">Departman</th>
+<!--                        <td>{{data.item.department.name=!null?data.item.department.name:""}}</td>-->
                     </tr>
                     <tr>
-                        <th class="w-25">Stok Kodu</th>
-                        <td>Mark</td>
+                        <th class="w-25">Kdv Satış Fiyatı</th>
+                        <td>{{data.item.buyingKdv=!null?data.item.buyingKdv:""}}</td>
                     </tr>
-                    <tr>
-                        <th  class="w-25">Stok Kodu</th>
-                        <td>Mark</td>
-                    </tr>
-                    <tr>
-                        <th  class="w-25">Stok Kodu</th>
-                        <td>Mark</td>
-                    <tr>
-                        <th  class="w-25">Stok Kodu</th>
-                        <td>Mark</td>
-                    <tr>
-                        <th  class="w-25">Stok Kodu</th>
-                        <td>Mark</td>
-                    </tr>
+
                     </tbody>
                 </table>
             </template>
@@ -119,22 +102,27 @@
                         label: "",
                         class: 'stock-column-action'
                     },
+                    {
+                        key: "id",
+                        label: "Kimlik",
+                        colType: "button",
+                        sortable: true,
+                    },
                     // {
-                    //     key: "id",
-                    //     label: "Kimlik",
+                    //     key: "barcode",
+                    //     label: "Barkod",
+                    //     colType: "button",
+                    //     sortable: true,
+                    // },
+                    // {
+                    //     key: "mainBarcode",
+                    //     label: "Stok Kodu",
                     //     colType: "button",
                     //     sortable: true,
                     // },
                     {
                         key: "barcode",
-                        label: "Barkod",
-                        colType: "button",
-                        sortable: true,
-                    },
-                    {
-                        key: "mainBarcode",
                         label: "Stok Kodu",
-                        colType: "button",
                         sortable: true,
                     },
                     {
@@ -142,18 +130,18 @@
                         label: "Stok Adı",
                         sortable: true,
                     },
-                    {
-                        key: "department.name",
-                        label: "Departman",
-                        colType: "button",
-                        sortable: true,
-                    },
-                    {
-                        key: "unit",
-                        label: "Birim",
-                        colType: "button",
-                        sortable: true,
-                    },
+                    // {
+                    //     key: "department.name",
+                    //     label: "Departman",
+                    //     colType: "button",
+                    //     sortable: true,
+                    // },
+                    // {
+                    //     key: "unit",
+                    //     label: "Birim",
+                    //     colType: "button",
+                    //     sortable: true,
+                    // },
 
                     {
                         key: "price",
@@ -161,13 +149,12 @@
                         colType: "button",
                         class: 'column-action'
                     },
-                    {
-                        key: "storageCode",
-                        label: "Depo",
-                        colType: "button",
-                        class: 'column-action'
-                    },
-                    'show_details'
+                    // {
+                    //     key: "storageCode",
+                    //     label: "Depo",
+                    //     colType: "button",
+                    //     class: 'column-action'
+                    // },
 
                 ],
                 modalData: [],
@@ -194,13 +181,15 @@
                 }
             },
             deleteItem(data) {
+                console.log("silmeden geliyor şuanda");
+                console.log(data);
                 this.$bvModal.msgBoxConfirm(data.name + " öğesi silinecektir onaylıyor musunuz?", {
                     okTitle: 'Evet',
                     cancelTitle: 'Vazgeç',
                 })
                     .then(value => {
                         if (value) {
-                            this.$store.dispatch("stockDelete", data)
+                            this.$store.dispatch("stockDelete", {id:data})
                         }
                     })
             }

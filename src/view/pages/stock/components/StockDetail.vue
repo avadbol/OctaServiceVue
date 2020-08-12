@@ -60,12 +60,16 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Departman</label>
-                <b-form-select size="sm"  v-model.number="stock.department.id"
+                ==> {{stock.department.id}}
+                <b-form-select size="sm"  v-model.number="stock.department.id" :value="0"
                                :options="departmentGetlist"
                                value-field="id"
                                text-field="name"
                 >
-                  <b-form-select-option :value="0">Please select an option</b-form-select-option>
+                  <b-form-select-option :value="null">Please select an option</b-form-select-option>
+<!--                  <option :value="null">-->
+<!--                    None-->
+<!--                  </option>-->
                 </b-form-select>
               </div>
             </div>
@@ -122,23 +126,23 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Renk</label>
-                <b-form-select size="sm"
-                               :options="colorGetlist"
-                               value-field="id"
-                               text-field="name"
-                               v-model.number="stock.color.id"
-                ></b-form-select>
+<!--                <b-form-select size="sm"-->
+<!--                               :options="colorGetlist"-->
+<!--                               value-field="id"-->
+<!--                               text-field="name"-->
+<!--                               v-model.number="stock.color.id"-->
+<!--                ></b-form-select>-->
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>Beden</label>
-                <b-form-select size="sm"
-                               :options="bodyGetlist"
-                               value-field="id"
-                               text-field="name"
-                               v-model.number="stock.body.id"
-                ></b-form-select>
+<!--                <b-form-select size="sm"-->
+<!--                               :options="bodyGetlist"-->
+<!--                               value-field="id"-->
+<!--                               text-field="name"-->
+<!--                               v-model.number="stock.body.id"-->
+<!--                ></b-form-select>-->
               </div>
             </div>
             <div class="col-md-6">
@@ -193,31 +197,13 @@
 
           </div>
         </b-tab>
-        <!--                <b-tab title="Birimler" hidden>-->
-        <!--                    <b-card-text>Birimler - Fiyatlar</b-card-text>-->
-        <!--                </b-tab>-->
-        <!--                <b-tab title="Muhasebe Kodları" hidden>-->
-        <!--                    <b-card-text>Ekler</b-card-text>-->
-        <!--                </b-tab>-->
-        <!--                <b-tab title="Ambar Paremetreleri" hidden>-->
-        <!--                    <b-card-text>Ekler</b-card-text>-->
-        <!--                </b-tab>-->
-        <!--                <b-tab title="Tedarik Alanları" hidden>-->
-        <!--                    <b-card-text>Ekler</b-card-text>-->
-        <!--                </b-tab>-->
-        <!--                <b-tab title="Özel Kodlar" hidden>-->
-        <!--                    <b-card-text>Ekler</b-card-text>-->
-        <!--                </b-tab>-->
-
       </b-tabs>
       <div class="row ml-3 mt-0 mb-3">
         <div class="col-md-12">
           <div class="btn btn-primary" @click="save" v-show="!isEdit" >Kaydet {{ isEdit }}</div>
           <div class="btn btn-primary" @click="update" v-show="isEdit" >Güncelle {{ isEdit }}</div>
-
         </div>
       </div>
-
     </b-card>
   </div>
 </template>
@@ -243,7 +229,6 @@ export default {
       {title: "Stok Tanımlama"}
     ]);
   },
-
   methods: {
     save() {
       this.$store.dispatch("stockAdd", this.stock).then(response => {
@@ -270,18 +255,18 @@ export default {
     },
     getById(id) {
       const result = this.$store.getters.stockGetById(id);
+
       this.stock = Object.assign({}, result);
+      if(result.department.id == null)
+        result.department.id = 0;
     }
   },
-
   computed: {
     ...mapGetters(["departmentGetlist"]),
     ...mapGetters(["storageGetlist"]),
     ...mapGetters(["groupGetlist"]),
     ...mapGetters(["colorGetlist"]),
     ...mapGetters(["bodyGetlist"]),
-
-
   },
   created() {
     this.$store.dispatch("initDepartments");
@@ -289,9 +274,7 @@ export default {
     this.$store.dispatch("initGroups");
     this.$store.dispatch("initColors");
     this.$store.dispatch("initBodys");
-  },
-
-
+  }
 }
 </script>
 

@@ -28,6 +28,16 @@ const actions = {
     initStocks({commit}) {
         stockGetlist().then(response => {
             state.stocks = response.data;
+            let data = response.data;
+            for(const item in data){
+                if(data[item].department == null)
+                    data[item].department = {Id:0};
+                if(data[item].body == null)
+                    data[item].body = {Id:0}
+                if(data[item].color == null)
+                    data[item].color = {Id:0}
+
+            }
         })
     },
     stockAdd({dispatch, commit, state}, stock) {
@@ -53,7 +63,8 @@ const actions = {
         const result = stockDelete(stock).then(response => {
             if (response.status == 200) {
                 try {
-                    state.stocks.splice(state.id, 1);
+                    dispatch('initStocks');
+                    state.$delete(stock, stock.id)
                 } catch {
                     dispatch('initStocks');
                 }

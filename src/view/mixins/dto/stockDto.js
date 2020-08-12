@@ -11,7 +11,8 @@ const stockDto  = {
                 storageCode: 0,
                 search: null,
                 department: {
-                    id:0
+                    type:Object,
+                    default:{id:0},
                 },
                 buyingKdv: 0,
                 mainGroup: 0,

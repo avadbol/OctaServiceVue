@@ -32,6 +32,8 @@ export function stockUpdate(data){
 }
 
 export function stockDelete(data){
+    console.log("apiden geliyor şuanda")
+    console.log(data);
     return request({
         url:"/stocks/delete",
         method:"post",
