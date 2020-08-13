@@ -4,13 +4,11 @@
             <div class="form-row">
                 <div class="col-10">
                     <b-input class="float-left" v-model="group.name" placeholder="Lütfen grup tanım adını yazınız" autocomplete="off"></b-input>
-
                 </div>
                 <div class="col-2">
                     <b-button @click="saveGroup" :disabled="isDisabled" class="btn-block" variant="success">Ekle</b-button>
                 </div>
             </div>
-
         </div>
     </div>
 </template>

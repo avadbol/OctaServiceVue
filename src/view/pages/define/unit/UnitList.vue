@@ -1,8 +1,8 @@
 <template>
     <div>
         <div>
-            <b-card no-body>
-                <b-tabs vertical card>
+            <b-card >
+                <b-tabs vertical>
                     <b-tab title="Depolar">
                         <div class="row">
                             <div class="col-md-12">
@@ -34,17 +34,41 @@
                         </div>
                     </b-tab>
 
-                    <b-tab title="Grup">
+                    <b-tab title="Kategoriler">
                         <div class="row">
                             <div class="col-md-12">
-                                <Group-Add></Group-Add>
+                                <Color-Add></Color-Add>
                             </div>
                             <div class="col-md-12">
-                                <Group-List></Group-List>
+                                <Color-List></Color-List>
                             </div>
                         </div>
                     </b-tab>
 
+                    <b-tab title="Grup">
+                        <div class="row">
+                            <div class="col-md-12 card">
+                                <h5 class="ml-5 mb-3 mt-3">Grup Tanımlama İşlemleri</h5>
+                                <div class="col-md-12">
+                                    <Group-Add></Group-Add>
+                                </div>
+                                <div class="col-md-12">
+                                    <Group-List></Group-List>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="col-md-12 mb-3 card mt-2" >
+                                <h5 class="ml-5 mt-3">Alt Grup Tanımlama İşlemleri</h5>
+
+                                <div class="col-md-12">
+                                    <sub-group-add></sub-group-add>
+                                </div>
+                                <div class="col-md-12">
+                                    <sub-group-list></sub-group-list>
+                                </div>
+                            </div>
+                        </div>
+                    </b-tab>
 
                     <b-tab title="Renk">
                         <div class="row">
@@ -99,7 +123,8 @@
     import StorageList from "../../../content/define/unit/storage/StorageList";
     import DepartmenAdd from "../../../content/define/unit/department/DepartmenAdd";
     import DepartmenList from "../../../content/define/unit/department/DepartmenList";
-
+    import SubGroupAdd from "../../../content/define/unit/group/SubGroupAdd";
+    import SubGroupList from "../../../content/define/unit/group/SubGroupList";
 
     export default {
         components: {
@@ -116,9 +141,10 @@
             StorageAdd,
             StorageList,
             DepartmenAdd,
-            DepartmenList
+            DepartmenList,
+            SubGroupAdd,
+            SubGroupList
         },
     }
-
 </script>
 

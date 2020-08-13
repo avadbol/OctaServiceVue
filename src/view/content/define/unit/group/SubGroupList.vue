@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-table :items="groupGetlist" :fields="fields" class="mx-1 mt-2" sort-icon-left >
+        <b-table :items="subgroupGetlist" :fields="fields" class="mx-1 mt-2" sort-icon-left >
             <template v-slot:cell(action)="data">
                 <div>
                     <b-button class="btn-sm mr-1" @click="detailOpenModal(data)">Düzelt</b-button>
@@ -8,7 +8,10 @@
                 </div>
             </template>
         </b-table>
-        <b-modal id="modal-group-edit" ref="modal" title="Grup Güncelleme İşlemi"  @ok="updateGroup" no-close-on-backdrop ok-title="Güncelle" cancel-title="Vazgeç">
+        <b-modal id="modal-subgroup-edit" ref="modal" title="Alt Grup Güncelleme İşlemi"  @ok="updateItem" no-close-on-backdrop ok-title="Güncelle" cancel-title="Vazgeç">
+            <label>Üst Grub</label>
+            <b-form-select class="mb-3" v-model="modalData.groupId" text-field="name" value-field="id" :options="groupGetlist"></b-form-select>
+            <label>Alt Grub</label>
             <b-form-input v-model="modalData.name"></b-form-input>
         </b-modal>
     </div>
@@ -19,6 +22,17 @@
         data() {
             return {
                 fields: [
+                    // {
+                    //     key: "groupId",
+                    //     label: "Üst Grubu",
+                    //     sortable: true,
+                    //     hidden:true
+                    // },
+                    {
+                        key: "groupName",
+                        label: "Üst Grubu",
+                        sortable: true,
+                    },
                     {
                         key: "name",
                         label: "Adı",
@@ -38,10 +52,12 @@
         methods: {
             detailOpenModal(data){
                 this.modalData = data.item;
-                this.$bvModal.show("modal-group-edit")
+                this.$bvModal.show("modal-subgroup-edit")
             },
-            updateGroup(){
-                this.$store.dispatch("groupUpdate",this.modalData).then(response => {
+            updateItem(){
+                console.log(this.modalData);
+
+                this.$store.dispatch("subgroupUpdate",this.modalData).then(response => {
                     if(response == 200){
                         this.$bvToast.toast(this.modalData.name+' grubu güncellendi', {
                             title: `Güncelleme İşlemi`,
@@ -58,17 +74,18 @@
                 })
                     .then(value =>{
                         if(value){
-                            this.$store.dispatch("groupDelete",data.item)
+                            this.$store.dispatch("subgroupDelete",data.item)
                         }
                     })
             }
         },
         computed:{
-            ...mapGetters(["groupGetlist"]),
+            ...mapGetters(["subgroupGetlist"]),
+            ...mapGetters(["groupGetlist"])
 
         },
         created() {
-            this.$store.dispatch("initGroups");
+            this.$store.dispatch("initSubGroups");
         }
 
     }

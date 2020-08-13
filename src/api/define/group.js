@@ -9,7 +9,7 @@ export function groupGetList(){
 
 export function groupGetById(groupId){
     return request({
-        url:"/defines/getbyid",
+        url:"/defines/groupgetbyid",
         method:"get",
         params:{groupId}
     })
@@ -34,6 +34,46 @@ export function groupUpdate(data){
 export function groupDelete(data){
     return request({
         url:"/defines/groupDelete",
+        method:"post",
+        data
+    })
+}
+
+////////////
+export function subGroupGetList(){
+    return request({
+        url:"/defines/subgroupgetlist",
+        method:"get"
+    })
+}
+
+export function subGroupGetById(groupId){
+    return request({
+        url:"/defines/subgroupgetbyid",
+        method:"get",
+        params:{groupId}
+    })
+}
+
+export function subGroupAdd(data){
+    return request({
+        url:"/defines/subgroupadd",
+        method:"post",
+        data
+    })
+}
+
+export function subGroupUpdate(data){
+    return request({
+        url:"/defines/subgroupupdate",
+        method:"post",
+        data
+    })
+}
+
+export function subGroupDelete(data){
+    return request({
+        url:"/defines/subgroupdelete",
         method:"post",
         data
     })
