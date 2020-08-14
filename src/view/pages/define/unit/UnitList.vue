@@ -37,10 +37,16 @@
                     <b-tab title="Kategoriler">
                         <div class="row">
                             <div class="col-md-12">
-                                <Color-Add></Color-Add>
+                                <Category-Add></Category-Add>
                             </div>
                             <div class="col-md-12">
-                                <Color-List></Color-List>
+                                <Category-List></Category-List>
+                            </div>
+                            <div class="col-md-12">
+                                <Sub-Category-Add></Sub-Category-Add>
+                            </div>
+                            <div class="col-md-12">
+                                <Sub-Category-List></Sub-Category-List>
                             </div>
                         </div>
                     </b-tab>
@@ -103,6 +109,16 @@
                             </div>
                         </div>
                     </b-tab>
+                    <b-tab title="Para Birimi">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <exchange-add></exchange-add>
+                            </div>
+                            <div class="col-md-12">
+                                <exchange-list></exchange-list>
+                            </div>
+                        </div>
+                    </b-tab>
                 </b-tabs>
             </b-card>
         </div>
@@ -125,6 +141,12 @@
     import DepartmenList from "../../../content/define/unit/department/DepartmenList";
     import SubGroupAdd from "../../../content/define/unit/group/SubGroupAdd";
     import SubGroupList from "../../../content/define/unit/group/SubGroupList";
+    import CategoryAdd from "../../../content/define/unit/category/CategoryAdd";
+    import CategoryList from "../../../content/define/unit/category/CategoryList";
+    import SubCategoryList from "../../../content/define/unit/category/SubCategoryList";
+    import SubCategoryAdd from "../../../content/define/unit/category/SubCategoryAdd";
+    import ExchangeAdd from "../../../content/define/unit/exchange/ExchangeAdd";
+    import ExchangeList from "../../../content/define/unit/exchange/ExchangeList";
 
     export default {
         components: {
@@ -143,7 +165,13 @@
             DepartmenAdd,
             DepartmenList,
             SubGroupAdd,
-            SubGroupList
+            SubGroupList,
+            CategoryList,
+            CategoryAdd,
+            SubCategoryList,
+            SubCategoryAdd,
+            ExchangeAdd,
+            ExchangeList
         },
     }
 </script>
