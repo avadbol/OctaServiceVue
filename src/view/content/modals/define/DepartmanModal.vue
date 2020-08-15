@@ -7,7 +7,6 @@
     </div>
 </template>
 
-
 <script>
     import Modal from "../../modals/Modal"
     import DepartmenAdd from "../../define/unit/department/DepartmenAdd";

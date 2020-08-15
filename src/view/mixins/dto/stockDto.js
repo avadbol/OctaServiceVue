@@ -20,14 +20,22 @@ const stockDto  = {
                 privateCode: 0,
                 manufacturerCode: null,
                 shelfLife: 0,
-                category: 0,
-                subCategory: 0,
-                color: {
-                    id:0
+                category: {
+                    type:Object,
+                    default:{id:0},
                 },
-                body: {
-                    id:0
-                },
+                // subCategory: {
+                //     type:Object,
+                //     default:{id:0},
+                // },
+                // color: {
+                //     type:Object,
+                //     default:{id:0},
+                // },
+                // body: {
+                //     type:Object,
+                //     default:{id:0},
+                // },
                 manufacturer: null,
                 vendor: null,
                 scalesCode: null,

@@ -28,11 +28,6 @@ const actions = {
     initExchanges({commit}) {
         exchangeGetList().then(response => {
             state.exchanges = response.data;
-            // let data = response.data;
-            // for (let key in data) {
-            //     data[key].key = key;
-            //     commit("exchangeUpdate", data[key])
-            // }
         })
     },
     exchangeAdd({dispatch, commit, state}, exchange) {

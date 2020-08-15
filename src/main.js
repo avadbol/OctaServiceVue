@@ -6,6 +6,8 @@ import ApiService from "./core/services/api.service";
 import MockService from "./core/mock/mock.service";
 import { VERIFY_AUTH } from "./core/services/store/modules/auth.module";
 import { RESET_LAYOUT_CONFIG } from "@/core/services/store/modules/config.module";
+import VueDirectiveMask from 'vue-directive-mask'
+Vue.use(VueDirectiveMask)
 
 Vue.config.productionTip = false;
 
