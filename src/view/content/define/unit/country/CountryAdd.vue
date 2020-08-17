@@ -16,7 +16,7 @@
 
 <script>
     export default {
-        name: "ColorAdd",
+        name: "CountryAdd",
         data(){
             return{
                 country:{
@@ -26,16 +26,16 @@
             }
         },
         methods:{
-            saveColor(){
+            saveItem(){
                 this.isDisable = true;
-                this.$store.dispatch("colorAdd", this.color).then(response => {
+                this.$store.dispatch("countryAdd", this.country).then(response => {
                     if(response == 200){
-                        this.$bvToast.toast(this.color.name+' rengi tanımlanadı', {
+                        this.$bvToast.toast(this.country.name+' ülkesi tanımlanadı', {
                             title: `Ekleme işlemi`,
                             variant: 'success',
                             solid: true
                         })
-                        this.color.name = null;
+                        this.country.name = null;
                     }
                 });
                 this.isDisable = false;
