@@ -52,6 +52,29 @@ export default new Router({
             }
           ]
         },
+        {
+          path: "/cari",
+          name: "cari",
+          redirect:"/cari/list",
+          component: () => import("@/view/pages/error/Error.vue"),
+          children: [
+            {
+              path: "create",
+              name: "cari-create",
+              component: () => import("@/view/pages/cari/create.vue")
+            },
+            {
+              path: "edit",
+              name: "cari-edit",
+              component: () => import("@/view/pages/cari/edit.vue")
+            },
+            {
+              path: "list",
+              name: "cari-list",
+              component: () => import("@/view/pages/cari/list.vue")
+            }
+          ]
+        },
 
       ]
     },

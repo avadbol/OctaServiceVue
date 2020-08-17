@@ -15,8 +15,14 @@ const stockDto  = {
                     default:{id:0},
                 },
                 buyingKdv: 0,
-                mainGroup: 0,
-                subGroup: 0,
+                mainGroup:  {
+                    type:Object,
+                    default:{id:0},
+                },
+                subGroup:  {
+                    type:Object,
+                    default:{id:0},
+                },
                 privateCode: 0,
                 manufacturerCode: null,
                 shelfLife: 0,
@@ -24,18 +30,18 @@ const stockDto  = {
                     type:Object,
                     default:{id:0},
                 },
-                // subCategory: {
-                //     type:Object,
-                //     default:{id:0},
-                // },
-                // color: {
-                //     type:Object,
-                //     default:{id:0},
-                // },
-                // body: {
-                //     type:Object,
-                //     default:{id:0},
-                // },
+                subCategory: {
+                    type:Object,
+                    default:{id:0},
+                },
+                color: {
+                    type:Object,
+                    default:{id:0},
+                },
+                body: {
+                    type:Object,
+                    default:{id:0},
+                },
                 manufacturer: null,
                 vendor: null,
                 scalesCode: null,

@@ -42,12 +42,12 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <b-input-group prepend="Depo" size="sm">
-<!--                                    <b-form-select size="sm"-->
-<!--                                                   :options="storageGetlist"-->
-<!--                                                   value-field="id"-->
-<!--                                                   text-field="code"-->
-<!--                                                   v-model="stock.storageCode"-->
-<!--                                    ></b-form-select>-->
+                                    <b-form-select size="sm"
+                                                   :options="storageGetlist"
+                                                   value-field="id"
+                                                   text-field="code"
+                                                   v-model="stock.storageCode"
+                                    ></b-form-select>
                                     <div class="btn btn-secondary btn-sm"><i class="ml-1 fas fa-plus-square"></i></div>
 
                                 </b-input-group>
@@ -92,22 +92,22 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <b-input-group prepend="Ana Grup" size="sm">
-<!--                                    <b-form-select size="sm"-->
-<!--                                                   :options="groupGetlist"-->
-<!--                                                   value-field="id" v-model.number="stock.mainGroup"-->
-<!--                                                   text-field="name"-->
-<!--                                    ></b-form-select>-->
+                                    <b-form-select size="sm"
+                                                   :options="groupGetlist"
+                                                   value-field="id" v-model.number="stock.mainGroup.id"
+                                                   text-field="name"
+                                    ></b-form-select>
                                 </b-input-group>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <b-input-group prepend="Alt Grup" size="sm">
-<!--                                    <b-form-select size="sm"-->
-<!--                                                   :options="subgroupGetlist"-->
-<!--                                                   value-field="id" v-model.number="stock.subGroup"-->
-<!--                                                   text-field="name"-->
-<!--                                    ></b-form-select>-->
+                                    <b-form-select size="sm"
+                                                   :options="subgroupGetlist"
+                                                   value-field="id" v-model.number="stock.subGroup.id"
+                                                   text-field="name"
+                                    ></b-form-select>
                                 </b-input-group>
                             </div>
                         </div>
@@ -121,57 +121,57 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <b-input-group prepend="Raf Ömrü" size="sm">
-                                    <b-form-input size="sm" v-model="stock.shelfLife"></b-form-input>
+                                    <b-form-input size="sm" type="number" v-model.number="stock.shelfLife"></b-form-input>
                                 </b-input-group>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <b-input-group prepend="Üst Kategori" size="sm">
-<!--                                    <b-form-select size="sm"-->
-<!--                                                   :options="categoryGetlist"-->
-<!--                                                   value-field="id"-->
-<!--                                                   text-field="name"-->
-<!--                                                   v-model.number="stock.category.id"-->
-<!--                                    ></b-form-select>-->
+                                    <b-form-select size="sm"
+                                                   :options="categoryGetlist"
+                                                   value-field="id"
+                                                   text-field="name"
+                                                   v-model.number="stock.category.id"
+                                    ></b-form-select>
                                 </b-input-group>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <b-input-group prepend="Alt Kategori" size="sm">
-<!--                                    <b-form-select size="sm"-->
-<!--                                                   :options="subcategoryGetlist"-->
-<!--                                                   value-field="id"-->
-<!--                                                   text-field="name"-->
-<!--                                                   v-model.number="stock.subCategory.id"-->
-<!--                                    ></b-form-select>-->
+                                    <b-form-select size="sm"
+                                                   :options="subcategoryGetlist"
+                                                   value-field="id"
+                                                   text-field="name"
+                                                   v-model.number="stock.subCategory.id"
+                                    ></b-form-select>
                                 </b-input-group>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <b-input-group prepend="Renk" size="sm">
-<!--                                    <b-form-select size="sm"-->
-<!--                                                   :options="colorGetlist"-->
-<!--                                                   value-field="id"-->
-<!--                                                   text-field="name"-->
-<!--                                                   v-model.number="stock.color.id"-->
-<!--                                    ></b-form-select>-->
+                                    <b-form-select size="sm"
+                                                   :options="colorGetlist"
+                                                   value-field="id"
+                                                   text-field="name"
+                                                   v-model.number="stock.color.id"
+                                    ></b-form-select>
                                 </b-input-group>
 
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-<!--                                <b-input-group prepend="Beden" size="sm">-->
-<!--                                    <b-form-select size="sm"-->
-<!--                                                   :options="bodyGetlist"-->
-<!--                                                   value-field="id"-->
-<!--                                                   text-field="name"-->
-<!--                                                   v-model.number="stock.body.id"-->
-<!--                                    ></b-form-select>-->
-<!--                                </b-input-group>-->
+                                <b-input-group prepend="Beden" size="sm">
+                                    <b-form-select size="sm"
+                                                   :options="bodyGetlist"
+                                                   value-field="id"
+                                                   text-field="name"
+                                                   v-model.number="stock.body.id"
+                                    ></b-form-select>
+                                </b-input-group>
                             </div>
 
                         </div>
@@ -278,7 +278,6 @@
         methods: {
             save() {
                 this.$store.dispatch("stockAdd", this.stock).then(response => {
-                    console.log(this.stock);
                     if (response == 200) {
                         this.$bvToast.toast(this.stock.name + ' stoğu tanımlanadı', {
                             title: `Ekleme işlemi`,

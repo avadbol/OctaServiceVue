@@ -119,6 +119,19 @@
                             </div>
                         </div>
                     </b-tab>
+                    <b-tab title="Ülke">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <country-add></country-add>
+                            </div>
+                            <div class="col-md-12">
+                                <country-list></country-list>
+                            </div>
+                        </div>
+                    </b-tab>
+                    <b-tab title="İl"></b-tab>
+                    <b-tab title="İlçe"></b-tab>
+
                 </b-tabs>
             </b-card>
         </div>
@@ -147,6 +160,9 @@
     import SubCategoryAdd from "../../../content/define/unit/category/SubCategoryAdd";
     import ExchangeAdd from "../../../content/define/unit/exchange/ExchangeAdd";
     import ExchangeList from "../../../content/define/unit/exchange/ExchangeList";
+    import CountryAdd from "../../../content/define/unit/country/CountryAdd";
+    import CountryList from "../../../content/define/unit/country/CountryList";
+
 
     export default {
         components: {
@@ -171,7 +187,9 @@
             SubCategoryList,
             SubCategoryAdd,
             ExchangeAdd,
-            ExchangeList
+            ExchangeList,
+            CountryAdd,
+            CountryList
         },
     }
 </script>
