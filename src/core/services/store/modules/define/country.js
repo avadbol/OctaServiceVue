@@ -27,8 +27,8 @@ const mutations = {
 const actions = {
     initCountrys({commit}) {
         countryGetList().then(response => {
-            state.country = [];
-            let data = response.data;
+            // state.country = [];
+            state.country = response.data;
         })
     },
     countryAdd({dispatch, commit, state}, payload) {

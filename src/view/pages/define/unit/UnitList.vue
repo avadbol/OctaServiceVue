@@ -129,8 +129,26 @@
                             </div>
                         </div>
                     </b-tab>
-                    <b-tab title="İl"></b-tab>
-                    <b-tab title="İlçe"></b-tab>
+                    <b-tab title="İl">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <province-add></province-add>
+                            </div>
+                            <div class="col-md-12">
+                                <province-list></province-list>
+                            </div>
+                        </div>
+                    </b-tab>
+                    <b-tab title="İlçe">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <district-add></district-add>
+                            </div>
+                            <div class="col-md-12">
+                                <district-list></district-list>
+                            </div>
+                        </div>
+                    </b-tab>
 
                 </b-tabs>
             </b-card>
@@ -162,7 +180,10 @@
     import ExchangeList from "../../../content/define/unit/exchange/ExchangeList";
     import CountryAdd from "../../../content/define/unit/country/CountryAdd";
     import CountryList from "../../../content/define/unit/country/CountryList";
-
+    import ProvinceAdd from "../../../content/define/unit/province/ProvinceAdd";
+    import ProvinceList from "../../../content/define/unit/province/ProvinceList";
+    import DistrictAdd from "../../../content/define/unit/district/DistrictAdd";
+    import DistrictList from "../../../content/define/unit/district/DistrictList";
 
     export default {
         components: {
@@ -189,7 +210,11 @@
             ExchangeAdd,
             ExchangeList,
             CountryAdd,
-            CountryList
+            CountryList,
+            ProvinceAdd,
+            ProvinceList,
+            DistrictAdd,
+            DistrictList
         },
     }
 </script>

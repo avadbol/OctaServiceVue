@@ -406,7 +406,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <b-input-group prepend="Şahış Soyadı" size="sm">
-                                    <b-form-input   size="sm"></b-form-input>
+                                    <b-form-input size="sm"></b-form-input>
                                 </b-input-group>
                             </div>
                         </div>
@@ -417,8 +417,7 @@
 
             <div class="row mt-0 mb-3">
                 <div class="col-md-12">
-                    <div class="btn btn-primary" @click="save" v-show="!isEdit">Kaydet</div>
-                    <div class="btn btn-primary" @click="update" v-show="isEdit">Güncelle</div>
+
                 </div>
             </div>
         </b-card>
