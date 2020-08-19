@@ -11,7 +11,6 @@
         <b-modal id="modal-district-edit" ref="modal" title="İlçe Güncelleme İşlemi"  @ok="updateItem" no-close-on-backdrop ok-title="Güncelle" cancel-title="Vazgeç">
             <b-form-input v-model="modalData.name"></b-form-input>
         </b-modal>
-        {{districtGetlist}}
     </div>
 </template>
 <script>
@@ -28,13 +27,13 @@
                     },
                     {
                         key: "provinceName",
-                        label: "Adı",
+                        label: "İl",
                         colType: "button",
                         sortable: true,
                     },
                     {
                         key: "name",
-                        label: "Adı",
+                        label: "İlçe",
                         colType: "button",
                         sortable: true,
                     },

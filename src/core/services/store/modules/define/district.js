@@ -1,5 +1,6 @@
 import {districtAdd,districtDelete,districtGetById,districtGetList,districtUpdate} from "../../../../../api/define/district";
 
+
 const state = {
     district: []
 }
@@ -22,20 +23,18 @@ const mutations = {
 const actions = {
     initDistrict({commit}) {
         districtGetList().then(response => {
-            // state.district = response.data;
+            state.district = [];
             let data = response.data;
             for (let item in data){
-                //ülkeye ihtiyaç
-
-                // console.log(data[item]);
-                // let resultProvinceId = data[item].provinceId;
-                // let resultCountryId = data[item].countryId;
-                // if(resultCountryId > 0){
-                //     let country = this.getters.countryGetById(data[item].countryId);
-                //     data[item].countryName = country.name;
-                // }else data[item].countryName = "Seçilmemiş";
-                // commit("provinceUpdate",data[item])
+                let province = this.getters.provinceGetById(data[item].provinceId);
+                let country = this.getters.countryGetById(province.countryId);
+                data[item].provinceName = province.name;
+                data[item].provinceId = province.id;
+                data[item].countryName = country.name;
+                data[item].countryId = country.id;
+                commit("districtUpdate",data[item])
             }
+
         })
     },
     districtAdd({dispatch, commit, state}, payload) {
