@@ -17,7 +17,7 @@ const getters = {
     carigroupGetById: (state) => (id) => {
         return state.carigroups.find(x => x.id == id)
     },
-    carigubgroupGetlist: state => {
+    carisubgroupGetlist: state => {
         return state.carisubgroups;
     },
     carisubgroupGet: state => {

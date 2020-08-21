@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   name: "CariGroupAdd",
   data(){
@@ -44,6 +46,8 @@ export default {
     isDisabled:function(){
       return this.isDisable
     },
+
   }
+
 }
 </script>
