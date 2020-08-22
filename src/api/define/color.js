@@ -9,7 +9,7 @@ export function colorGetList(){
 
 export function colorGetById(colorId){
     return request({
-        url:"/defines/getbyid",
+        url:"/defines/colorgetbyid",
         method:"get",
         params:{colorId}
     })

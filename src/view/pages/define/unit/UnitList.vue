@@ -164,6 +164,16 @@
               </div>
             </div>
           </b-tab>
+          <b-tab title="Cari Satıcıları">
+            <div class="row">
+              <div class="col-md-12">
+                <cari-seller-add></cari-seller-add>
+              </div>
+              <div class="col-md-12">
+                <cari-seller-list></cari-seller-list>
+              </div>
+            </div>
+          </b-tab>
 
         </b-tabs>
       </b-card>
@@ -203,6 +213,8 @@ import CariGroupAdd from "@/view/content/define/unit/carigroup/CariGroupAdd";
 import CariGroupList from "@/view/content/define/unit/carigroup/CariGroupList";
 import CariSubGroupAdd from "@/view/content/define/unit/carigroup/CariSubGroupAdd";
 import CariSubGroupList from "@/view/content/define/unit/carigroup/CariSubGroupList";
+import CariSellerAdd from "@/view/content/define/unit/cariseller/CariSellerAdd";
+import CariSellerList from "@/view/content/define/unit/cariseller/CariSellerList";
 
 export default {
   components: {
@@ -237,7 +249,9 @@ export default {
     CariGroupAdd,
     CariGroupList,
     CariSubGroupAdd,
-    CariSubGroupList
+    CariSubGroupList,
+    CariSellerAdd,
+    CariSellerList
   },
 }
 </script>
