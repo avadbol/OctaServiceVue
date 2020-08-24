@@ -2,14 +2,14 @@ import request from '@/utils/request'
 
 export function carisellerGetList(){
     return request({
-        url:"/defines/carisellergetlist",
+        url:"/cari/carisellergetlist",
         method:"get"
     })
 }
 
 export function carisellerGetById(carisellerId){
     return request({
-        url:"/defines/carisellergetbyid",
+        url:"/cari/carisellergetbyid",
         method:"get",
         params:{carisellerId}
     })
@@ -18,7 +18,7 @@ export function carisellerGetById(carisellerId){
 export function carisellerAdd(data){
     console.log(data);
     return request({
-        url:"/defines/cariselleradd",
+        url:"/cari/cariselleradd",
         method:"post",
         data
     })
@@ -26,7 +26,7 @@ export function carisellerAdd(data){
 
 export function carisellerUpdate(data){
     return request({
-        url:"/defines/carisellerUpdate",
+        url:"/cari/carisellerUpdate",
         method:"post",
         data
     })
@@ -34,7 +34,7 @@ export function carisellerUpdate(data){
 
 export function carisellerDelete(data){
     return request({
-        url:"/defines/carisellerDelete",
+        url:"/cari/carisellerDelete",
         method:"post",
         data
     })
