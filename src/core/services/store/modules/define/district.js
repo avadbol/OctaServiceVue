@@ -26,13 +26,16 @@ const actions = {
             state.district = [];
             let data = response.data;
             for (let item in data){
-                let province = this.getters.provinceGetById(data[item].provinceId);
-                let country = this.getters.countryGetById(province.countryId);
-                data[item].provinceName = province.name;
-                data[item].provinceId = province.id;
-                data[item].countryName = country.name;
-                data[item].countryId = country.id;
-                commit("districtUpdate",data[item])
+                try {
+                    let province = this.getters.provinceGetById(data[item].provinceId);
+                    let country = this.getters.countryGetById(province.countryId);
+                    data[item].provinceName = province.name;
+                    data[item].provinceId = province.id;
+                    data[item].countryName = country.name;
+                    data[item].countryId = country.id;
+                    commit("districtUpdate",data[item])
+                }catch {}
+
             }
 
         })

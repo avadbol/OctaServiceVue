@@ -25,12 +25,15 @@ const actions = {
             state.province = [];
             let data = response.data;
             for (let item in data){
-                let resultCountryId = data[item].countryId;
-                if(resultCountryId > 0){
-                    let country = this.getters.countryGetById(data[item].countryId);
-                    data[item].countryName = country.name;
-                }else data[item].countryName = "Seçilmemiş";
-                commit("provinceUpdate",data[item])
+                try {
+                    let resultCountryId = data[item].countryId;
+                    if(resultCountryId > 0){
+                        let country = this.getters.countryGetById(data[item].countryId);
+                        data[item].countryName = country.name;
+                    }else data[item].countryName = "Seçilmemiş";
+                    commit("provinceUpdate",data[item])
+                }catch {}
+
             }
         })
     },

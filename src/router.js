@@ -64,7 +64,7 @@ export default new Router({
               component: () => import("@/view/pages/cari/create.vue")
             },
             {
-              path: "edit",
+              path: "edit/:id",
               name: "cari-edit",
               component: () => import("@/view/pages/cari/edit.vue")
             },

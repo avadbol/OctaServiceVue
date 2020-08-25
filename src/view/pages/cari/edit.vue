@@ -5,7 +5,7 @@
 <script>
     import CariDetail from "../../content/cari/CariDetail";
     export default {
-        name: "edit",
+        name: "cariEdit",
         components:{CariDetail}
     }
 </script>
