@@ -469,7 +469,9 @@
         </div>
       </div>
     </b-card>
+    isEdit ::: {{isEdit}}
   </div>
+
 </template>
 
 <script>
@@ -490,7 +492,7 @@ export default {
     return {
       modalData: {
         view: false,
-      },
+      }
     }
   },
   methods:{
@@ -518,11 +520,11 @@ export default {
       })
     },
     getById(id) {
-      const result = this.$store.getters.stockGetById(id);
 
-      this.cari = Object.assign({}, result);
-      if (result.department.id == null)
-        result.department.id = 0;
+      const result = this.$store.getters.cariGetById(id);
+      this.cari = result;
+      // this.cari = result;
+      console.log(this.$data)
     },
   },
   mounted() {
@@ -539,7 +541,6 @@ export default {
     ...mapGetters(["countryGetlist"]),
     ...mapGetters(["carisellerGetlist"]),
     ...mapGetters(["exchangeGetlist"]),
-
   },
   created() {
     this.$store.dispatch("initExchanges");
@@ -549,7 +550,17 @@ export default {
     this.$store.dispatch("initProvince");
     this.$store.dispatch("initDistrict");
     this.$store.dispatch("initCariseller");
+
+
+    if(this.isEdit){
+        const id = this.$route.params && this.$route.params.id;
+        const result = this.getById(id);
+        console.log("resullllltl11")
+        // this.cari = result;
+        // console.log(id)
+    }
   }
+
 }
 </script>
 

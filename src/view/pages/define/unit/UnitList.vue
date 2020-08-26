@@ -2,7 +2,7 @@
   <div>
     <div>
       <b-card>
-        <b-tabs vertical>
+        <b-tabs pills vertical>
           <b-tab title="Depolar">
             <div class="row">
               <div class="col-md-12">
