@@ -406,21 +406,21 @@
             <div class="col-md-6">
               <div class="form-group">
                 <b-input-group prepend="E-Fatura Kayıt Tarihi" size="sm">
-                  <b-form-input v-model="cari.einvoiceregistertime" size="sm"></b-form-input>
+                  <b-form-input v-model="cari.einvoiceregistertime" type="date" size="sm"></b-form-input>
                 </b-input-group>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <b-input-group prepend="E-Fatura Başlangıç Tarihi" size="sm">
-                  <b-form-input v-model="cari.einvoicestarttime" size="sm"></b-form-input>
+                  <b-form-input v-model="cari.einvoicestarttime"   type="date" size="sm"></b-form-input>
                 </b-input-group>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <b-input-group prepend="E-Fatura Bitiş Tarihi" size="sm">
-                  <b-form-input v-model="cari.einvoicefinishtime" size="sm"></b-form-input>
+                  <b-form-input v-model="cari.einvoicefinishtime"  type="date" size="sm"></b-form-input>
                 </b-input-group>
               </div>
             </div>
@@ -464,12 +464,12 @@
       </b-tabs>
       <div class="row mt-0 mb-3">
         <div class="col-md-12">
-                          <div class="btn btn-primary" @click="save" v-show="!isEdit">Kaydet</div>
-                          <div class="btn btn-primary" @click="update" v-show="isEdit">Güncelle</div>
+          <div class="btn btn-primary" @click="save" v-show="!isEdit">Kaydet</div>
+          <div class="btn btn-primary" @click="update" v-show="isEdit">Güncelle</div>
         </div>
       </div>
     </b-card>
-    isEdit ::: {{isEdit}}
+    isEdit ::: {{ isEdit }}
   </div>
 
 </template>
@@ -495,7 +495,7 @@ export default {
       }
     }
   },
-  methods:{
+  methods: {
     save() {
       this.$store.dispatch("cariAdd", this.cari).then(response => {
         if (response == 200) {
@@ -520,11 +520,20 @@ export default {
       })
     },
     getById(id) {
-
-      const result = this.$store.getters.cariGetById(id);
+      const result = Object.assign({}, this.$store.getters.cariGetById(id));
+      //çağırırken model eşleşmediğinde id hatalarının giderilmesi için model id tanımı yapmamız gerekiyor.
+      if (result.district == null) result.district = {Id: 0}
+      if (result.cariGroup == null) result.cariGroup = {Id: 0}
+      if (result.cariSubGroup == null) result.cariSubGroup = {Id: 0}
+      if (result.cariseller == null) result.cariseller = {Id: 0}
+      if (result.cariseller == null) result.cariseller = {Id: 0}
+      if (result.country == null) result.country = {Id: 0}
+      if (result.province == null) result.province = {Id: 0}
+      if (result.exchange == null) result.exchange = {Id: 0}
+      if (result.shippingCountry == null) result.shippingCountry = {Id: 0}
+      if (result.shippingProvince == null) result.shippingProvince = {Id: 0}
+      if (result.shippingDistrict == null) result.shippingDistrict = {Id: 0}
       this.cari = result;
-      // this.cari = result;
-      console.log(this.$data)
     },
   },
   mounted() {
@@ -532,6 +541,10 @@ export default {
       {title: "Cari", route: "list"},
       {title: "Cari Tanımlama"}
     ]);
+
+    if (this.isEdit) {
+      this.getById(this.$route.params && this.$route.params.id);
+    }
   },
   computed: {
     ...mapGetters(["carigroupGetlist"]),
@@ -550,15 +563,6 @@ export default {
     this.$store.dispatch("initProvince");
     this.$store.dispatch("initDistrict");
     this.$store.dispatch("initCariseller");
-
-
-    if(this.isEdit){
-        const id = this.$route.params && this.$route.params.id;
-        const result = this.getById(id);
-        console.log("resullllltl11")
-        // this.cari = result;
-        // console.log(id)
-    }
   }
 
 }
