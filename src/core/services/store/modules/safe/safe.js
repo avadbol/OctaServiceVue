@@ -31,7 +31,7 @@ const actions = {
     safeAdd({ dispatch, commit, state }, payload) {
         const result = safeAdd(payload).then(response => {
             if (response.status == 200) {
-                dispatch('initsafe');
+                dispatch('initSafe');
                 return 200;
             } else return 505;
         });
@@ -68,5 +68,4 @@ export default {
     getters,
     mutations,
     actions,
-}
 }

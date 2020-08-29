@@ -33,7 +33,6 @@ export function safeUpdate(data) {
 }
 
 export function safeDelete(data) {
-    console.log(data);
     return request({
         url: "/Safe/safedelete",
         method: "post",
