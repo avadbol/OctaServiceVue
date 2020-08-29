@@ -6,9 +6,9 @@
       </div>
       <div class="app-menu left-bar-menu-item">
         <ul>
-          <li><a href="#"><i class="fa fa-cubes"></i>Ana sayfa</a></li>
-          <li><a href="#"><i class="fa fa-cubes"></i>Stoklar</a></li>
-          <li><a href="#"><i class="fa fa-cubes"></i>Cari</a></li>
+          <li><router-link tag="a" to="/dashboard" active-class="active"><i class="fa fa-cubes"></i>Ana sayfa</router-link></li>
+          <li><router-link tag="a" to="/stock/list" active-class="active"><i class="fa fa-cubes"></i>Stoklar</router-link></li>
+          <li><router-link tag="a" to="/cari/list" active-class="active"><i class="fa fa-cubes"></i>Cari</router-link></li>
           <li><a href="#S"><i class="fa fa-cubes"></i>Fatura</a></li>
           <li><a href="#S"><i class="fa fa-cubes"></i>Bankalar</a></li>
           <li><a href="#S"><i class="fa fa-cubes"></i>Kasa</a></li>
