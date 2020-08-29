@@ -1,4 +1,4 @@
-import {districtAdd,districtDelete,districtGetById,districtGetList,districtUpdate} from "../../../../../api/define/district";
+import { districtAdd, districtDelete, districtGetById, districtGetList, districtUpdate } from "../../../../../api/define/district";
 
 
 const state = {
@@ -21,11 +21,11 @@ const mutations = {
 }
 
 const actions = {
-    initDistrict({commit}) {
+    initDistrict({ commit }) {
         districtGetList().then(response => {
             state.district = [];
             let data = response.data;
-            for (let item in data){
+            for (let item in data) {
                 try {
                     let province = this.getters.provinceGetById(data[item].provinceId);
                     let country = this.getters.countryGetById(province.countryId);
@@ -33,14 +33,14 @@ const actions = {
                     data[item].provinceId = province.id;
                     data[item].countryName = country.name;
                     data[item].countryId = country.id;
-                    commit("districtUpdate",data[item])
-                }catch {}
+                    commit("districtUpdate", data[item])
+                } catch {}
 
             }
 
         })
     },
-    districtAdd({dispatch, commit, state}, payload) {
+    districtAdd({ dispatch, commit, state }, payload) {
         const result = districtAdd(payload).then(response => {
             if (response.status == 200) {
                 dispatch('initDistrict');
@@ -49,7 +49,7 @@ const actions = {
         });
         return result;
     },
-    districtUpdate({dispatch, commit, state}, payload) {
+    districtUpdate({ dispatch, commit, state }, payload) {
         const result = districtUpdate(payload).then(response => {
             if (response.status == 200) {
                 dispatch('initDistrict')
@@ -58,7 +58,7 @@ const actions = {
         })
         return result;
     },
-    districtDelete({dispatch, commit, state}, payload) {
+    districtDelete({ dispatch, commit, state }, payload) {
         const result = districtDelete(payload).then(response => {
             if (response.status == 200) {
                 dispatch('initDistrict')
