@@ -1,0 +1,88 @@
+.component-header{
+  font-size: 1rem;
+  padding-left: .5rem;
+  font-weight: 400;
+
+  &-bold{
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+}
+
+.nav-tabs{
+  border-bottom: 1px solid $gray-color;
+}
+.nav-tabs .nav-item{
+  padding-left: 1rem;
+}
+.tab-content{
+  padding: .3rem;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+  border-color: transparent;
+  border-bottom: 2px solid $primary-color;
+}
+
+.component-save{
+  position: absolute;
+  display: block;
+  right: 1rem;
+  top: .3rem;
+}
+
+.input-group-text{
+  //background-color: lighten($color: $primary-color, $amount: 35%);
+  background-color:transparent;
+  border:none;
+}
+
+.form-control{
+  border:none;
+  border-bottom: 1px solid $gray-color;
+
+  &:focus{
+    outline:0;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    background-color:lighten($color: $primary-color, $amount: 35%);
+  }
+}
+
+.custom-select {
+  border:none;
+  border-bottom: 1px solid $gray-color;
+  &:focus{
+    outline:0;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    background-color:lighten($color: $primary-color, $amount: 35%);
+  }
+}
+.table{
+  border-spacing:0px;
+}
+.table td {
+  vertical-align: middle;
+}
+
+.table-sm th, .table-sm td{
+  padding: 0;
+}
+
+
+.custom-pills .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+  background-color: #FEFEFE;
+  padding: 1.5rem;
+  border-radius: 0;
+  border-top: 2px solid $primary-color;
+  color: $dark-color;
+  box-shadow: 0 -9px 10px 0 rgb(0 0 0 / 7%);
+}
+
+.custom-pills .nav-pills .nav-item {
+  background-color:lighten($color: $gray-color, $amount: 5%);
+  a{
+    padding: 1.5rem;
+    color:$dark-color;
+  }
+}

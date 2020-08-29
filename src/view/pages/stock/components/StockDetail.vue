@@ -1,9 +1,8 @@
 <template>
     <div>
-        <b-card>
-            <b-tabs>
+            <b-tabs pills class="custom-pills">
                 <b-tab title="Bilgi" active>
-                    <div class="form-row mt-3">
+                    <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <b-input-group prepend="Stok Kodu" size="sm">
@@ -243,7 +242,17 @@
                     <div class="btn btn-primary" @click="update" v-show="isEdit">Güncelle</div>
                 </div>
             </div>
-        </b-card>
+
+      <div>
+<!--        <b-tabs pills >-->
+<!--          <b-tab title="Tab 1" active>-->
+<!--            <b-card-text>Tab contents 1</b-card-text>-->
+<!--          </b-tab>-->
+<!--          <b-tab title="Tab 2">-->
+<!--            <b-card-text>Tab contents 2</b-card-text>-->
+<!--          </b-tab>-->
+<!--        </b-tabs>-->
+      </div>
     </div>
 </template>
 

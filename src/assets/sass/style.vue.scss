@@ -1,129 +1,155 @@
-//
-// Main Style
-//
 
-
-////////////////////////////////////////////////////////////////
-///////////// DO NOT MODIFY BELOW INCLUDE ORDER ////////////////
-////////////////////////////////////////////////////////////////
-
-// 1: Initialize
-@import "init";
-
-// 2: Bootstrap framework includes
+//@import "init";
 @import "~bootstrap/scss/bootstrap";
-@import "vendors/vue/include";
-
-// 3: Components
-@import
-    "components/utilities/background",
-    "components/utilities/flex",
-    "components/utilities/opacity",
-    "components/utilities/borders",
-    "components/utilities/sizing",
-    "components/utilities/position",
-    "components/utilities/text",
-    "components/utilities/icon",
-    "components/burger-icon",
-    "components/card",
-    "components/wizard",
-    "components/type",
-    "components/breadcrumb",
-    "components/nav",
-    "components/alert",
-    "components/buttons",
-    "components/code",
-    "components/dropdown",
-    "components/forms",
-    "components/grid",
-    "components/modal",
-    "components/progress",
-    "components/table",
-    "components/popover",
-    "components/tooltip",
-    "components/accordion",
-    "components/datatable",
-    "components/bar-chart",
-    "components/checkbox",
-    "components/radio",
-    "components/switch",
-    "components/option",
-    "components/dialog",
-    "components/strikethrough",
-    "components/separator",
-    "components/image-input",
-    "components/label",
-    "components/loader",
-    "components/symbol",
-    "components/pulse",
-    "components/page-loader",
-    "components/quick-search",
-    "components/scrolltop",
-    "components/spinner",
-    "components/sticky-toolbar",
-    "components/svg-icon",
-    "components/svg",
-    "components/timeline",
-    "components/timeline-2",
-    "components/timeline-3",
-    "components/timeline-4",
-    "components/timeline-5",
-    "components/overlay",
-    "components/demo",
-    "components/wave",
-    "components/list",
-    "components/bullet",
-    "components/navi",
-    "components/ribbon",
-    "components/toggle";
-
-// 4: Plugins
-@import
-    "vendors/plugins/formvalidation",
-    "vendors/plugins/blockui",
-    "vendors/plugins/bootstrap-datepicker",
-    "vendors/plugins/bootstrap-daterangepicker",
-    "vendors/plugins/bootstrap-datetimepicker",
-    "vendors/plugins/bootstrap-markdown",
-    "vendors/plugins/bootstrap-maxlength",
-    "vendors/plugins/bootstrap-notify",
-    "vendors/plugins/bootstrap-select",
-    "vendors/plugins/bootstrap-session-timeout",
-    "vendors/plugins/bootstrap-switch",
-    "vendors/plugins/bootstrap-timepicker",
-    "vendors/plugins/bootstrap-touchspin",
-    "vendors/plugins/ckeditor",
-    "vendors/plugins/datatables",
-    "vendors/plugins/dropzone",
-    "vendors/plugins/duallistbox",
-    "vendors/plugins/fontawesome5",
-    "vendors/plugins/fullcalendar",
-    "vendors/plugins/gmaps",
-    "vendors/plugins/ion-range-slider",
-    "vendors/plugins/jquery-repeater",
-    "vendors/plugins/jqvmap",
-    "vendors/plugins/jstree",
-    "vendors/plugins/kanban",
-    "vendors/plugins/nouislider",
-    "vendors/plugins/perfect-scrollbar",
-    "vendors/plugins/quill",
-    "vendors/plugins/recaptcha",
-    "vendors/plugins/select2",
-    "vendors/plugins/summernote",
-    "vendors/plugins/sweetalert2",
-    "vendors/plugins/tagify",
-    "vendors/plugins/tinymce",
-    "vendors/plugins/toastr",
-    "vendors/plugins/typeahead",
-    "vendors/plugins/uppy",
-    "vendors/plugins/draggable",
-    "vendors/plugins/prismjs",
-    "vendors/plugins/apexcharts",
-    "vendors/plugins/leaflet";
+@import 'abstracts';
+@import 'components';
+@import 'animations';
 
 
-// 5: Layout
-@import "layout/init";
-////////////////////////////////////////////////////////////////
-///////////// DO NOT MODIFY ABOVE INCLUDE ORDER ////////////////
-////////////////////////////////////////////////////////////////
+// general settings
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+}
+
+html {
+  //font-size: 12px; // 1 rem 10px
+}
+
+a {
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: $gray-color;
+  background-color: $light-color;
+  font-size: 12px;
+}
+
+main {
+  overflow: hidden;
+}
+
+.container {
+  max-width: 114rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+section {
+  padding: 8rem 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: $dark-color;
+}
+
+///left-menu
+.app-container {
+  display: flex;
+  position: relative;
+}
+
+.app-left-bar {
+  display: block;
+  position: fixed;
+  //min-width: 15rem;
+  width: 240px;
+  height: 100vh;
+  background-color: $light-color;
+  border-right: 1px solid $gray-color;
+  .app-logo {
+    display: block;
+    padding: 1.5rem;
+    border-bottom: 1px solid $gray-color;
+    img {
+      max-height: 4rem;
+    }
+  }
+  .app-menu {
+    display: block;
+    position: relative;
+    overflow-y: auto;
+    height: calc(100vh - 160px);
+  }
+  .app-bottom-menu {
+    position: absolute;
+    display: block;
+    width: 100%;
+    bottom: 0;
+    border-top: 1px solid $gray-color;
+    background-color: $light-color;
+  }
+}
+
+.left-bar-menu-item {
+  ul {
+    padding-left: .5rem;
+    padding-right: .5rem;
+    li {
+      border-radius: .3rem;
+      font-family: $primary-font;
+      font-size: 1rem;
+      font-weight: 400;
+      padding: .5rem;
+      margin-top: .5rem;
+      margin-bottom: .5rem;
+      i {
+        margin-right: 1rem;
+        font-size: 1.5rem;
+      }
+      a {
+        color: $secondary-color;
+      }
+      &:hover {
+        background-color: lighten($color: $primary-color, $amount: 35%);
+        a {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+.app-main-content {
+  display: block;
+  position: absolute;
+  //min-width: calc(100% - 230px);
+  //max-width:calc(100% - 230px);
+  width: 100%;
+  max-width:calc(100% - 255px);
+  margin-left:240px;
+}
+
+.content-head {
+  display: block;
+  border-bottom: 1px solid $gray-color;
+  padding: 10px;
+}
+
+.component-content {
+  display: block;
+  position: relative;
+  //background-color: $gray-color;
+}

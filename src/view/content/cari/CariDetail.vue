@@ -1,9 +1,12 @@
 <template>
   <div>
-    <b-card>
-      <b-tabs>
+    <div class="row mt-0">
+        <div class="btn btn-primary component-save" @click="save" v-show="!isEdit">Kaydet</div>
+        <div class="btn btn-primary component-save" @click="update" v-show="isEdit">Güncelle</div>
+    </div>
+      <b-tabs pills class="custom-pills">
         <b-tab title="Bilgi" active>
-          <div class="form-row mt-3">
+          <div class="form-row">
             <div class="col-md-6">
               <div class="form-group">
                 <b-input-group prepend="Cari Kodu" size="sm">
@@ -462,14 +465,7 @@
           </div>
         </b-tab>
       </b-tabs>
-      <div class="row mt-0 mb-3">
-        <div class="col-md-12">
-          <div class="btn btn-primary" @click="save" v-show="!isEdit">Kaydet</div>
-          <div class="btn btn-primary" @click="update" v-show="isEdit">Güncelle</div>
-        </div>
-      </div>
-    </b-card>
-    isEdit ::: {{ isEdit }}
+
   </div>
 
 </template>

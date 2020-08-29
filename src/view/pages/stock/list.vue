@@ -1,6 +1,6 @@
 <template>
-    <div class="card p-2">
-        <div class="row">
+    <div>
+        <div class="row p-2">
             <div class="col-md-12">
                 <div class="d-flex">
                     <div class="btn btn-primary mr-1" @click="toggleModal('stockModal',true,false)"
@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <b-table :items="stockGetlist" :fields="fields" :busy="loading" hover class="mx-1 mt-2" small sort-icon-left
+        <b-table :items="stockGetlist" :fields="fields" :busy="loading" hover class="mt-2 table" sort-icon-left
                  :filter="searchText">
 
             <template v-slot:table-busy>
@@ -38,7 +38,7 @@
                               @click="deleteItem(data.item.id)"
                               variant=""><span class="fas fa-trash"></span></b-button>
 
-                    <b-dropdown id="dropdown-dropright" size="sm" dropright text="Diğer" variant="primary" class="m-2">
+                    <b-dropdown id="dropdown-dropright" size="sm" dropright text="Diğer" variant="primary">
                         <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Stok Tanımı</b-dropdown-item>
                         <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Stok Birimi</b-dropdown-item>
                         <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Stok Resmi</b-dropdown-item>
@@ -84,6 +84,8 @@
 
         </b-table>
         <stock-modal ref="stockModal" :show="stockModal.view" @close="toggleModal('stockModal')"></stock-modal>
+
+
     </div>
 </template>
 
@@ -102,12 +104,12 @@
                         label: "",
                         class: 'stock-column-action'
                     },
-                    {
-                        key: "id",
-                        label: "Kimlik",
-                        colType: "button",
-                        sortable: true,
-                    },
+                    // {
+                    //     key: "id",
+                    //     label: "Kimlik",
+                    //     colType: "button",
+                    //     sortable: true,
+                    // },
                     // {
                     //     key: "barcode",
                     //     label: "Barkod",
@@ -214,10 +216,6 @@
     .stock-column-action {
         width: 200px;
         min-width: 200px;
-    }
-
-    .table td {
-        vertical-align: middle;
     }
 </style>
 
