@@ -89,7 +89,7 @@
   border-spacing:0px;
   border-collapse: collapse;
   border-radius: .3em;
-  overflow: hidden;
+  overflow:auto;
   font-size: 14px;
   background-color:$light-color;
 
@@ -146,7 +146,7 @@
   width: 75%;
   height: auto;
   margin: 0px auto;
-  padding: .5rem;
+  //padding: .5rem;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
@@ -163,11 +163,20 @@
   }
 
   .modal-head{
+    //width: 100%;
+    //border-bottom: 1px solid $gray-color;
+    //font-size: 1.3rem;
+    //font-weight: 600;
+    //padding: .5rem;
     width: 100%;
-    padding: 1rem;
     border-bottom: 1px solid $gray-color;
     font-size: 1.3rem;
     font-weight: 600;
+    padding: .5rem;
+    border-radius: 1rem 1rem 0 0;
+    background-color: lighten($gray-color, 6%);
+
+
     color:$dark-color;
      i{
        margin-right: .5rem;
