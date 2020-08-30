@@ -7,7 +7,7 @@
       <div class="app-menu left-bar-menu-item">
         <ul>
           <li><router-link tag="a" to="/dashboard" active-class="active"><i class="fa fa-cubes"></i>Ana sayfa</router-link></li>
-          <li><router-link tag="a" to="/stock/list" active-class="active"><i class="fa fa-cubes"></i>Stoklar</router-link></li>
+          <li><router-link tag="a" to="/stock" active-class="active"><i class="fa fa-cubes"></i>Stoklar</router-link></li>
           <li><router-link tag="a" to="/cari/list" active-class="active"><i class="fa fa-cubes"></i>Cari</router-link></li>
           <li><a href="#S"><i class="fa fa-cubes"></i>Fatura</a></li>
           <li><a href="#S"><i class="fa fa-cubes"></i>Bankalar</a></li>
@@ -23,13 +23,7 @@
       </div>
     </div>
     <div class="app-main-content">
-      <div class="content-head">
-        <h4 class="component-header component-header-bold">Stoklar</h4>
-        <h5 class="component-header">Stok İşleyişini buradan takip edebilirsiniz</h5>
-      </div>
-      <div class="component-content">
-        <router-view />
-      </div>
+      <router-view />
     </div>
   </div>
 </template>

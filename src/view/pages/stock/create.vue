@@ -3,7 +3,7 @@
 </template>
 
 <script>
-    import StockDetail from "./components/StockDetail"
+    import StockDetail from "@/view/content/stock/StockDetail";
     export default {
         name: "create",
         components:{StockDetail}

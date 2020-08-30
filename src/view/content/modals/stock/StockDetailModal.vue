@@ -1,9 +1,8 @@
 <template>
-    <div class="stockModal">
-        <modal :show="show" @close="close">
-            <stock-detail :is-edit="isEdit" @close="close" ref="stockDetail" ></stock-detail>
-        </modal>
-    </div>
+  <modal :show="show" @close="close">
+    <div class="modal-head"><i class="fa fa-info"></i>Stok Ekleme veya Düzenleme</div>
+    <stock-detail :is-edit="isEdit" @close="close" ref="stockDetail" ></stock-detail>
+  </modal>
 </template>
 
 <script>
