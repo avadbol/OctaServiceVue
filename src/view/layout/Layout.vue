@@ -10,8 +10,8 @@
           <li><router-link tag="a" to="/stock" active-class="active"><i class="fa fa-cubes"></i>Stoklar</router-link></li>
           <li><router-link tag="a" to="/cari/list" active-class="active"><i class="fa fa-cubes"></i>Cari</router-link></li>
           <li><a href="#S"><i class="fa fa-cubes"></i>Fatura</a></li>
-          <li><a href="#S"><i class="fa fa-cubes"></i>Bankalar</a></li>
-          <li><a href="#/safe/create"><i class="fa fa-cubes"></i>Kasa</a></li>
+          <li><a href="#/Bank"><i class="fa fa-cubes"></i>Bankalar</a></li>
+          <li><a href="#/safe"><i class="fa fa-cubes"></i>Kasa</a></li>
           <li><a href="#S"><i class="fa fa-cubes"></i>Ayarlar</a></li>
         </ul>
       </div>

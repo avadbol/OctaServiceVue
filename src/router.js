@@ -20,6 +20,16 @@ export const constantRoutes=[
         component: () => import('@/view/pages/stock/stock'),
         hidden: true
       },
+      {
+        path: '/safe',
+        component: () => import('@/view/pages/safe/safe'),
+        hidden: true
+      },
+      {
+        path: '/bank',
+        component: () => import('@/view/pages/bank/bank'),
+        hidden: true
+      },
     ]
   },
 
@@ -65,6 +75,24 @@ export const constantRoutes=[
         component: () => import('@/view/pages/cari/edit'),
         name : 'userEdit',
       },
+    ]
+  },
+  {
+    path: '/safe',
+    component: Layout,
+    redirect: '/safe/list',
+    children: [
+      {
+        path: 'list',
+        component: () => import('@/view/pages/safe/list'),
+        name : 'User',
+      },
+      {
+        path: 'create',
+        component: () => import('@/view/pages/safe/create'),
+        name : 'User',
+      },
+     
     ]
   },
 

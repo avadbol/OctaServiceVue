@@ -3,17 +3,30 @@
     <b-tabs pills class="custom-pills">
       <b-tab title="Bilgi" active>
         <div class="form-row">
-          <div class="col-md-5">
+          <div class="col-md-4">
             <div class="form-group">
               <b-input-group prepend="Kasa Adı" size="sm">
                 <b-form-input v-model="safe.safeName" size="sm"></b-form-input>
               </b-input-group>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-4">
             <div class="form-group">
               <b-input-group prepend="Kasa Açıklama" size="sm">
                 <b-form-input v-model="safe.safeDesc" size="sm"></b-form-input>
+              </b-input-group>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <b-input-group prepend="İşlem Dövizi" size="sm">
+                <b-form-select
+                  size="sm"
+                  :options="exchangeGetlist"
+                  value-field="id"
+                  text-field="name"
+                  v-model.number="safe.exchangeId"
+                ></b-form-select>
               </b-input-group>
             </div>
           </div>
@@ -31,17 +44,19 @@
       </b-tab>
 
       <b-tab title="Kasaları Listele">
-<safe-list></safe-list>
+        <safe-list></safe-list>
       </b-tab>
     </b-tabs>
   </div>
 </template>
 
 <script>
-import SafeList from "./SafeList"
+import SafeList from "./SafeList";
+import {mapGetters} from "vuex";
+
 export default {
   name: "SafeAdd",
-  components:{SafeList},
+  components: { SafeList },
   data() {
     return {
       safe: {
@@ -67,10 +82,14 @@ export default {
     },
   },
   computed: {
+    ...mapGetters(["exchangeGetlist"]),
     isDisabled: function() {
       return this.isDisable;
     },
   },
+   created() {
+        this.$store.dispatch("initExchanges");
+    }
 };
 </script>
 

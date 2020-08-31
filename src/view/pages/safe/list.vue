@@ -5,7 +5,7 @@
 <script>
     import SafeList from "../../content/safe/SafeList";
     export default {
-        name: "create",
+        name: "list",
         components:{SafeList}
     }
 </script>
