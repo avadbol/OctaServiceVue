@@ -21,6 +21,16 @@ export const constantRoutes=[
         hidden: true
       },
       {
+        path: '/invoice',
+        component: () => import('@/view/pages/invoice/invoice'),
+        // children:[
+        //   {
+        //     path:"create",
+        //     component:() => import('@/view/pages/invoice/create')
+        //   }
+        // ]
+      },
+      {
         path: '/safe',
         component: () => import('@/view/pages/safe/safe'),
         hidden: true
