@@ -5,7 +5,7 @@
 <script>
     import BankAdd from "../../content/bank/BankAdd";
     export default {
-        name: "list",
+        name: "create",
         components:{BankAdd}
     }
 </script>

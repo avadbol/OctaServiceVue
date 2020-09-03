@@ -31,7 +31,28 @@ const mutations = {
 const actions = {
   initBank({ commit }) {
     bankGetlist().then((response) => {
-      state.bank = response.data;
+        state.bank=[];
+        let data = response.data;
+        for (let item in data) {
+            try {
+              if (data[item].exchangeId > 0) {
+                let exchange = this.getters.exchangeGetById(data[item].exchangeId);
+                data[item].exchangeName = exchange.name;
+              } else data[item].exchangeName = "Döviz Seçilmemiş";
+
+              if (data[item].districtId > 0) {
+                let district = this.getters.districtGetById(data[item].districtId);
+                data[item].districtName = district.name;
+              } else data[item].districtName = "İlçe Seçilmemiş";
+              
+              if (data[item].districtId > 0) {
+                let district = this.getters.districtGetById(data[item].districtId);
+                data[item].districtName = district.name;
+              } else data[item].districtName = "İlçe Seçilmemiş";
+              commit("bankUpdate", data[item]);
+            } catch {}
+          }
+    //   state.bank = response.data;
     });
   },
   bankAdd({ dispatch, commit, state }, payload) {

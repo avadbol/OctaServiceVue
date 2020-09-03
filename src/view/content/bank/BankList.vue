@@ -64,23 +64,32 @@
           <table class="table">
             <tbody>
             <tr>
-              <th class="w-25">Banka Kodu</th>
-              <td>{{ data.item.barcode = !null ? data.item.barcode : "" }}</td>
+              <th class="w-25">Şube Kodu</th>
+              <td>{{ data.item.branchNo = !null ? data.item.branchNo : "" }}</td>
             </tr>
             <tr>
-              <th class="w-25">Barkod</th>
-              <td>{{ data.item.mainBarcode = !null ? data.item.mainBarcode : "" }}</td>
+              <th class="w-25">Adres</th>
+              <td>{{ data.item.adress = !null ? data.item.adress : "" }}</td>
             </tr>
             <tr>
-              <th class="w-25">Depo</th>
-              <td>{{ data.item.storageCode = !null ? data.item.storageCode : "" }}</td>
+              <th class="w-25">Adres2</th>
+              <td>{{ data.item.adress2 = !null ? data.item.adress2 : "" }}</td>
             </tr>
             <tr>
-              <th class="w-25">Departman</th>
+              <th class="w-25">İlçe</th>
+              <td>{{ data.item.districtName = !null ? data.item.districtName : "" }}</td>
             </tr>
             <tr>
-              <th class="w-25">Kdv Satış Fiyatı</th>
+              <th class="w-25">İl</th>
               <td>{{ data.item.buyingKdv = !null ? data.item.buyingKdv : "" }}</td>
+            </tr>
+            <tr>
+              <th class="w-25">Ülke</th>
+              <td>{{ data.item.buyingKdv = !null ? data.item.buyingKdv : "" }}</td>
+            </tr>
+            <tr>
+              <th class="w-25">Döviz</th>
+              <td>{{ data.item.exchangeName = !null ? data.item.exchangeName : "" }}</td>
             </tr>
 
             </tbody>
@@ -150,7 +159,6 @@ export default {
       }
     },
     deleteItem(data) {
-      console.log("silmeden geliyor şuanda");
       console.log(data);
       this.$bvModal.msgBoxConfirm(data.name + " öğesi silinecektir onaylıyor musunuz?", {
         okTitle: 'Evet',
