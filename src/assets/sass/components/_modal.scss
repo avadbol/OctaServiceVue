@@ -1,0 +1,13 @@
+.modal-dialog{
+  .modal-header{
+    padding: .5rem;
+    background-color: $gray-color;
+    .modal-title{
+      margin-left: .5rem;
+    }
+  }
+  .modal-body{
+    padding: 0rem;
+    margin: 0rem;
+  }
+}

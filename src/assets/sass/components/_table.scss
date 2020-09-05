@@ -1,0 +1,29 @@
+.table {
+  border-spacing: 0px;
+  border-collapse: collapse;
+  border-radius: .3em;
+  overflow: auto;
+  font-size: 14px;
+  background-color: $light-color;
+
+  //border-radius: 25px;
+  thead tr {
+    background-color: $light-color;
+
+    th {
+      font-weight: normal;
+    }
+  }
+
+  td {
+    vertical-align: middle;
+  }
+}
+
+.table-sm th, .table-sm td {
+  padding: 0;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: lighten($color: $gray-color, $amount: 6%);
+}

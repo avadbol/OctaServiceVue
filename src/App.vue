@@ -7,19 +7,10 @@
 @import "~socicon/css/socicon.css";
 @import "~@fortawesome/fontawesome-free/css/all.css";
 @import "~line-awesome/dist/line-awesome/css/line-awesome.css";
-
-// Main demo style scss
 @import "assets/sass/style.vue";
-
 </style>
-
 <script>
-
 export default {
   name: "Octa",
-  mounted() {
-  },
-  computed: {
-  }
 };
 </script>

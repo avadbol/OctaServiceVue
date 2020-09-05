@@ -1,0 +1,39 @@
+.input-group {
+  // box-shadow: 0 0 4px -3px #423c3c !important;
+}
+
+.input-group-text {
+  //background-color: lighten($color: $primary-color, $amount: 35%);
+  background-color: transparent;
+  border: none;
+}
+
+.form-control {
+  border: none;
+  border-bottom: 1px solid $gray-color;
+
+
+  &:focus {
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    // background-color:lighten($color: $primary-color, $amount: 35%);
+    height: 100%;
+    // border-bottom: 1px solid #9c6327;
+    transition: 0.4s;
+    border: none !important;
+  }
+
+}
+
+.custom-select {
+  border: none;
+  border-bottom: 1px solid $gray-color;
+
+  &:focus {
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: lighten($color: $primary-color, $amount: 35%);
+  }
+}
