@@ -192,11 +192,4 @@ export default {
 }
 </style>
 
-<!--<style scoped >-->
-<!--    ::v-deep .dropdown-menu.show{-->
-<!--        /*background-color:#C9F7F5;*/-->
-<!--    }-->
-<!--    ::v-deep .dropdown-item{-->
-<!--        padding:0.5rem 0.5rem;-->
-<!--    }-->
-<!--</style>-->
+

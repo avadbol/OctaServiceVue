@@ -16,9 +16,6 @@
   &:focus {
     outline: 0;
     box-shadow: none;
-    // background-color:lighten($color: $primary-color, $amount: 35%);
-    height: 100%;
-    // border-bottom: 1px solid #9c6327;
     transition: 0.4s;
     border: 1px solid $primary-color;
   }

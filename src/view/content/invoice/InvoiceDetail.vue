@@ -121,7 +121,7 @@
         <div class="card-header text-dark">
           Fatura Satırı
         </div>
-        <div class="form-row ml-1 mr-1">
+        <div class="form-row ml-1 mr-1 p-1">
           <b-table :items="items" responsive :fields="fields" class="table table-borderless table-striped table-sm">
 
             <template v-slot:cell(key)="row">
@@ -130,9 +130,12 @@
 
             <template v-slot:cell(stock)="row">
 
-               <b-form-input size="sm"  v-model="row.item.stockName"></b-form-input>
-
-<!--              <b-button v-b-modal.modal-1 size="sm" v-on:click="modelSelectItemId = row.index">Aç</b-button>-->
+              <div class="input-group">
+                <b-form-input size="sm"  v-model="row.item.stockName"></b-form-input>
+                <div class="input-group-append">
+                    <b-button v-b-modal.modal-1 size="sm" v-on:click="modelSelectItemId = row.index"><i class="fa fa-search"></i></b-button>
+                </div>
+              </div>
             </template>
 
             <template v-slot:cell(stockName)="row">
@@ -188,18 +191,24 @@ export default {
         {
           key: "action",
           label: "İşlem",
+          class: "text-center"
         },
         {
           key: "key",
           label: "No",
+          class:"w-3 text-center",
+
         },
         {
           key: "stock",
           label: "Ürün/Hizmet Seç",
+          class: "text-center"
         },
         {
           key: "stockName",
           label: "Ürün Hizmet Adı",
+          class: "text-center"
+
         },
         {
           key: "count",
