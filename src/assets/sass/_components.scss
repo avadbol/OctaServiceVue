@@ -205,6 +205,10 @@
   transform: scale(1.1);
 }
 
+.box-shadow{
+  box-shadow: 0 0 10px -2px #d4d4d4 !important;
+}
+
 .effect-4
 {border: 0; padding: 5px 0 7px; border: 1px solid transparent; border-bottom-color: #cccccc3b; transition: 0.4s;}
 
@@ -236,3 +240,7 @@
     .effect-4:focus .input-group{
       box-shadow: none !important;
     }
+
+
+
+

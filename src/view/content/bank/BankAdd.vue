@@ -10,6 +10,7 @@
                   class="effect-4"
                   v-model="bank.code"
                   size="sm"
+                  required
                 ></b-form-input>
                 <span class="focus-border"></span>
               </b-input-group>
@@ -22,6 +23,7 @@
                   class="effect-4"
                   v-model="bank.name"
                   size="sm"
+                  required
                 ></b-form-input>
                 <span class="focus-border"></span>
               </b-input-group>
@@ -228,18 +230,32 @@
               </b-input-group>
             </div>
           </div>
-          <div class="col-2">
-            <b-button
-              @click="saveBank"
-              :disabled="isDisabled"
-              class="btn-block"
-              variant="success"
-              >Ekle</b-button
-            >
-          </div>
         </div>
         <bank-list></bank-list>
       </b-tab>
+      <b-tab title="Not Ekle">
+        <div class="input-group mt-3 mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Notunuz</span>
+          </div>
+          <b-form-textarea
+            id="textarea"
+            class="box-shadow"
+            v-model="bank.note"
+            placeholder="Notunuzu yazınız"
+            rows="10"
+          ></b-form-textarea>
+        </div>
+      </b-tab>
+      <div class="col-2">
+        <b-button
+          @click="saveBank"
+          :disabled="isDisabled"
+          class="btn-block"
+          variant="success"
+          >Ekle</b-button
+        >
+      </div>
     </b-tabs>
   </div>
 </template>
