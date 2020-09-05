@@ -125,34 +125,46 @@
           <b-table :items="items" responsive :fields="fields" class="table table-borderless table-striped table-sm">
 
             <template v-slot:cell(key)="row">
-              <input type="text" disabled  v-model="row.index+1">
-            </template>
+              <b-form-input size="sm" v-model="row.index+1"></b-form-input>
+             </template>
 
             <template v-slot:cell(stock)="row">
-              <input type="text"  v-model="row.item.stockName">
-              <b-button v-b-modal.modal-1 size="sm" v-on:click="modelSelectItemId = row.index">Aç</b-button>
+
+               <b-form-input size="sm"  v-model="row.item.stockName"></b-form-input>
+
+<!--              <b-button v-b-modal.modal-1 size="sm" v-on:click="modelSelectItemId = row.index">Aç</b-button>-->
             </template>
+
             <template v-slot:cell(stockName)="row">
-              <input type="text" v-model="row.item.stockName">
+              <b-form-input size="sm"  v-model="row.item.stockName"></b-form-input>
             </template>
 
             <template v-slot:cell(action)="data">
+
               <b-button class="btn-sm" v-b-tooltip.hover.bottom="'Sil'"
                         variant=""><span class="fas fa-trash"></span></b-button>
             </template>
 
             <template v-slot:cell(count)="row">
-              <input type="text" @change="rowChange(row)" size="sm" v-model.number="row.item.count">
+<!--              <input type="text" @change="rowChange(row)" size="sm" v-model.number="row.item.count">-->
+              <b-form-input size="sm" @change="rowChange(row)"   v-model.number="row.item.count"></b-form-input>
+
             </template>
+
             <template v-slot:cell(unit)="row">
-              <input type="text" v-model="row.item.unit" >
-            </template>
+              <b-form-input size="sm"  v-model="row.item.unit"></b-form-input>
+             </template>
+
             <template v-slot:cell(unitPrice)="row">
-              <input type="text" v-model="row.item.unitprice">
-            </template>
+              <b-form-input size="sm" v-model="row.item.unitprice"></b-form-input>
+
+             </template>
+
             <template v-slot:cell(total)="row">
-              <input type="text" size="sm" v-model.number="row.item.count">
-            </template>
+              <b-form-input size="sm" v-model.number="row.item.count"></b-form-input>
+
+             </template>
+
           </b-table>
           <b-modal id="modal-1" size="xl"  ref="stockListModal" lazy hide-footer title="🖱️ Stok Listesi" >
             <stock-list @selectItem="resultItem"></stock-list>
