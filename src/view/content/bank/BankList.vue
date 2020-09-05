@@ -4,57 +4,122 @@
       <div class="content-head">
         <div class="col-md-12">
           <div class="d-flex">
-            <div class="btn btn-primary mr-1" @click="toggleModal('bankModal',true,false)"
-                 v-b-tooltip.hover.bottom="'Yeni Ürün Ekle'"><span
-                class="fa fa-plus"></span></div>
-            <div class="btn btn-primary mr-1" v-b-tooltip.hover.bottom="'Listeyi Güncelle'"><span
-                class="fas fa-sync"></span></div>
-            <input type="text" v-model="searchText"
-                   placeholder="Banka numarası, barkod numarası, Banka adı veya ürün özelliklerine sahip ürünü arayın"
-                   class="form-control">
+            <div
+              class="btn btn-primary mr-1"
+              @click="toggleModal('bankModal', true, false)"
+              v-b-tooltip.hover.bottom="'Yeni Ürün Ekle'"
+            >
+              <span class="fa fa-plus"></span>
+            </div>
+            <div
+              class="btn btn-primary mr-1"
+              v-b-tooltip.hover.bottom="'Listeyi Güncelle'"
+            >
+              <span class="fas fa-sync"></span>
+            </div>
+            <input
+              type="text"
+              v-model="searchText"
+              placeholder="Banka numarası, barkod numarası, Banka adı veya ürün özelliklerine sahip ürünü arayın"
+              class="form-control"
+            />
           </div>
         </div>
       </div>
     </div>
     <div class="p-2">
-      <b-table :items="bankGetlist"  :fields="fields" :busy="loading" class="table-borderless table-striped o-shadow-sm"
-               sort-icon-left
-               :filter="searchText">
-
+      <b-table
+        :items="bankGetlist"
+        :fields="fields"
+        :busy="loading"
+        class="table-borderless table-striped o-shadow-sm"
+        sort-icon-left
+        :filter="searchText"
+      >
         <template v-slot:table-busy>
           <div class="text-center text-danger my-2">
-            <b-spinner class="align-middle" variant="primary" style="width: 3rem; height: 3rem;"
-                       label="Yükleniyor..."></b-spinner>
+            <b-spinner
+              class="align-middle"
+              variant="primary"
+              style="width: 3rem; height: 3rem;"
+              label="Yükleniyor..."
+            ></b-spinner>
           </div>
         </template>
         <template v-slot:cell(action)="data">
           <div>
-            <b-button class="btn-sm mr-1" v-b-tooltip.hover.bottom="'Önizle'"
-                      @click="data.toggleDetails"><span class="fas fa-eye"></span>
+            <b-button
+              class="btn-sm mr-1"
+              v-b-tooltip.hover.bottom="'Önizle'"
+              @click="data.toggleDetails"
+              ><span class="fas fa-eye"></span>
             </b-button>
 
-            <b-button class="btn-sm mr-1" v-b-tooltip.hover.bottom="'Güncelle'"
-                      @click="toggleModal('bankModal',true,true, data.item)"><span class="fas fa-edit"></span>
+            <b-button
+              class="btn-sm mr-1"
+              v-b-tooltip.hover.bottom="'Güncelle'"
+              @click="toggleModal('bankModal', true, true, data.item)"
+              ><span class="fas fa-edit"></span>
             </b-button>
 
-            <b-button class="btn-sm" v-b-tooltip.hover.bottom="'Sil'"
-                      @click="deleteItem(data.item.id)"
-                      variant=""><span class="fas fa-trash"></span></b-button>
+            <b-button
+              class="btn-sm"
+              v-b-tooltip.hover.bottom="'Sil'"
+              @click="deleteItem(data.item.id)"
+              variant=""
+              ><span class="fas fa-trash"></span
+            ></b-button>
 
-            <b-dropdown id="dropdown-dropright" size="sm" dropright text="Diğer" variant="primary">
-              <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Banka Tanımı</b-dropdown-item>
-              <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Banka Birimi</b-dropdown-item>
-              <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Banka Resmi</b-dropdown-item>
-              <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Banka Notu</b-dropdown-item>
-              <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Fiyat Değiştir</b-dropdown-item>
-              <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Genel Fiyat Listesi
+            <b-dropdown
+              id="dropdown-dropright"
+              size="sm"
+              dropright
+              text="Diğer"
+              variant="primary"
+            >
+              <b-dropdown-item href="#"
+                ><i class="fas fa-angle-double-right mr-1"></i>Banka
+                Tanımı</b-dropdown-item
+              >
+              <b-dropdown-item href="#"
+                ><i class="fas fa-angle-double-right mr-1"></i>Banka
+                Birimi</b-dropdown-item
+              >
+              <b-dropdown-item href="#"
+                ><i class="fas fa-angle-double-right mr-1"></i>Banka
+                Resmi</b-dropdown-item
+              >
+              <b-dropdown-item href="#"
+                ><i class="fas fa-angle-double-right mr-1"></i>Banka
+                Notu</b-dropdown-item
+              >
+              <b-dropdown-item href="#"
+                ><i class="fas fa-angle-double-right mr-1"></i>Fiyat
+                Değiştir</b-dropdown-item
+              >
+              <b-dropdown-item href="#"
+                ><i class="fas fa-angle-double-right mr-1"></i>Genel Fiyat
+                Listesi
               </b-dropdown-item>
-              <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Fiyat Değişenleri İncele
+              <b-dropdown-item href="#"
+                ><i class="fas fa-angle-double-right mr-1"></i>Fiyat Değişenleri
+                İncele
               </b-dropdown-item>
-              <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Banka Miktari Gir</b-dropdown-item>
-              <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Banka Kartı Kopyala</b-dropdown-item>
-              <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Genel Sipariş Ekle</b-dropdown-item>
-              <b-dropdown-item href="#"><i class="fas fa-angle-double-right mr-1"></i>Banka Hareketini Gör
+              <b-dropdown-item href="#"
+                ><i class="fas fa-angle-double-right mr-1"></i>Banka Miktari
+                Gir</b-dropdown-item
+              >
+              <b-dropdown-item href="#"
+                ><i class="fas fa-angle-double-right mr-1"></i>Banka Kartı
+                Kopyala</b-dropdown-item
+              >
+              <b-dropdown-item href="#"
+                ><i class="fas fa-angle-double-right mr-1"></i>Genel Sipariş
+                Ekle</b-dropdown-item
+              >
+              <b-dropdown-item href="#"
+                ><i class="fas fa-angle-double-right mr-1"></i>Banka Hareketini
+                Gör
               </b-dropdown-item>
             </b-dropdown>
           </div>
@@ -95,15 +160,18 @@
             </tbody>
           </table>
         </template> -->
-
       </b-table>
     </div>
-    <bank-modal ref="bankModal" :show="bankModal.view" @close="toggleModal('bankModal')"></bank-modal>
+    <bank-modal
+      ref="bankModal"
+      :show="bankModal.view"
+      @close="toggleModal('bankModal')"
+    ></bank-modal>
   </div>
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import bankModal from "../modals/bank/BankDetailModal";
 
 export default {
@@ -114,8 +182,8 @@ export default {
         {
           key: "code",
           label: "Banka Kodu",
-          class: 'w-25',
-          sortable: true
+          class: "w-25",
+          sortable: true,
         },
         {
           key: "name",
@@ -132,8 +200,8 @@ export default {
         {
           key: "action",
           label: "",
-          class: 'text-right'
-        }
+          class: "text-right",
+        },
       ],
       modalData: [],
       searchText: "",
@@ -141,11 +209,10 @@ export default {
       bankModal: {
         view: false,
       },
-    }
+    };
   },
   components: {
-   
-    bankModal
+    bankModal,
   },
   methods: {
     toggleModal(component, view, isEdit, item) {
@@ -154,41 +221,39 @@ export default {
       }
       if (view) {
         this[component].view = view;
-        if (view && isEdit)
-          this.$refs[component].initItem(item);
+        if (view && isEdit) this.$refs[component].initItem(item);
       }
     },
     deleteItem(data) {
       console.log(data);
-      this.$bvModal.msgBoxConfirm(data.name + " öğesi silinecektir onaylıyor musunuz?", {
-        okTitle: 'Evet',
-        cancelTitle: 'Vazgeç',
-      })
-          .then(value => {
-            if (value) {
-              this.$store.dispatch("bankDelete", {id: data})
-            }
-          })
-    }
+      this.$bvModal
+        .msgBoxConfirm(data.name + " öğesi silinecektir onaylıyor musunuz?", {
+          okTitle: "Evet",
+          cancelTitle: "Vazgeç",
+        })
+        .then((value) => {
+          if (value) {
+            this.$store.dispatch("bankDelete", { id: data });
+          }
+        });
+    },
   },
   computed: {
     // ...mapGetters(["bankGetlist"]),
     bankGetlist() {
       this.loading = true;
-      const list = this.$store.getters.bankGetlist
-      if (list.length > 0)
-        this.loading = false;
+      const list = this.$store.getters.bankGetlist;
+      if (list.length > 0) this.loading = false;
       return list;
-    }
+    },
   },
   created() {
     this.$store.dispatch("initBank");
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
-
 .component-content {
   background-color: red;
 }

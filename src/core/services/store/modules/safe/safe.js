@@ -27,6 +27,7 @@ const mutations = {
     state.safe.push(payload);
   },
 };
+console.log(safeGetlist())
 
 const actions = {
   initSafe({ commit }) {

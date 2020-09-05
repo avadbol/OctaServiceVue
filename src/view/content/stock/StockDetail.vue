@@ -231,7 +231,33 @@
               </b-input-group>
             </div>
           </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <b-input-group prepend="Birim" size="sm">
+                <b-form-select size="sm"
+                               :options="unitGetlist"
+                               value-field="id"
+                               text-field="name"
+                               v-model.number="stock.unitId"
+                ></b-form-select>
+              </b-input-group>
+            </div>
 
+          </div>
+           <div class="col-md-3">
+            <div class="form-group">
+              <b-input-group prepend="Miktar" size="sm">
+                <b-form-input size="sm" type="number" v-model.number="stock.quantity"></b-form-input>
+              </b-input-group>
+            </div>
+          </div>
+           <div class="col-md-3">
+            <div class="form-group">
+              <b-input-group prepend="Fiyat" size="sm">
+                <b-form-input size="sm" type="number" v-model.number="stock.price"></b-form-input>
+              </b-input-group>
+            </div>
+          </div>
         </div>
       </b-tab>
     </b-tabs>
@@ -325,6 +351,7 @@ export default {
     ...mapGetters(["subgroupGetlist"]),
     ...mapGetters(["categoryGetlist"]),
     ...mapGetters(["subcategoryGetlist"]),
+    ...mapGetters(["unitGetlist"]),
 
 
   },
@@ -337,6 +364,7 @@ export default {
     this.$store.dispatch("initBodys");
     this.$store.dispatch("initCategory");
     this.$store.dispatch("initsubCategory");
+    this.$store.dispatch("initUnits");
 
 
   }

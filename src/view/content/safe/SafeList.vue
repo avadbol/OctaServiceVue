@@ -4,23 +4,15 @@
       <div class="content-head">
         <div class="col-md-12">
           <div class="d-flex">
-            <div
-              class="btn btn-primary mr-1"
-              @click="toggleModal('safeModal', true, false)"
-              v-b-tooltip.hover.bottom="'Yeni Kasa Ekle'"
-            >
+            <div class="btn btn-primary mr-1">
               <span class="fa fa-plus"></span>
             </div>
-            <div
-              class="btn btn-primary mr-1"
-              v-b-tooltip.hover.bottom="'Listeyi Güncelle'"
-            >
-              <span class="fas fa-sync"></span>
+            <div class="btn btn-primary mr-1">
+              <span class="fa fa-sync"></span>
             </div>
             <input
               type="text"
-              v-model="searchText"
-              placeholder="Kasa numarası, Kasa açıklamasına göre ara"
+              placeholder="Kasa numarası, barkod numarası, Kasa adı veya ürün özelliklerine sahip ürünü arayın"
               class="form-control"
             />
           </div>
@@ -48,11 +40,12 @@
         </template>
         <template v-slot:cell(action)="data">
           <div>
-            <b-button
-              class="btn-sm mr-1"
-              v-b-tooltip.hover.bottom="'Önizle'"
-              @click="data.toggleDetails"
+            <b-button class="btn-sm mr-1" v-b-tooltip.hover.bottom="'Önizle'"
               ><span class="fas fa-eye"></span>
+            </b-button>
+
+            <b-button class="btn-sm mr-1" v-b-tooltip.hover.bottom="'Güncelle'"
+              ><span class="fas fa-edit"></span>
             </b-button>
 
             <b-button
@@ -62,7 +55,6 @@
               variant=""
               ><span class="fas fa-trash"></span
             ></b-button>
-
             <b-dropdown
               id="dropdown-dropright"
               size="sm"
@@ -71,19 +63,19 @@
               variant="primary"
             >
               <b-dropdown-item href="#"
-                ><i class="fas fa-angle-double-right mr-1"></i>Stok
+                ><i class="fas fa-angle-double-right mr-1"></i>Kasa
                 Tanımı</b-dropdown-item
               >
               <b-dropdown-item href="#"
-                ><i class="fas fa-angle-double-right mr-1"></i>Stok
+                ><i class="fas fa-angle-double-right mr-1"></i>Kasa
                 Birimi</b-dropdown-item
               >
               <b-dropdown-item href="#"
-                ><i class="fas fa-angle-double-right mr-1"></i>Stok
+                ><i class="fas fa-angle-double-right mr-1"></i>Kasa
                 Resmi</b-dropdown-item
               >
               <b-dropdown-item href="#"
-                ><i class="fas fa-angle-double-right mr-1"></i>Stok
+                ><i class="fas fa-angle-double-right mr-1"></i>Kasa
                 Notu</b-dropdown-item
               >
               <b-dropdown-item href="#"
@@ -99,11 +91,11 @@
                 İncele
               </b-dropdown-item>
               <b-dropdown-item href="#"
-                ><i class="fas fa-angle-double-right mr-1"></i>Stok Miktari
+                ><i class="fas fa-angle-double-right mr-1"></i>Kasa Miktari
                 Gir</b-dropdown-item
               >
               <b-dropdown-item href="#"
-                ><i class="fas fa-angle-double-right mr-1"></i>Stok Kartı
+                ><i class="fas fa-angle-double-right mr-1"></i>Kasa Kartı
                 Kopyala</b-dropdown-item
               >
               <b-dropdown-item href="#"
@@ -111,65 +103,39 @@
                 Ekle</b-dropdown-item
               >
               <b-dropdown-item href="#"
-                ><i class="fas fa-angle-double-right mr-1"></i>Stok Hareketini
+                ><i class="fas fa-angle-double-right mr-1"></i>Kasa Hareketini
                 Gör
               </b-dropdown-item>
             </b-dropdown>
           </div>
         </template>
-
-        <!-- <template v-slot:row-details="data">
-          <table class="table">
-            <tbody>
-            <tr>
-              <th class="w-25">Stok Kodu</th>
-              <td>{{ data.item.barcode = !null ? data.item.barcode : "" }}</td>
-            </tr>
-            <tr>
-              <th class="w-25">Barkod</th>
-              <td>{{ data.item.mainBarcode = !null ? data.item.mainBarcode : "" }}</td>
-            </tr>
-            <tr>
-              <th class="w-25">Depo</th>
-              <td>{{ data.item.storageCode = !null ? data.item.storageCode : "" }}</td>
-            </tr>
-            <tr>
-              <th class="w-25">Departman</th>
-            </tr>
-            <tr>
-              <th class="w-25">Kdv Satış Fiyatı</th>
-              <td>{{ data.item.buyingKdv = !null ? data.item.buyingKdv : "" }}</td>
-            </tr>
-
-            </tbody>
-          </table>
-        </template> -->
       </b-table>
     </div>
   </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
-
 export default {
+  name: "list",
   data() {
     return {
       fields: [
         {
           key: "safeName",
-          label: "Adı",
+          label: "Kasa Adı",
+          class: "w-25",
           colType: "button",
           sortable: true,
         },
         {
           key: "safeDesc",
-          label: "Açıklama",
+          label: "Kasa Açıklama",
           colType: "button",
           sortable: true,
         },
         {
           key: "exchangeName",
-          label: "Döviz Cinsi",
+          label: "Doviz Cinsi",
           colType: "button",
           sortable: true,
         },
@@ -180,30 +146,11 @@ export default {
           class: "column-action",
         },
       ],
-      modalData: [],
       searchText: "",
       loading: false,
-      safeModal: {
-        view: false,
-      },
     };
   },
   methods: {
-    detailOpenModal(data) {
-      this.modalData = data.item;
-      this.$bvModal.show("modal-safe-edit");
-    },
-    updateSafe() {
-      this.$store.dispatch("safeUpdate", this.modalData).then((response) => {
-        if (response == 200) {
-          this.$bvToast.toast(this.modalData.safeName + " kasası güncellendi", {
-            title: `Güncelleme İşlemi`,
-            variant: "success",
-            solid: true,
-          });
-        }
-      });
-    },
     deleteItem(data) {
       let deleteItemName = data.item.safeName;
       this.$bvModal
@@ -239,24 +186,18 @@ export default {
     },
   },
   computed: {
-    // ...mapGetters(["safeGetlist"]),
-     safeGetlist() {
-      this.loading = false;
-      const list = this.$store.getters.safeGetlist
+    safeGetlist() {
+      this.loading = true;
+      const list = this.$store.getters.safeGetlist;
+      console.log("neden gelmiyor");
       console.log(list);
-      console.log("burda");
-      if (list.length > 0)
-        this.loading = false;
+      if (list.lenght > 0) this.loading = false;
       return list;
-    }
+    },
   },
   created() {
     this.$store.dispatch("initSafe");
-
   },
 };
 </script>
-
-<style>
-
-</style>
+<style></style>

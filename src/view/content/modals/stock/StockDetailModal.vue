@@ -7,7 +7,7 @@
 
 <script>
     import Modal from "../../modals/Modal"
-    import StockDetail from "../../../pages/stock/components/StockDetail";
+    import StockDetail from "../../../content/stock/StockDetail"
     import StockDto from "../../../mixins/dto/stockDto";
 
     export default {
