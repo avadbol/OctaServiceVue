@@ -206,7 +206,7 @@
           <div class="col-md-3">
             <div class="form-group">
               <b-input-group prepend="Eni" size="sm">
-                <b-form-input size="sm"  type="number" v-mask="'#########.##'" v-model.number="stock.width"></b-form-input>
+                <b-form-input size="sm"  type="number"   v-model.number="stock.width"></b-form-input>
               </b-input-group>
             </div>
           </div>

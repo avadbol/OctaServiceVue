@@ -116,67 +116,141 @@
         </div>
       </div>
     </div>
-    <!--    <div class="col-md-12 p-0 p-1">-->
-    <!--      <div class="card"><div class="card-header text-dark">-->
-    <!--        Fatura İçeriği-->
-    <!--      </div>-->
-    <!--        <div class="form-row">-->
-    <!--        -->
-    <!--          {{ items }}-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
-
     <div class="col-md-12 p-0 p-1">
-      <b-table :items="items" class="table table-borderless table-striped o-shadow-sm">
-        <template v-slot:cell(name)="row">
-          <b-form-input v-model="row.item.name"/>
-        </template>
-        <template v-slot:cell(age)="row">
-          <b-form-input v-model="row.item.age"/>
-        </template>
-      </b-table>
+      <div class="card">
+        <div class="card-header text-dark">
+          Fatura Satırı
+        </div>
+        <div class="form-row ml-1 mr-1 p-1">
+          <b-table :items="items" responsive :fields="fields" class="table table-borderless table-striped table-sm">
+
+            <template v-slot:cell(key)="row">
+              <b-form-input size="sm" v-model="row.index+1"></b-form-input>
+             </template>
+
+            <template v-slot:cell(stock)="row">
+
+              <div class="input-group">
+                <b-form-input size="sm"  v-model="row.item.stockName"></b-form-input>
+                <div class="input-group-append">
+                    <b-button v-b-modal.modal-1 size="sm" v-on:click="modelSelectItemId = row.index"><i class="fa fa-search"></i></b-button>
+                </div>
+              </div>
+            </template>
+
+            <template v-slot:cell(stockName)="row">
+              <b-form-input size="sm"  v-model="row.item.stockName"></b-form-input>
+            </template>
+
+            <template v-slot:cell(action)="data">
+
+              <b-button class="btn-sm" v-b-tooltip.hover.bottom="'Sil'"
+                        variant=""><span class="fas fa-trash"></span></b-button>
+            </template>
+
+            <template v-slot:cell(count)="row">
+<!--              <input type="text" @change="rowChange(row)" size="sm" v-model.number="row.item.count">-->
+              <b-form-input size="sm" @change="rowChange(row)"   v-model.number="row.item.count"></b-form-input>
+
+            </template>
+
+            <template v-slot:cell(unit)="row">
+              <b-form-input size="sm"  v-model="row.item.unit"></b-form-input>
+             </template>
+
+            <template v-slot:cell(unitPrice)="row">
+              <b-form-input size="sm" v-model="row.item.unitprice"></b-form-input>
+
+             </template>
+
+            <template v-slot:cell(total)="row">
+              <b-form-input size="sm" v-model.number="row.item.count"></b-form-input>
+
+             </template>
+
+          </b-table>
+          <b-modal id="modal-1" size="xl"  ref="stockListModal" lazy hide-footer title="🖱️ Stok Listesi" >
+            <stock-list @selectItem="resultItem"></stock-list>
+          </b-modal>
+          <b-button size="sm" @click="items.push({})">Yeni Satır</b-button>
+        </div>
+        modalselectId : {{modelSelectItemId}}
+      </div>
     </div>
-
-
   </div>
 </template>
 
 <script>
+import StockList from "../../pages/stock/list"
 export default {
+
   name: "InvoiceDetail",
   data() {
     return {
       fields: [
         {
-          key: "barcode",
-          label: "Stok Kodu",
-          class: 'w-25',
-          sortable: true
-        },
-        {
-          key: "code",
-          label: "Stok Adı",
-          sortable: true,
-          // class: 'w-50'
-        },
-        {
-          key: "name",
-          label: "Stok Adı",
-          sortable: true,
-          // class: 'w-50'
-        },
-        {
           key: "action",
-          label: "",
-          class: 'text-right'
+          label: "İşlem",
+          class: "text-center"
+        },
+        {
+          key: "key",
+          label: "No",
+          class:"w-3 text-center",
+
+        },
+        {
+          key: "stock",
+          label: "Ürün/Hizmet Seç",
+          class: "text-center"
+        },
+        {
+          key: "stockName",
+          label: "Ürün Hizmet Adı",
+          class: "text-center"
+
+        },
+        {
+          key: "count",
+          label: "Miktar",
+        },
+        {
+          key: "unitPrice",
+          label: "Birim Fiyatı",
+        },
+        {
+          key: "unit",
+          label: "Birim",
+        },
+        {
+          key: "total",
+          label: "Ara Toplam",
         }
       ],
       items: [
-        {barcode: "Joe", code: 33, name:"Elma 1 KİLO FİLAN"},
-        {name: "Sue", age: 77}
-      ]
+        // {key:null, count:null,unitPrice:null,stockName:null},
+      ],
+      modelSelectItemId:-1,
     };
+  },
+  methods: {
+    rowChange: function (data) {
+      let count = data.item.count == null ? data.item.count = 0 : data.item.count;
+      let unitPrice = data.item.unitPrice == null ? data.item.unitprice = 0 : data.item.unitPrice;
+      data.item.total = count * unitPrice
+    },
+    resultItem:function(data){
+      this.items[this.modelSelectItemId].count = data.name;
+      this.items[this.modelSelectItemId].stock = data.name;
+      this.items[this.modelSelectItemId].stockName = data.name;
+
+      this.items.push();
+      this.$refs['stockListModal'].hide();
+    }
+
+  },
+  components:{
+    StockList
   }
 }
 </script>
@@ -187,7 +261,7 @@ export default {
 }
 
 .input-group-sm > .form-control, .input-group-sm > .custom-select, .input-group-sm > .input-group-prepend > .input-group-text, .input-group-sm > .input-group-append > .input-group-text, .input-group-sm > .input-group-prepend > .btn, .input-group-sm > .input-group-append > .btn {
-  width: 10rem;
+  width: 7.2rem;
 }
 </style>
 

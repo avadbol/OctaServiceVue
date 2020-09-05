@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row">
+    <div class="row m-0">
       <div class="content-head">
         <div class="col-md-12">
           <div class="d-flex">
@@ -26,6 +26,10 @@
             <b-spinner class="align-middle" variant="primary" style="width: 3rem; height: 3rem;"
                        label="Yükleniyor..."></b-spinner>
           </div>
+        </template>
+
+        <template v-slot:cell(select)="data">
+          <b-button size="sm" @click="selectItem(data.item)" class="btn btn-danger">Seç</b-button>
         </template>
         <template v-slot:cell(action)="data">
           <div>
@@ -83,7 +87,6 @@
               <th class="w-25">Kdv Satış Fiyatı</th>
               <td>{{ data.item.buyingKdv = !null ? data.item.buyingKdv : "" }}</td>
             </tr>
-
             </tbody>
           </table>
         </template>
@@ -104,6 +107,12 @@ export default {
   data() {
     return {
       fields: [
+        {
+          key: "select",
+          label: "Seç",
+          class: 'w-25',
+          sortable: true
+        },
         {
           key: "barcode",
           label: "Stok Kodu",
@@ -146,8 +155,6 @@ export default {
       }
     },
     deleteItem(data) {
-      console.log("silmeden geliyor şuanda");
-      console.log(data);
       this.$bvModal.msgBoxConfirm(data.name + " öğesi silinecektir onaylıyor musunuz?", {
         okTitle: 'Evet',
         cancelTitle: 'Vazgeç',
@@ -157,10 +164,13 @@ export default {
               this.$store.dispatch("stockDelete", {id: data})
             }
           })
+    },
+    selectItem(data){
+      this.$emit('selectItem', data)
+
     }
   },
   computed: {
-    // ...mapGetters(["stockGetlist"]),
     stockGetlist() {
       this.loading = true;
       const list = this.$store.getters.stockGetlist
@@ -182,11 +192,4 @@ export default {
 }
 </style>
 
-<!--<style scoped >-->
-<!--    ::v-deep .dropdown-menu.show{-->
-<!--        /*background-color:#C9F7F5;*/-->
-<!--    }-->
-<!--    ::v-deep .dropdown-item{-->
-<!--        padding:0.5rem 0.5rem;-->
-<!--    }-->
-<!--</style>-->
+
