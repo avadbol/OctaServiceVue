@@ -132,7 +132,8 @@
 
               <div class="input-group">
 <!--                <b-form-input size="sm"  v-model="row.item.stockName"></b-form-input>-->
-                <b-form-input :options="options" size="sm" :type="search" v-model="row.item.stockName"></b-form-input>
+<!--                <b-form-input :options="options" size="sm" :type="search" v-model="row.item.stockName"></b-form-input>-->
+                <odropdown></odropdown>
                 <div class="input-group-append">
                     <b-button v-b-modal.modal-1 size="sm" v-on:click="modelSelectItemId = row.index"><i class="fa fa-search"></i></b-button>
                 </div>
