@@ -8,6 +8,9 @@
 @import "~@fortawesome/fontawesome-free/css/all.css";
 @import "~line-awesome/dist/line-awesome/css/line-awesome.css";
 @import "assets/sass/style.vue";
+
+
+
 </style>
 <script>
 
