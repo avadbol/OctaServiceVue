@@ -126,22 +126,20 @@
 
             <template v-slot:cell(key)="row">
               <b-form-input size="sm" v-model="row.index+1"></b-form-input>
-             </template>
+            </template>
 
             <template v-slot:cell(stock)="row">
 
-              <div class="input-group">
-<!--                <b-form-input size="sm"  v-model="row.item.stockName"></b-form-input>-->
-<!--                <b-form-input :options="options" size="sm" :type="search" v-model="row.item.stockName"></b-form-input>-->
-                <odropdown></odropdown>
-                <div class="input-group-append">
-                    <b-button v-b-modal.modal-1 size="sm" v-on:click="modelSelectItemId = row.index"><i class="fa fa-search"></i></b-button>
-                </div>
+              <div class="d-flex">
+                <odropdown :options="stockGetlist" text-field="name" value-field="name.id" v-model.number="row.item.stock" class="w-100"></odropdown>
+                <b-button v-b-modal.modal-1 size="sm" v-on:click="modelSelectItemId = row.index"><i
+                    class="fa fa-search"></i></b-button>
               </div>
+
             </template>
 
             <template v-slot:cell(stockName)="row">
-              <b-form-input size="sm"  v-model="row.item.stockName"></b-form-input>
+              <b-form-input size="sm" v-model="row.item.stockName"></b-form-input>
             </template>
 
             <template v-slot:cell(action)="data">
@@ -151,32 +149,32 @@
             </template>
 
             <template v-slot:cell(count)="row">
-<!--              <input type="text" @change="rowChange(row)" size="sm" v-model.number="row.item.count">-->
-              <b-form-input size="sm" @change="rowChange(row)"   v-model.number="row.item.count"></b-form-input>
+              <!--              <input type="text" @change="rowChange(row)" size="sm" v-model.number="row.item.count">-->
+              <b-form-input size="sm" @change="rowChange(row)" v-model.number="row.item.count"></b-form-input>
 
             </template>
 
             <template v-slot:cell(unit)="row">
-              <b-form-input size="sm"  v-model="row.item.unit"></b-form-input>
-             </template>
+              <b-form-input size="sm" v-model="row.item.unit"></b-form-input>
+            </template>
 
             <template v-slot:cell(unitPrice)="row">
               <b-form-input size="sm" v-model="row.item.unitprice"></b-form-input>
 
-             </template>
+            </template>
 
             <template v-slot:cell(total)="row">
               <b-form-input size="sm" v-model.number="row.item.count"></b-form-input>
 
-             </template>
+            </template>
 
           </b-table>
-          <b-modal id="modal-1" size="xl"  ref="stockListModal" lazy hide-footer title="🖱️ Stok Listesi" >
+          <b-modal id="modal-1" size="xl" ref="stockListModal" lazy hide-footer title="🖱️ Stok Listesi">
             <stock-list @selectItem="resultItem"></stock-list>
           </b-modal>
           <b-button size="sm" @click="items.push({})">Yeni Satır</b-button>
         </div>
-        modalselectId : {{modelSelectItemId}}
+        {{ stockGetlist }}
       </div>
     </div>
   </div>
@@ -184,6 +182,8 @@
 
 <script>
 import StockList from "../../pages/stock/list"
+import {mapGetters} from "vuex";
+
 export default {
 
   name: "InvoiceDetail",
@@ -198,7 +198,7 @@ export default {
         {
           key: "key",
           label: "No",
-          class:"w-3 text-center",
+          class: "w-3 text-center",
 
         },
         {
@@ -232,7 +232,7 @@ export default {
       items: [
         // {key:null, count:null,unitPrice:null,stockName:null},
       ],
-      modelSelectItemId:-1,
+      modelSelectItemId: -1,
     };
   },
   methods: {
@@ -241,7 +241,7 @@ export default {
       let unitPrice = data.item.unitPrice == null ? data.item.unitprice = 0 : data.item.unitPrice;
       data.item.total = count * unitPrice
     },
-    resultItem:function(data){
+    resultItem: function (data) {
       this.items[this.modelSelectItemId].count = data.name;
       this.items[this.modelSelectItemId].stock = data.name;
       this.items[this.modelSelectItemId].stockName = data.name;
@@ -251,8 +251,14 @@ export default {
     }
 
   },
-  components:{
+  computed:{
+    ...mapGetters(["stockGetlist"]),
+  },
+  components: {
     StockList
+  },
+  created() {
+    this.$store.dispatch("initStocks");
   }
 }
 </script>
