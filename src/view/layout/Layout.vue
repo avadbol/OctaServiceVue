@@ -30,7 +30,8 @@
 
 <script>
 import { mapGetters } from "vuex";
-export default {
+
+ export default {
   name: "Layout",
-};
+ };
 </script>

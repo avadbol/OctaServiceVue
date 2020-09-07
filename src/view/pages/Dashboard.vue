@@ -1,6 +1,8 @@
 <template>
   <div>
-    dashboard
+<!--    <odropdown display="true" sort-by="true" sort-dec="true" sort-desc="true" :items="['Canada', 'United States']"></odropdown>-->
+    <ocustomselect></ocustomselect>
+    <odropdown></odropdown>
   </div>
 </template>
 
