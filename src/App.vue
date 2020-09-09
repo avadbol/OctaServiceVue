@@ -10,7 +10,6 @@
 @import "assets/sass/style.vue";
 
 
-
 </style>
 <script>
 
@@ -18,3 +17,4 @@ export default {
   name: "Octa",
 };
 </script>
+ 
