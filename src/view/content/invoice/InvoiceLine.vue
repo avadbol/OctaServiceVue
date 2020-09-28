@@ -151,8 +151,6 @@ export default {
       data.item.total = count * unitPrice
     },
     resultSelectSearchList(data){
-      console.log("geri dönüşüm sağlandı! resultItem")
-      console.log(data);
       return data;
     }
   },

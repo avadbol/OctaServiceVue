@@ -1,8 +1,8 @@
 <template>
   <div class="d-flex">
     <input type="form-control" ref="inputStock" :class="inputClass" @input="inputResultItem($event)">
-    <button v-b-modal.modal-1 class="btn" :class="buttonClass"><i class="fa fa-search"></i></button>
-    <b-modal id="modal-1" size="xl" ref="stockListModal" hide-footer title="🖱️ Stok Listesi">
+    <button @click="modelClicked" class="btn" :class="buttonClass"><i class="fa fa-search"></i></button>
+    <b-modal :id="setrandomId()"  size="xl" ref="stockListModal" hide-footer title="🖱️ Stok Listesi">
       <stock-list @selectItem="selectResultItem"></stock-list>
     </b-modal>
   </div>
@@ -17,19 +17,29 @@ export default {
   data() {
     return {
       items:[],
-      modelSelectItemId: -1,
+      modalId:null,
     }
   },
   methods:{
     selectResultItem: function (data) {
-      console.log(this.$el['stockListModal'].hide())
       this.$emit('result',data);
-      this.$refs['stockListModal'].hide();
       this.$refs['inputStock'].value = data.name
+      this.$bvModal.hide(this.modalId)
+
       return data;
     },
     inputResultItem(e, value){
       this.$emit('input', e.target.value);
+    },
+    randonId(){
+      return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+    },
+    setrandomId: function () {
+      this.modalId = this.randonId()
+      return this.modalId
+    },
+    modelClicked(){
+      this.$bvModal.show(this.modalId)
     }
   },
   components:{
