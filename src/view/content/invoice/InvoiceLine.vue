@@ -1,50 +1,73 @@
 <template>
   <div>
     <b-table :items="items" :fields="fields" class="table table-borderless table-striped invoiceTable">
+
       <template v-slot:cell(action)="data">
         <b-button class="btn-sm" v-b-tooltip.hover.bottom="'Sil'"
                   variant=""><span class="fas fa-trash"></span></b-button>
       </template>
+
       <template v-slot:cell(key)="row">
         <b-form-input size="sm text-center" style="width: 40px" disabled v-model="row.index+1"></b-form-input>
       </template>
+
       <template v-slot:cell(stock)="row">
-        <SelectStockSearchList @result="resultSelectSearchList" style="width:200px"  :input-class="'form-control form-control-sm'" :button-class="'btn-primary btn-sm'" v-model="row.item.stock"></SelectStockSearchList>
+        <SelectStockSearchList @result="resultSelectSearchList" style="width:200px"  :input-class="'form-control'" :button-class="'btn-primary btn-sm'" v-model="row.item.stock"></SelectStockSearchList>
       </template>
+
       <template v-slot:cell(count)="row">
-        <b-form-input style="width: 60px" size="sm text-right" type="number" @change="rowChange(row)"
+        <b-form-input min="0" style="width: 60px" size="sm text-right" type="number" @change="rowChange(row)"
                       v-model.number="row.item.count"></b-form-input>
+
       </template>
+
       <template v-slot:cell(unit)="row">
-        <SelectStockUnit style="width: 100px" :classs="'form-control-sm'" v-model="row.item.unit"></SelectStockUnit>
+        <SelectStockUnit style="width: 100px" :classs="'form-control'" v-model="row.item.unit"></SelectStockUnit>
       </template>
+
       <template v-slot:cell(unitPrice)="row">
-        <b-form-input style="width: 60px" size="sm text-right" v-model="row.item.unitprice"></b-form-input>
+        <format-money style="width: 80px" vclass="form-control text-right"></format-money>
       </template>
+
       <template v-slot:cell(exchange)="row">
-        <b-form-input style="width: 60px" size="sm text-right" v-model="row.item.unitprice"></b-form-input>
+        <exchange :classs="'form-control text-right'" style="width: 80px"></exchange>
       </template>
+
       <template v-slot:cell(discountType)="row">
-        <b-form-input style="width: 60px" size="sm text-right" v-model="row.item.unitprice"></b-form-input>
+        <b-form-select>
+          <option selected value="1">Yok</option>
+          <option value="2">Yüzde</option>
+          <option value="3">Sabit</option>
+        </b-form-select>
       </template>
+
       <template v-slot:cell(discount)="row">
-        <b-form-input style="width: 60px" size="sm text-right" v-model="row.item.unitprice"></b-form-input>
+                <format-money style="width: 80px" vclass="form-control text-right"></format-money>
+
       </template>
-      <template v-slot:cell(desc)="row">
-        <b-form-input style="width: 60px" size="sm text-right" v-model="row.item.unitprice"></b-form-input>
-      </template>
-      <template v-slot:cell(purchaseUnitPrice)="row">
-        <b-form-input style="width: 60px" size="sm text-right" v-model="row.item.unitprice"></b-form-input>
-      </template>
-      <template v-slot:cell(purchaseExchange)="row">
-        <b-form-input style="width: 60px" size="sm text-right" v-model="row.item.unitprice"></b-form-input>
-      </template>
+
       <template v-slot:cell(kdv)="row">
-        <b-form-input style="width: 60px" size="sm" v-model.number="row.item.count"></b-form-input>
+                <format-money style="width: 80px" vclass="form-control text-right"></format-money>
       </template>
+
       <template v-slot:cell(total)="row">
-        <b-form-input  style="width: 60px" size="sm" v-model.number="row.item.count"></b-form-input>
+          <format-money style="width: 80px" vclass="form-control text-right"></format-money>
       </template>
+
+      <template v-slot:cell(desc)="row">
+          <b-form-input class="form-control" placeholder="Açıklama yazın"></b-form-input>
+      </template>
+
+      <template v-slot:cell(purchaseUnitPrice)="row">
+          <format-money style="width: 80px" vclass="form-control text-right"></format-money>
+      </template>
+
+      <template v-slot:cell(purchaseExchange)="row">
+          <format-money style="width: 80px" vclass="form-control text-right"></format-money>
+      </template>
+
+    
+
     </b-table>
     <b-button size="sm ml-2 mb-2 mt-0 " @click="items.push({})">Yeni Satır</b-button>
   </div>
@@ -92,6 +115,7 @@ export default {
           class: "text-center",
 
         },
+        
         {
           key: "exchange",
           label: "Para Birimi",
@@ -107,6 +131,20 @@ export default {
         {
           key: "discount",
           label: "İskonto",
+          class: "text-center",
+
+        },
+               
+        {
+          key: "kdv",
+          label: "Kdv",
+          class: "text-center",
+
+        },
+
+        {
+          key: "total",
+          label: "Tutar",
           class: "text-center",
 
         },
@@ -128,18 +166,6 @@ export default {
           class: "text-center",
 
         },
-        {
-          key: "kdv",
-          label: "Kdv",
-          class: "text-center",
-
-        },
-        {
-          key: "total",
-          label: "Ara Toplam",
-          class: "text-center",
-
-        }
       ],
       items: [],
     };
