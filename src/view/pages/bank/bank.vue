@@ -8,7 +8,9 @@
     </div>
     <div class="component-content">
       <b-tabs lazy>
-        <b-tab title="Banka Listesi"><bank-list></bank-list></b-tab>
+        <b-tab title="Banka Listesi">
+          <bank-list></bank-list>
+        </b-tab>
       </b-tabs>
     </div>
   </div>

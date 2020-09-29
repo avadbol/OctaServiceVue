@@ -5,7 +5,7 @@
 <script>
     import BankList from "../../content/bank/BankList";
     export default {
-        name: "list",
+        name: "banklist",
         components:{BankList}
-    }
+    }    
 </script>

@@ -36,6 +36,16 @@ export const constantRoutes=[
         hidden: true
       },
       {
+        path: '/company',
+        component: () => import('@/view/pages/settings/company/company'),
+        hidden: true
+      },
+      {
+        path: '/setting',
+        component: () => import('@/view/pages/settings/generalsettings'),
+        hidden: true
+      },
+      {
         path: '/bank',
         component: () => import('@/view/pages/bank/bank'),
         hidden: true
@@ -92,11 +102,7 @@ export const constantRoutes=[
     component: Layout,
     redirect: '/safe/list',
     children: [
-      {
-        path: 'list',
-        component: () => import('@/view/pages/safe/list'),
-        name : 'User',
-      },
+      
       {
         path: 'create',
         component: () => import('@/view/pages/safe/create'),
@@ -104,6 +110,23 @@ export const constantRoutes=[
       },
      
     ]
+  },
+  {
+    path: '/company',
+    component: Layout,
+    redirect: '/settings/company/list',
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/view/pages/settings/company/create'),
+        name : 'User',
+      },
+    ]
+  },
+  {
+    path: '/setting',
+    component: Layout,
+    redirect: '/setting/list',
   },
 
 

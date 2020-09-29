@@ -13,7 +13,10 @@
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Barkod" size="sm">
-                <b-form-input v-model="stock.mainBarcode" size="sm"></b-form-input>
+                <b-form-input
+                  v-model="stock.mainBarcode"
+                  size="sm"
+                ></b-form-input>
               </b-input-group>
             </div>
           </div>
@@ -27,7 +30,10 @@
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Stok Diğer Adı" size="sm">
-                <b-form-input v-model="stock.widthName" size="sm"></b-form-input>
+                <b-form-input
+                  v-model="stock.widthName"
+                  size="sm"
+                ></b-form-input>
               </b-input-group>
             </div>
           </div>
@@ -41,21 +47,29 @@
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Depo" size="sm">
-                <b-form-select size="sm"
-                               :options="storageGetlist"
-                               value-field="id"
-                               text-field="code"
-                               v-model="stock.storageCode"
+                <b-form-select
+                  size="sm"
+                  :options="storageGetlist"
+                  value-field="id"
+                  text-field="code"
+                  v-model="stock.storageCode"
                 ></b-form-select>
-                <div class="btn btn-secondary btn-sm"><i class="ml-1 fas fa-plus-square"></i></div>
-
+                <div
+                  class="btn btn-secondary btn-sm"
+                  @click="toggleModal('storageModal', true, false)"
+                >
+                  <i class="ml-1 fas fa-plus-square"></i>
+                </div>
               </b-input-group>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Üretici Kodu" pre size="sm">
-                <b-form-input size="sm" v-model="stock.manufacturerCode"></b-form-input>
+                <b-form-input
+                  size="sm"
+                  v-model="stock.manufacturerCode"
+                ></b-form-input>
               </b-input-group>
             </div>
           </div>
@@ -69,10 +83,13 @@
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Departman" size="sm">
-                <b-form-select size="sm" v-model.number="stock.department.id" :value="0"
-                               :options="departmentGetlist"
-                               value-field="id"
-                               text-field="name"
+                <b-form-select
+                  size="sm"
+                  v-model.number="stock.department.id"
+                  :value="0"
+                  :options="departmentGetlist"
+                  value-field="id"
+                  text-field="name"
                 >
                 </b-form-select>
               </b-input-group>
@@ -82,8 +99,11 @@
             <div class="form-group">
               <div class="form-group">
                 <b-input-group prepend="Kdv Satış (%)" size="sm">
-                  <b-form-input size="sm" type="number"
-                                v-model.number="stock.buyingKdv"></b-form-input>
+                  <b-form-input
+                    size="sm"
+                    type="number"
+                    v-model.number="stock.buyingKdv"
+                  ></b-form-input>
                 </b-input-group>
               </div>
             </div>
@@ -91,10 +111,12 @@
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Ana Grup" size="sm">
-                <b-form-select size="sm"
-                               :options="groupGetlist"
-                               value-field="id" v-model.number="stock.mainGroup.id"
-                               text-field="name"
+                <b-form-select
+                  size="sm"
+                  :options="groupGetlist"
+                  value-field="id"
+                  v-model.number="stock.mainGroup.id"
+                  text-field="name"
                 ></b-form-select>
               </b-input-group>
             </div>
@@ -102,10 +124,12 @@
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Alt Grup" size="sm">
-                <b-form-select size="sm"
-                               :options="subgroupGetlist"
-                               value-field="id" v-model.number="stock.subGroup.id"
-                               text-field="name"
+                <b-form-select
+                  size="sm"
+                  :options="subgroupGetlist"
+                  value-field="id"
+                  v-model.number="stock.subGroup.id"
+                  text-field="name"
                 ></b-form-select>
               </b-input-group>
             </div>
@@ -113,25 +137,34 @@
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Özel Kod" size="sm">
-                <b-form-input size="sm" type="number" v-model.number="stock.privateCode"></b-form-input>
+                <b-form-input
+                  size="sm"
+                  type="number"
+                  v-model.number="stock.privateCode"
+                ></b-form-input>
               </b-input-group>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Raf Ömrü" size="sm">
-                <b-form-input size="sm" type="number" v-model.number="stock.shelfLife"></b-form-input>
+                <b-form-input
+                  size="sm"
+                  type="number"
+                  v-model.number="stock.shelfLife"
+                ></b-form-input>
               </b-input-group>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Üst Kategori" size="sm">
-                <b-form-select size="sm"
-                               :options="categoryGetlist"
-                               value-field="id"
-                               text-field="name"
-                               v-model.number="stock.category.id"
+                <b-form-select
+                  size="sm"
+                  :options="categoryGetlist"
+                  value-field="id"
+                  text-field="name"
+                  v-model.number="stock.category.id"
                 ></b-form-select>
               </b-input-group>
             </div>
@@ -139,11 +172,12 @@
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Alt Kategori" size="sm">
-                <b-form-select size="sm"
-                               :options="subcategoryGetlist"
-                               value-field="id"
-                               text-field="name"
-                               v-model.number="stock.subCategory.id"
+                <b-form-select
+                  size="sm"
+                  :options="subcategoryGetlist"
+                  value-field="id"
+                  text-field="name"
+                  v-model.number="stock.subCategory.id"
                 ></b-form-select>
               </b-input-group>
             </div>
@@ -151,33 +185,36 @@
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Renk" size="sm">
-                <b-form-select size="sm"
-                               :options="colorGetlist"
-                               value-field="id"
-                               text-field="name"
-                               v-model.number="stock.color.id"
+                <b-form-select
+                  size="sm"
+                  :options="colorGetlist"
+                  value-field="id"
+                  text-field="name"
+                  v-model.number="stock.color.id"
                 ></b-form-select>
               </b-input-group>
-
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Beden" size="sm">
-                <b-form-select size="sm"
-                               :options="bodyGetlist"
-                               value-field="id"
-                               text-field="name"
-                               v-model.number="stock.body.id"
+                <b-form-select
+                  size="sm"
+                  :options="bodyGetlist"
+                  value-field="id"
+                  text-field="name"
+                  v-model.number="stock.body.id"
                 ></b-form-select>
               </b-input-group>
             </div>
-
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Üretici Firma" size="sm">
-                <b-form-input size="sm" v-model="stock.manufacturer"></b-form-input>
+                <b-form-input
+                  size="sm"
+                  v-model="stock.manufacturer"
+                ></b-form-input>
               </b-input-group>
             </div>
           </div>
@@ -191,70 +228,100 @@
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Terazi Kodu" size="sm">
-                <b-form-input size="sm" v-model="stock.scalesCode"></b-form-input>
+                <b-form-input
+                  size="sm"
+                  v-model="stock.scalesCode"
+                ></b-form-input>
               </b-input-group>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <b-input-group prepend="Kar Oranı (%)" size="sm">
-                <b-form-input size="sm" type="number"
-                              v-model.number="stock.rateOfProfit"></b-form-input>
+                <b-form-input
+                  size="sm"
+                  type="number"
+                  v-model.number="stock.rateOfProfit"
+                ></b-form-input>
               </b-input-group>
             </div>
           </div>
           <div class="col-md-3">
             <div class="form-group">
               <b-input-group prepend="Eni" size="sm">
-                <b-form-input size="sm"  type="number"   v-model.number="stock.width"></b-form-input>
+                <b-form-input
+                  size="sm"
+                  type="number"
+                  v-model.number="stock.width"
+                ></b-form-input>
               </b-input-group>
             </div>
           </div>
           <div class="col-md-3">
             <div class="form-group">
               <b-input-group prepend="Boyu" size="sm">
-                <b-form-input size="sm" type="number" v-model.number="stock.height"></b-form-input>
+                <b-form-input
+                  size="sm"
+                  type="number"
+                  v-model.number="stock.height"
+                ></b-form-input>
               </b-input-group>
             </div>
           </div>
           <div class="col-md-3">
             <div class="form-group">
               <b-input-group prepend="Yükseklik" size="sm">
-                <b-form-input size="sm" type="number" v-model.number="stock.size"></b-form-input>
+                <b-form-input
+                  size="sm"
+                  type="number"
+                  v-model.number="stock.size"
+                ></b-form-input>
               </b-input-group>
             </div>
           </div>
           <div class="col-md-3">
             <div class="form-group">
               <b-input-group prepend="Ağırlık" size="sm">
-                <b-form-input size="sm" type="number" v-model.number="stock.kg"></b-form-input>
+                <b-form-input
+                  size="sm"
+                  type="number"
+                  v-model.number="stock.kg"
+                ></b-form-input>
               </b-input-group>
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <b-input-group prepend="Birim" size="sm">
-                <b-form-select size="sm"
-                               :options="unitGetlist"
-                               value-field="id"
-                               text-field="name"
-                               v-model.number="stock.unitId"
+                <b-form-select
+                  size="sm"
+                  :options="unitGetlist"
+                  value-field="id"
+                  text-field="name"
+                  v-model.number="stock.unitId"
                 ></b-form-select>
               </b-input-group>
             </div>
-
           </div>
-           <div class="col-md-3">
+          <div class="col-md-3">
             <div class="form-group">
               <b-input-group prepend="Miktar" size="sm">
-                <b-form-input size="sm" type="number" v-model.number="stock.quantity"></b-form-input>
+                <b-form-input
+                  size="sm"
+                  type="number"
+                  v-model.number="stock.quantity"
+                ></b-form-input>
               </b-input-group>
             </div>
           </div>
-           <div class="col-md-3">
+          <div class="col-md-3">
             <div class="form-group">
               <b-input-group prepend="Fiyat" size="sm">
-                <b-form-input size="sm" type="number" v-model.number="stock.price"></b-form-input>
+                <b-form-input
+                  size="sm"
+                  type="number"
+                  v-model.number="stock.price"
+                ></b-form-input>
               </b-input-group>
             </div>
           </div>
@@ -265,7 +332,9 @@
     <div class="row mt-0 mb-3">
       <div class="col-md-12">
         <div class="btn btn-primary" @click="save" v-show="!isEdit">Kaydet</div>
-        <div class="btn btn-primary" @click="update" v-show="isEdit">Güncelle</div>
+        <div class="btn btn-primary" @click="update" v-show="isEdit">
+          Güncelle
+        </div>
       </div>
     </div>
 
@@ -279,30 +348,41 @@
       <!--          </b-tab>-->
       <!--        </b-tabs>-->
     </div>
+    <storage-modal
+      ref="storageModal"
+      :show="storageModal.view"
+      @close="toggleModal('storageModal')"
+    ></storage-modal>
   </div>
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 // import {SET_BREADCRUMB} from "../../../../core/services/store/modules/breadcrumbs.module";
 // import StockDto from "../../../../view/mixins/dto/stockDto"
-import StockDto from "../../mixins/dto/stockDto"
-
+import StockDto from "../../mixins/dto/stockDto";
+import StorageModal from "../../content/modals/define/StorageModal";
 export default {
   name: "StockDetail",
   mixins: [StockDto],
   props: {
     isEdit: {
       type: Boolean,
-      default: false
+      default: false,
     },
+  },
+  components: {
+    StorageModal,
   },
   data() {
     return {
       modalData: {
         view: false,
       },
-    }
+      storageModal: {
+        view: false,
+      },
+    };
   },
   mounted() {
     // this.$store.dispatch(SET_BREADCRUMB, [
@@ -311,35 +391,45 @@ export default {
     // ]);
   },
   methods: {
+    toggleModal(component, view, isEdit, item) {
+      if (!view) {
+        this[component].view = false;
+      }
+      if (view) {
+        this[component].view = view;
+        if (view && isEdit) {
+          this.$refs[component].initItem(item);
+        }
+      }
+    },
     save() {
-      this.$store.dispatch("stockAdd", this.stock).then(response => {
+      this.$store.dispatch("stockAdd", this.stock).then((response) => {
         if (response == 200) {
-          this.$bvToast.toast(this.stock.name + ' stoğu tanımlanadı', {
+          this.$bvToast.toast(this.stock.name + " stoğu tanımlanadı", {
             title: `Ekleme işlemi`,
-            variant: 'success',
-            solid: true
-          })
+            variant: "success",
+            solid: true,
+          });
           Object.assign(this.$data, this.$options.data());
         }
-      })
+      });
     },
     update() {
-      this.$store.dispatch("stockUpdate", this.stock).then(response => {
-        this.$bvToast.toast(this.stock.name + ' stoğu güncellendi', {
+      this.$store.dispatch("stockUpdate", this.stock).then((response) => {
+        this.$bvToast.toast(this.stock.name + " stoğu güncellendi", {
           title: `Güncelleme işlemi`,
-          variant: 'success',
-          solid: true
-        })
+          variant: "success",
+          solid: true,
+        });
         Object.assign(this.$data, this.$options.data());
-        this.$emit('close')
-      })
+        this.$emit("close");
+      });
     },
     getById(id) {
       const result = this.$store.getters.stockGetById(id);
 
       this.stock = Object.assign({}, result);
-      if (result.department.id == null)
-        result.department.id = 0;
+      if (result.department.id == null) result.department.id = 0;
     },
   },
   computed: {
@@ -352,8 +442,6 @@ export default {
     ...mapGetters(["categoryGetlist"]),
     ...mapGetters(["subcategoryGetlist"]),
     ...mapGetters(["unitGetlist"]),
-
-
   },
   created() {
     this.$store.dispatch("initDepartments");
@@ -365,18 +453,21 @@ export default {
     this.$store.dispatch("initCategory");
     this.$store.dispatch("initsubCategory");
     this.$store.dispatch("initUnits");
-
-
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
 .form-group {
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
 }
 
-.input-group-sm > .form-control, .input-group-sm > .custom-select, .input-group-sm > .input-group-prepend > .input-group-text, .input-group-sm > .input-group-append > .input-group-text, .input-group-sm > .input-group-prepend > .btn, .input-group-sm > .input-group-append > .btn {
+.input-group-sm > .form-control,
+.input-group-sm > .custom-select,
+.input-group-sm > .input-group-prepend > .input-group-text,
+.input-group-sm > .input-group-append > .input-group-text,
+.input-group-sm > .input-group-prepend > .btn,
+.input-group-sm > .input-group-append > .btn {
   width: 10rem;
 }
 </style>

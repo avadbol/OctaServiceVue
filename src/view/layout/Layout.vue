@@ -12,7 +12,7 @@
           <li><router-link tag="a" to="/invoice" active-class="active"><i class="fa fa-coins"></i>Fatura</router-link></li>
           <li><router-link tag="a" to="/bank" active-class="active"><i class="fa fa-university"></i>Bankalar</router-link> </li>
           <li><a href="#/safe"><i class="fa fa-lira-sign"></i>Kasa</a></li>
-          <li><a href="#S"><i class="fa fa-cogs"></i>Ayarlar</a></li>
+          <li><router-link tag="a" to="/setting" active-class="active"><i class="fa fa-cogs"></i>Ayarlar</router-link> </li>
         </ul>
       </div>
       <div class="app-bottom-menu left-bar-menu-item">
