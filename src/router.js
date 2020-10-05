@@ -114,11 +114,11 @@ export const constantRoutes=[
   {
     path: '/company',
     component: Layout,
-    redirect: '/settings/company/list',
+    redirect: '/settings/company',
     children: [
       {
         path: 'create',
-        component: () => import('@/view/pages/settings/company/create'),
+        component: () => import('@/view/pages/settings/company/company'),
         name : 'User',
       },
     ]

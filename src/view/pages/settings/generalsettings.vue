@@ -9,7 +9,7 @@
       <div class="component-content">
       <b-tabs lazy>
         <b-tab title="Firma Bilgisi">
-          <create-company></create-company>
+          <company-detail></company-detail>
         </b-tab>
         <b-tab title="Seçenek Listesi">
         </b-tab>
@@ -36,11 +36,11 @@
 </template>
 
 <script>
-import CreateCompany from "./company/create"
+import CompanyDetail from "./company/company"
 import BankList from "../bank/list"
     export default {
         components:{
-            CreateCompany,
+            CompanyDetail,
             BankList
         }
     }

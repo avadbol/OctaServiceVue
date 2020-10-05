@@ -9,17 +9,17 @@
     <div class="component-content">
       <b-tabs lazy>
         <b-tab title="Banka Listesi">
-          <bank-list></bank-list>
+          <List></List>
         </b-tab>
       </b-tabs>
     </div>
   </div>
 </template>
 <script>
-import bankList from "./list";
+import List from "./list";
 export default {
   components: {
-    bankList,
+    List,
   },
 };
 </script>

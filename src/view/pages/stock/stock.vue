@@ -7,6 +7,7 @@
     <div class="component-content">
       <b-tabs lazy>
         <b-tab title="Stok Listesi"><stock-list></stock-list></b-tab>
+        <b-tab title="Stok Hareketleri" ><StocMovement></StocMovement></b-tab>
         <b-tab title="İrsaliyeler" ><p>I'm a disabled tab!</p></b-tab>
         <b-tab title="Stok Fişleri" ><p>I'm a disabled tab!</p></b-tab>
         <b-tab title="Siparişler" ><p>I'm a disabled tab!</p></b-tab>
@@ -24,12 +25,14 @@
 <script>
 import StockCreate from "./create"
 import StockList from "./list"
+import StocMovement from "./stockMovement/stockMovement"
 // import StockEdit from "./edit"
 export default {
   name: "stock",
   components:{
     StockCreate,
-    StockList
+    StockList,
+    StocMovement
   }
 }
 </script>

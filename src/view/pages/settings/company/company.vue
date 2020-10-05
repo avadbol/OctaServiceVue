@@ -1,16 +1,16 @@
 <template>
   <div>
-    <create></create>
+    <company-detail></company-detail>
   </div>
 </template>
 
 <script>
-import Create from "./create";
-export default {
-  components: {
-    Create,
-  },
-};
+import CompanyDetail from "../../../content/company/CompanyDetail"
+    export default {
+        components:{
+            CompanyDetail
+        }
+    }
 </script>
 
 <style lang="scss" scoped></style>

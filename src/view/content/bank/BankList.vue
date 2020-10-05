@@ -175,7 +175,7 @@ import { mapGetters } from "vuex";
 import bankModal from "../modals/bank/BankDetailModal";
 
 export default {
-  name: "banklist",
+  name: "BankList",
   data() {
     return {
       fields: [

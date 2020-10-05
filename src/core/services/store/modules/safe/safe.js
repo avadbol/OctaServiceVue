@@ -27,12 +27,11 @@ const mutations = {
     state.safe.push(payload);
   },
 };
-console.log(safeGetlist())
 
 const actions = {
   initSafe({ commit }) {
     safeGetlist().then((response) => {
-      //    state.safe = response.data;
+          state.safe = response.data;
       state.safe = [];
 
       let data = response.data;

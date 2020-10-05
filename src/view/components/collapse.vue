@@ -20,7 +20,6 @@
       <slot></slot>
     </b-collapse>
   </div>
-  
 </template>
 
 <script>
@@ -35,7 +34,7 @@ export default {
     cardTitle: String,
   },
   computed: {
-    isActiveHeadColor: function() {
+    isActiveHeadColor() {
       return this.visible
         ? "isactive-header-color text-white"
         : "bg-light text-dark";

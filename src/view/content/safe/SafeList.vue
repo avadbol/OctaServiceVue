@@ -189,7 +189,6 @@ export default {
     safeGetlist() {
       this.loading = true;
       const list = this.$store.getters.safeGetlist;
-      console.log("neden gelmiyor");
       console.log(list);
       if (list.lenght > 0) this.loading = false;
       return list;

@@ -1,14 +1,14 @@
 <template>
     <div>
-<company-create></company-create>
+<StockMovementList></StockMovementList>
     </div>
 </template>
 
 <script>
-import CompanyCreate from "../../../content/company/CompanyDetail"
+import StockMovementList from "./list";
     export default {
         components:{
-            CompanyCreate
+            StockMovementList
         }
     }
 </script>
