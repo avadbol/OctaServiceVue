@@ -13,7 +13,6 @@ export default {
   props:['textField','valueField','classs'],
   methods:{
     inputSend(e){
-      console.log(e);
       $emit('input',e.target.value)
     }
   },
