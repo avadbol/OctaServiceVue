@@ -6,6 +6,7 @@ import SelectStockUnit from "@/view/components/define/SelectStockUnit"
 import SelectStockSearchList from "@/view/components/stock/SelectStockSearchList";
 import FormatedMoney from "@/view/components/input/formatedMoney";
 import Exchange from "@/view/components/define/Exchange"
+import Modal from "@/view/components/modal"
 
 Vue.component('odropdown',odropdown);
 Vue.component('ocustomselect',ocustomselect);
@@ -14,3 +15,4 @@ Vue.component('SelectStockUnit',SelectStockUnit);
 Vue.component('SelectStockSearchList',SelectStockSearchList)
 Vue.component('FormatMoney',FormatedMoney)
 Vue.component('Exchange',Exchange)
+Vue.component('modal',Modal)

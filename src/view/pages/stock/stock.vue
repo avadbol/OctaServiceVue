@@ -14,7 +14,7 @@
         <b-tab title="Konsiye" ><p>I'm a disabled tab!</p></b-tab>
         <b-tab title="Teklifler" ><p>I'm a disabled tab!</p></b-tab>
         <b-tab title="Raporlar" ><p>I'm a disabled tab!</p></b-tab>
-        <b-tab title="Tanımlamalar" ><p>I'm a disabled tab!</p></b-tab>
+        <b-tab title="Tanımlamalar" ><Define></Define></b-tab>
       </b-tabs>
 
 
@@ -26,13 +26,15 @@
 import StockCreate from "./create"
 import StockList from "./list"
 import StocMovement from "./stockMovement/stockMovement"
+import Define from "../define/unit/UnitList"
 // import StockEdit from "./edit"
 export default {
   name: "stock",
   components:{
     StockCreate,
     StockList,
-    StocMovement
+    StocMovement,
+    Define
   }
 }
 </script>

@@ -1,20 +1,17 @@
 
 <template>
     <div>
-        <modal :show="show" @close="close">
-            <div class="modal-head"><i class="fas fa-university"></i> Banka Ekleme veya Düzenleme</div>
+        <modal title="Banka İşlemleri">
             <bank-add></bank-add>
         </modal>
     </div>
 </template>
 
 <script>
-    import Modal from "../Modal"
     import BankAdd from "../../bank/BankAdd";
     export default {
         props: ['show'],
         components: {
-            Modal,
             BankAdd
         },
         methods: {

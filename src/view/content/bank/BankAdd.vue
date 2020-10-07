@@ -7,11 +7,11 @@
             <div class="form-group">
               <b-input-group prepend="Banka Kodu" size="sm">
                 <b-form-input
-                  class="effect-4"
+                  
                   v-model="bank.code"
                   size="sm"
                 ></b-form-input>
-                <span class="focus-border"></span>
+                
               </b-input-group>
             </div>
           </div>
@@ -19,11 +19,11 @@
             <div class="form-group">
               <b-input-group prepend="Banka Adı" size="sm">
                 <b-form-input
-                  class="effect-4"
+                  
                   v-model="bank.name"
                   size="sm"
                 ></b-form-input>
-                <span class="focus-border"></span>
+                
               </b-input-group>
             </div>
           </div>
@@ -31,11 +31,11 @@
             <div class="form-group">
               <b-input-group prepend="Şube Kodu" size="sm">
                 <b-form-input
-                  class="effect-4"
+                  
                   v-model="bank.branchNo"
                   size="sm"
                 ></b-form-input>
-                <span class="focus-border"></span>
+                
               </b-input-group>
             </div>
           </div>
@@ -43,11 +43,11 @@
             <div class="form-group">
               <b-input-group prepend="Şube Adı" size="sm">
                 <b-form-input
-                  class="effect-4"
+                  
                   v-model="bank.branch"
                   size="sm"
                 ></b-form-input>
-                <span class="focus-border"></span>
+                
               </b-input-group>
             </div>
           </div>
@@ -56,11 +56,11 @@
             <div class="form-group">
               <b-input-group prepend="Adres" size="sm">
                 <b-form-input
-                  class="effect-4"
+                  
                   v-model="bank.adress"
                   size="sm"
                 ></b-form-input>
-                <span class="focus-border"></span>
+                
               </b-input-group>
             </div>
           </div>
@@ -68,11 +68,11 @@
             <div class="form-group">
               <b-input-group prepend="Adres 2" size="sm">
                 <b-form-input
-                  class="effect-4"
+                  
                   v-model="bank.adress2"
                   size="sm"
                 ></b-form-input>
-                <span class="focus-border"></span>
+                
               </b-input-group>
             </div>
           </div>
@@ -120,11 +120,11 @@
             <div class="form-group">
               <b-input-group prepend="Telefon" size="sm">
                 <b-form-input
-                  class="effect-4"
+                  
                   v-model="bank.phone"
                   size="sm"
                 ></b-form-input>
-                <span class="focus-border"></span>
+                
               </b-input-group>
             </div>
           </div>
@@ -132,11 +132,11 @@
             <div class="form-group">
               <b-input-group prepend="Fax" size="sm">
                 <b-form-input
-                  class="effect-4"
+                  
                   v-model="bank.fax"
                   size="sm"
                 ></b-form-input>
-                <span class="focus-border"></span>
+                
               </b-input-group>
             </div>
           </div>
@@ -144,11 +144,11 @@
             <div class="form-group">
               <b-input-group prepend="Posta Kodu" size="sm">
                 <b-form-input
-                  class="effect-4"
+                  
                   v-model="bank.postCode"
                   size="sm"
                 ></b-form-input>
-                <span class="focus-border"></span>
+                
               </b-input-group>
             </div>
           </div>
@@ -157,11 +157,11 @@
             <div class="form-group">
               <b-input-group prepend="Telefon 2" size="sm">
                 <b-form-input
-                  class="effect-4"
+                  
                   v-model="bank.phone2"
                   size="sm"
                 ></b-form-input>
-                <span class="focus-border"></span>
+                
               </b-input-group>
             </div>
           </div>
@@ -169,11 +169,11 @@
             <div class="form-group">
               <b-input-group prepend="Mail" size="sm">
                 <b-form-input
-                  class="effect-4"
+                  
                   v-model="bank.mail"
                   size="sm"
                 ></b-form-input>
-                <span class="focus-border"></span>
+                
               </b-input-group>
             </div>
           </div>
@@ -181,11 +181,11 @@
             <div class="form-group">
               <b-input-group prepend="Yetkili Kişi Adı" size="sm">
                 <b-form-input
-                  class="effect-4"
+                  
                   v-model="bank.authorizedPerson"
                   size="sm"
                 ></b-form-input>
-                <span class="focus-border"></span>
+                
               </b-input-group>
             </div>
           </div>
@@ -206,12 +206,12 @@
             <div class="form-group">
               <b-input-group prepend="Kredi Vade" size="sm">
                 <b-form-input
-                  class="effect-4"
+                  
                   type="number"
                   v-model.number="bank.loanTerm"
                   size="sm"
                 ></b-form-input>
-                <span class="focus-border"></span>
+                
               </b-input-group>
             </div>
           </div>
@@ -219,12 +219,12 @@
             <div class="form-group">
               <b-input-group prepend="Hesap Numarası" size="sm">
                 <b-form-input
-                  class="effect-4"
+                  
                   type="number"
                   v-model.number="bank.accountNumber"
                   size="sm"
                 ></b-form-input>
-                <span class="focus-border"></span>
+                
               </b-input-group>
             </div>
           </div>
@@ -294,4 +294,21 @@ export default {
 };
 </script>
 
-<style></style>
+// <style lang="scss" scoped>
+// .form-group {
+//   margin-bottom: 0.1rem;
+// }
+
+// .input-group-sm > .form-control,
+// .input-group-sm > .custom-select,
+// .input-group-sm > .input-group-prepend > .input-group-text,
+// .input-group-sm > .input-group-append > .input-group-text,
+// .input-group-sm > .input-group-prepend > .btn,
+// .input-group-sm > .input-group-append > .btn {
+//   width: 8.5rem;
+// }
+// .collapsed > .when-opened,
+// :not(.collapsed) > .when-closed {
+//   display: none;
+// }
+// </style>

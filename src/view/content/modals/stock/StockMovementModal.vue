@@ -12,7 +12,6 @@
 
 <script>
 import StockMovementDetail from "../../stock/stockMovement/StockMovementDetail";
-import OModal from "../../../components/modal";
 export default {
   name: "stockMovementModal",
   props: {
@@ -25,8 +24,7 @@ export default {
       }
   },
   components: {
-    StockMovementDetail,
-    OModal
+    StockMovementDetail
   },
 };
 </script>

@@ -4,10 +4,10 @@
       <div class="content-head">
         <div class="col-md-12">
           <div class="d-flex">
-            <div
+     <div
+            v-b-modal="'modal'"
               class="btn btn-primary mr-1"
-              @click="toggleModal('bankModal', true, false)"
-              v-b-tooltip.hover.bottom="'Yeni Ürün Ekle'"
+              v-b-tooltip.hover.bottom="'Stok Hareketi Oluştur'"
             >
               <span class="fa fa-plus"></span>
             </div>

@@ -1,34 +1,32 @@
 <template>
-    <div>
-<b-modal
+  <div>
+    <b-modal
       id="modal"
       size="xl"
       ref="stockMovementListModal"
       hide-footer
-      :title="title"
       :header-bg-variant="headerBgVariant"
       :header-text-variant="headerTextVariant"
     >
+    <template v-slot:modal-title >
+     {{title}}
+    </template>
       <slot></slot>
     </b-modal>
-    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-      props:{
-        title:null,
-        headerBgVariant:null,
-        headerTextVariant:null
-      },
-         data(){
-      return{
-         
-      }
+export default {
+  props: {
+    title: null,
+    headerBgVariant: null,
+    headerTextVariant: null,
   },
-    }
+  data() {
+    return {};
+  },
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -1,10 +1,11 @@
 <template>
   <div>
-    <o-modal
-      :title="'🖱️ Stok Hareketleri'+typeTitle"
+    <modal
+      :title="'🖱️ Stok Hareketleri' + typeTitle"
       :headerBgVariant="headerBgVariant"
       :headerTextVariant="headerTextVariant"
     >
+    <template slot="modal-head">asdasd</template>
       <div class="row ml-2">
         <div class="col-md-8 mt-3">
           <div class="form-row">
@@ -64,9 +65,14 @@
               </div>
             </div>
             <div class="col-md-12">
-                <div class="form-group">
-              <button class="btn btn-primary btn-block btn-sm mt-2 mb-2" @click="save">Kaydet</button>
-                </div>
+              <div class="form-group">
+                <button
+                  class="btn btn-primary btn-block btn-sm mt-2 mb-2"
+                  @click="save"
+                >
+                  Kaydet
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -114,7 +120,7 @@
           </collapse>
         </div>
       </div>
-    </o-modal>
+    </modal>
   </div>
 </template>
 
@@ -141,7 +147,7 @@ export default {
       },
       headerBgVariant: null,
       headerTextVariant: null,
-      typeTitle:""
+      typeTitle: "",
     };
   },
   components: {
@@ -162,8 +168,11 @@ export default {
           }
         });
     },
+   
     getByStock(id) {
       const result = this.$store.getters.stockGetById(id);
+      const result2 = this.$store.getters.stockMovementGetByIdlist(24);
+      console.log(result2);
       this.stockDetail.name = result.name;
       this.stockDetail.quantity = result.quantity;
       this.stockDetail.barcode = result.barcode;
@@ -172,10 +181,10 @@ export default {
       if (value) {
         this.headerBgVariant = "danger";
         this.headerTextVariant = "light";
-        this.typeTitle=" -> Stok Çıkış"
+        this.typeTitle = " -> Stok Çıkış";
       } else {
-          this.headerBgVariant = "success";
-        this.typeTitle=" -> Stok Giriş"
+        this.headerBgVariant = "success";
+        this.typeTitle = " -> Stok Giriş";
       }
     },
   },

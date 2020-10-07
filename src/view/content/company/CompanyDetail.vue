@@ -168,7 +168,7 @@
           </div>
         </div>
       </collapse>
-      
+
       <collapse v-bind:isOpen="false" cardTitle="Boş Collapse" class="mt-2">
         <div class="form-row col-md-12">
           <div class="col-md-6">
@@ -224,9 +224,7 @@ export default {
     };
   },
   methods: {
-    saveCompany() {
-      
-    },
+    saveCompany() {},
   },
   computed: {
     isDisabled: function() {
