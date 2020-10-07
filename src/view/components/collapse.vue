@@ -9,7 +9,7 @@
     >
       <span class="card-title">
         <div class="d-flex justify-content-between">
-          <span>{{ cardTitle }}</span>
+          <span>{{ Title }}</span>
           <i
             :class="visible ? 'fa fa-chevron-down' : 'fa fa-chevron-right'"
           ></i>
@@ -31,7 +31,7 @@ export default {
   },
   props: {
     isOpen: false,
-    cardTitle: String,
+    Title: String,
   },
   computed: {
     isActiveHeadColor() {
