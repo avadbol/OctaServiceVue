@@ -6,6 +6,7 @@
       :aria-expanded="visible ? 'true' : 'false'"
       aria-controls="collapse"
       @click="visible = !visible"
+      
     >
       <span class="card-title">
         <div class="d-flex justify-content-between">

@@ -80,7 +80,7 @@
           </div>
         </template> -->
 
-        <template v-slot:row-details="data">
+        <!-- <template v-slot:row-details="data">
           <table class="table">
             <tbody>
               <tr>
@@ -109,7 +109,7 @@
               </tr>
             </tbody>
           </table>
-        </template>
+        </template> -->
       </b-table>
     </div>
     <StockMovementModal

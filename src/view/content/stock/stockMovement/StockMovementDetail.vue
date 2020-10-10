@@ -5,7 +5,7 @@
       :headerBgVariant="headerBgVariant"
       :headerTextVariant="headerTextVariant"
     >
-    <template slot="modal-head">asdasd</template>
+      <template slot="modal-head">asdasd</template>
       <div class="row ml-2">
         <div class="col-md-8 mt-3">
           <div class="form-row">
@@ -76,11 +76,11 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 mt-3" v-if="stockDetail.name != null">
+        <div class="col-md-4 mt-3" v-if="stock.name != null">
           <collapse
             class="mr-2 mb-2"
             v-bind:isOpen="true"
-            :cardTitle="stockDetail.name + ' Bilgileri'"
+            :Title="stock.name + ' Bilgileri'"
           >
             <div class="form-row">
               <div class="col-md-12">
@@ -88,7 +88,7 @@
                   <b-input-group prepend="Ürün" size="sm">
                     <b-form-input
                       size="sm"
-                      v-model="stockDetail.name"
+                      v-model="stock.name"
                       disabled
                     ></b-form-input>
                   </b-input-group>
@@ -99,7 +99,7 @@
                   <b-input-group prepend="Mevcut Stok" size="sm">
                     <b-form-input
                       size="sm"
-                      v-model="stockDetail.quantity"
+                      v-model="stock.quantity"
                       disabled
                     ></b-form-input>
                   </b-input-group>
@@ -110,7 +110,7 @@
                   <b-input-group prepend="Barkod" size="sm">
                     <b-form-input
                       size="sm"
-                      v-model="stockDetail.barcode"
+                      v-model="stock.barcode"
                       disabled
                     ></b-form-input>
                   </b-input-group>
@@ -137,14 +137,9 @@ export default {
         { value: false, text: "Stok Giriş" },
         { value: true, text: "Stok Çıkış" },
       ],
-      stockDetail: {
-        name: null,
-        quantity: null,
-        barcode: null,
-      },
-      stockMovement: {
-        desc: null,
-      },
+      stock: {},
+      unit: {},
+      stockMovement: {},
       headerBgVariant: null,
       headerTextVariant: null,
       typeTitle: "",
@@ -155,27 +150,55 @@ export default {
   },
   methods: {
     save() {
-      this.$store
-        .dispatch("stockMovementAdd", this.stockMovement)
-        .then((response) => {
+      if (
+        this.stockMovement.type &&
+        this.stockMovement.quantity > this.stock.quantity
+      ) {
+        let message=this.stock.quantity==0?"Stokta ürün yok. Çıkış işlemi yapamazsınız":
+        "Var olan stok miktarından fazla çıkış yapamazsınız. Bu ürün için " +
+            this.stock.quantity + " " +
+            this.unit.name + " çıkış yapabilirsiniz";
+        this.$bvToast.toast(
+         message ,
+          {
+            title: "UYARI!",
+            variant: "info",
+            solid: true,
+          }
+        );
+      } else {
+        let name=this.stock.name;
+        this.stock.quantity =
+          this.stockMovement.type == false
+            ? this.stockMovement.quantity + this.stock.quantity
+            : this.stock.quantity - this.stockMovement.quantity;
+        this.$store.dispatch("stockUpdate", this.stock).then((response) => {
           if (response == 200) {
-            this.$bvToast.toast("Stok Hareketi oluşturuldu", {
-              title: "asd",
-              variant: "success",
-              solid: true,
-            });
-            Object.assign(this.$data, this.$options.data());
+            this.$bvToast.toast("Stok adet güncellendi", {
+                title: name,
+                variant: "primary",
+                solid: true,
+              });
           }
         });
+        this.$store
+          .dispatch("stockMovementAdd", this.stockMovement)
+          .then((response) => {
+            if (response == 200) {
+              this.$bvToast.toast("Stok Hareketi oluşturuldu", {
+                title: this.stock.name,
+                variant: "success",
+                solid: true,
+              });
+              Object.assign(this.$data, this.$options.data());
+            }
+          });
+      }
     },
-   
+
     getByStock(id) {
-      const result = this.$store.getters.stockGetById(id);
-      const result2 = this.$store.getters.stockMovementGetByIdlist(24);
-      console.log(result2);
-      this.stockDetail.name = result.name;
-      this.stockDetail.quantity = result.quantity;
-      this.stockDetail.barcode = result.barcode;
+      this.stock = this.$store.getters.stockGetById(id);
+      this.unit = this.$store.getters.unitGetById(this.stock.unitId);
     },
     isType(value) {
       if (value) {

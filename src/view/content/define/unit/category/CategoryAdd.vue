@@ -3,7 +3,7 @@
         <div>
             <div class="form-row">
                 <div class="col-10">
-                    <b-input class="float-left" v-model="category.name" placeholder="Lütfen kategori tanım adını yazınız" autocomplete="off"></b-input>
+                    <b-input class="float-left" v-model="category.name" placeholder="Lütfen kategori tanım adını yazınız" re autocomplete="off"></b-input>
                 </div>
                 <div class="col-2">
                     <b-button @click="saveItem" :disabled="isDisabled" class="btn-block" variant="success">Ekle</b-button>

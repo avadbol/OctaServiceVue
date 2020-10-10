@@ -16,7 +16,6 @@ export function stockMovementAdd(data){
 }
 
 export function stockMovementGetByIdlist(stockId){
-    console.log(stockId);
     return request({
         url:"/stocks/getbyidlist",
         method:"get",

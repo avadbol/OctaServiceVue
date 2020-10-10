@@ -36,7 +36,7 @@
             </b-tab>
 
             <b-tab title="Kategoriler">
-              <collapse  Title="Kategori Tanım" isOpen="True" class="mb-3">
+              <collapse  Title="Kategori Tanım" v-bind:isOpen="true" class="mb-3">
                 <div class="col-md-12">
                   <Category-Add></Category-Add>
                 </div>
@@ -57,7 +57,7 @@
             <b-tab title="Grup">
               <collapse
                 class="mb-3 mt-2"
-                isOpen="true"
+                v-bind:isOpen="true"
                 Title="Grup Tanımlama İşlemleri"
               >
                 <div class="col-md-12">

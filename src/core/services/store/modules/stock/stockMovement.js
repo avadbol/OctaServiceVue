@@ -2,17 +2,12 @@ import {stockMovementAdd, stockMovementGetlist,stockMovementGetByIdlist} from ".
 
 const state = {
     stockMovements: [],
-    stockMovementsIdList: [],
 }
 
 const getters = {
     stockMovementGetlist: state => {
         return state.stockMovements;
     },
-   
-    stockMovementGetByIdlist: (state) => (stockId) => {
-        return state.stockMovementsIdList;
-    }
 }
 const mutations = {
     stockMoUpdate(state, stockMovement) {
@@ -22,14 +17,17 @@ const mutations = {
 
 const actions = {
     initstockMovement({commit}) {
-     
+        stockMovementGetByIdlist(24).then(res=>{
+            console.log(res.data);
+        })
         stockMovementGetlist().then(response => {
             // state.stockMovements = response.data;
-           
 
             state.stockMovements = [];
             let data = response.data;
             for(const item in data){
+            
+
                 if(data[item].type == false)
                     data[item].type = "Stok Girişi";
                 else
@@ -61,12 +59,7 @@ const actions = {
         });
         return result;
     },
-    stockMovementGetByIdlist(stockId){
-        const result = stockMovementGetByIdlist(stockId).then(response => {
-            state.stockMovementsIdList=response.data;
-            console.log(response.data);
-        })
-    }
+
    
 }
 export default {

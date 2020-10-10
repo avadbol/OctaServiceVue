@@ -40,6 +40,7 @@
         methods:{
             saveItem(){
                 this.isDisable = true;
+                console.log(this.storage);
                 this.$store.dispatch("storageAdd", this.storage).then(response => {
                     if(response == 200){
                         this.$bvToast.toast(this.storage.desc+' deposu tanımlanadı', {
