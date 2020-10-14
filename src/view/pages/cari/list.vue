@@ -22,6 +22,9 @@
                      label="Yükleniyor..."></b-spinner>
         </div>
       </template>
+             <template v-slot:cell(select)="data">
+          <b-button size="sm" @click="selectItem(data.item)" class="btn btn-danger">Seç</b-button>
+        </template>
       <template v-slot:cell(action)="data">
         <div>
           <router-link :to="{name:'cari-edit', params:{id:data.item.id}}" tag="button" class="btn-sm" v-b-tooltip.hover.bottom="'Düzenle'">
@@ -43,9 +46,13 @@ import StockModal from "../../content/modals/stock/StockDetailModal";
 
 export default {
   name: "list",
+  isSelect:false,
   data() {
     return {
       fields: [
+        {
+          key:"select"
+        },
         {
           key: "action",
           label: "",
@@ -94,6 +101,11 @@ export default {
               this.$store.dispatch("cariDelete", {id:data})
             }
           })
+    },
+    selectItem(data){
+      console.log(data);
+      this.$emit('selectItem', data)
+
     }
   },
   computed: {
