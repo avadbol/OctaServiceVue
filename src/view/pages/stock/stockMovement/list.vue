@@ -5,7 +5,7 @@
         <div class="col-md-12">
           <div class="d-flex">
             <div
-            v-b-modal="'modal'"
+              v-b-modal="'modal'"
               class="btn btn-primary mr-1"
               v-b-tooltip.hover.bottom="'Stok Hareketi Oluştur'"
             >
@@ -45,6 +45,18 @@
               label="Yükleniyor..."
             ></b-spinner>
           </div>
+        </template>
+        <template v-slot:cell(type)="data">
+          <label>
+            <i :class="data.item.typeClass"></i>
+            {{ data.item.type }}
+          </label>
+        </template>
+        <template v-slot:cell(quantity)="data">
+          <label
+            ><span v-if="data.item.type == 'Stok Çıkışı'">-</span
+            >{{ data.item.quantity }}</label
+          >
         </template>
 
         <!-- <template v-slot:cell(action)="data">
@@ -129,9 +141,9 @@ import StockMovementModal from "../../../content/stock/stockMovement/StockMoveme
 export default {
   data() {
     return {
-        headerBgVariant:null,
-        headerTextVariant:null,
-        
+      headerBgVariant: null,
+      headerTextVariant: null,
+
       fields: [
         {
           key: "processSource",
@@ -141,38 +153,34 @@ export default {
         {
           key: "type",
           label: "Hareket Türü",
-          status: 'awesome',
+          status: "awesome",
           sortable: true,
         },
         {
           key: "quantity",
           label: "Stok Adet",
-          
+
           sortable: true,
         },
         {
           key: "stock.barcode",
           label: "Ürün Barkod",
           sortable: true,
-         
         },
         {
           key: "stock.name",
           label: "Ürün Adı",
           sortable: true,
-          
         },
         {
           key: "unitname",
           label: "Birim",
           sortable: true,
-          
         },
         {
           key: "desc",
           label: "Açıklama",
           sortable: true,
-          
         },
       ],
       searchText: "",
@@ -195,13 +203,12 @@ export default {
         if (view && isEdit) this.$refs[component].initItem(item);
       }
     },
-        
   },
   computed: {
     stockMovementGetlist() {
       this.loading = true;
       const list = this.$store.getters.stockMovementGetlist;
-     
+      console.log(list);
       if (list.length > 0) this.loading = false;
       return list;
     },
@@ -212,5 +219,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

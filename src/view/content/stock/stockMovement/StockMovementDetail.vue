@@ -33,6 +33,7 @@
                     text-field="name"
                     v-model.number="stockMovement.stockId"
                     v-on:change="getByStock"
+                    :state="stockState"
                   >
                     <template v-slot:first>
                       <b-form-select-option :value="null" disabled
@@ -49,6 +50,9 @@
                 <b-input-group prepend="Miktar" size="sm">
                   <b-form-input
                     size="sm"
+                    type="number"
+                    :state="quantityState"
+                    v-b-tooltip.hover.bottom="messagequantity"
                     v-model.number="stockMovement.quantity"
                   ></b-form-input>
                 </b-input-group>
@@ -139,10 +143,11 @@ export default {
       ],
       stock: {},
       unit: {},
-      stockMovement: {},
+      stockMovement: { quantity: "" },
       headerBgVariant: null,
       headerTextVariant: null,
       typeTitle: "",
+      messagequantity:""
     };
   },
   components: {
@@ -154,20 +159,21 @@ export default {
         this.stockMovement.type &&
         this.stockMovement.quantity > this.stock.quantity
       ) {
-        let message=this.stock.quantity==0?"Stokta ürün yok. Çıkış işlemi yapamazsınız":
-        "Var olan stok miktarından fazla çıkış yapamazsınız. Bu ürün için " +
-            this.stock.quantity + " " +
-            this.unit.name + " çıkış yapabilirsiniz";
-        this.$bvToast.toast(
-         message ,
-          {
-            title: "UYARI!",
-            variant: "info",
-            solid: true,
-          }
-        );
+        let message =
+          this.stock.quantity == 0
+            ? "Stokta ürün yok. Çıkış işlemi yapamazsınız"
+            : "Var olan stok miktarından fazla çıkış yapamazsınız. Bu ürün için " +
+              this.stock.quantity +
+              " " +
+              this.unit.name +
+              " çıkış yapabilirsiniz";
+        this.$bvToast.toast(message, {
+          title: "UYARI!",
+          variant: "info",
+          solid: true,
+        });
       } else {
-        let name=this.stock.name;
+        let name = this.stock.name;
         this.stock.quantity =
           this.stockMovement.type == false
             ? this.stockMovement.quantity + this.stock.quantity
@@ -175,12 +181,13 @@ export default {
         this.$store.dispatch("stockUpdate", this.stock).then((response) => {
           if (response == 200) {
             this.$bvToast.toast("Stok adet güncellendi", {
-                title: name,
-                variant: "primary",
-                solid: true,
-              });
+              title: name,
+              variant: "primary",
+              solid: true,
+            });
           }
         });
+        this.stockMovement.ProcessSource="Elle(Manuel)";
         this.$store
           .dispatch("stockMovementAdd", this.stockMovement)
           .then((response) => {
@@ -200,6 +207,7 @@ export default {
       this.stock = this.$store.getters.stockGetById(id);
       this.unit = this.$store.getters.unitGetById(this.stock.unitId);
     },
+    modelValidation() {},
     isType(value) {
       if (value) {
         this.headerBgVariant = "danger";
@@ -213,6 +221,18 @@ export default {
   },
   computed: {
     ...mapGetters(["stockGetlist"]),
+    quantityState() {
+      if(!this.stockMovement.quantity){
+        this.messagequantity="Bu alan zorunlu";
+        return false
+      } else this.messagequantity="";
+    },
+    stockState() {
+      if(!this.stockMovement.stockId){
+        this.messagequantity="Bu alan zorunlu";
+        return false
+      } 
+    },
   },
   created() {
     this.$store.dispatch("initStocks");

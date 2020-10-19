@@ -67,7 +67,8 @@
           <div class="col-md-12">
             <div class="form-group">
               <b-input-group prepend="Cari Kodu" size="sm">
-                <b-form-input size="sm"></b-form-input>
+                    <SelectCariSearchList  :input-class="'form-control'" :button-class="'btn-primary btn-sm'"></SelectCariSearchList>
+
               </b-input-group>
             </div>
           </div>
@@ -80,8 +81,13 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <b-input-group prepend="Döviz" size="sm">
-                <b-form-input size="sm"></b-form-input>
+                <b-input-group prepend="İşlem Dövizi" size="sm">
+                <b-form-select
+                  size="sm"
+                  :options="exchangeGetlist"
+                  value-field="id"
+                  text-field="name"
+                ></b-form-select>
               </b-input-group>
             </div>
           </div>
@@ -136,6 +142,13 @@ export default {
   components: {
     InvoiceLine
   },
+  created(){
+    this.$store.dispatch("initExchanges");
+  },
+  computed:{
+    ...mapGetters(["exchangeGetlist"]),
+
+  }
 }
 </script>
 
