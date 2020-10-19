@@ -187,6 +187,7 @@ export default {
             });
           }
         });
+        this.stockMovement.ProcessSource="Elle(Manuel)";
         this.$store
           .dispatch("stockMovementAdd", this.stockMovement)
           .then((response) => {
