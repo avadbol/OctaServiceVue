@@ -12,61 +12,57 @@
       </template>
 
       <template v-slot:cell(stock)="row">
-        <SelectStockSearchList @result="resultSelectSearchList" style="width:200px"  :input-class="'form-control'" :button-class="'btn-primary btn-sm'" v-model="row.item.stock"></SelectStockSearchList>
+        <SelectStockSearchList @result="resultSelectSearchList" @change="rowChange(row)" style="width:200px"  :input-class="'form-control'" :button-class="'btn-primary btn-sm'" v-model="row.item.stock"></SelectStockSearchList>
       </template>
 
       <template v-slot:cell(count)="row">
-        <b-form-input min="0" style="width: 60px" size="sm text-right" type="number" @change="rowChange(row)"
+        <b-form-input min="0" style="width: 60px" size="text-right" type="number"  autocomplete="off" @change="rowChange(row)"
                       v-model.number="row.item.count"></b-form-input>
-
       </template>
 
       <template v-slot:cell(unit)="row">
-        <SelectStockUnit style="width: 100px" :classs="'form-control'" v-model="row.item.unit"></SelectStockUnit>
+        <SelectStockUnit style="width: 100px" :classs="'form-control'" @change="rowChange(row)" v-model="row.item.unit"></SelectStockUnit>
       </template>
 
       <template v-slot:cell(unitPrice)="row">
-        <format-money style="width: 80px" vclass="form-control text-right"></format-money>
+        <format-money style="width: 80px" v-model="row.item.unitprice" @change="rowChange(row)" value="0" vclass="form-control text-right"></format-money>
       </template>
 
       <template v-slot:cell(exchange)="row">
-        <exchange :classs="'form-control text-right'" style="width: 80px"></exchange>
+        <exchange :classs="'form-control text-right'"  @change="rowChange(row)" style="width: 80px"></exchange>
       </template>
 
       <template v-slot:cell(discountType)="row">
-        <b-form-select>
-          <option selected value="1">Yok</option>
+        <select class="form-control" v-model="row.item.discountType" @change="rowChange(row)">
+          <option value="1">Yok</option>
           <option value="2">Yüzde</option>
           <option value="3">Sabit</option>
-        </b-form-select>
+        </select>
       </template>
 
       <template v-slot:cell(discount)="row">
-                <format-money style="width: 80px" vclass="form-control text-right"></format-money>
-
+                <format-money style="width: 80px" v-model="row.item.discount"  :value="0" @change="rowChange(row)" vclass="form-control text-right"></format-money>
       </template>
 
       <template v-slot:cell(kdv)="row">
-                <format-money style="width: 80px" vclass="form-control text-right"></format-money>
+                <format-money style="width: 80px" v-model="row.item.kdv" :value="0" @change="rowChange(row)" vclass="form-control text-right"></format-money>
       </template>
 
       <template v-slot:cell(total)="row">
-          <format-money style="width: 80px" vclass="form-control text-right"></format-money>
+          <format-money style="width: 80px" :value="0" vclass="form-control text-right" @change="rowChange(row)"></format-money>
       </template>
 
       <template v-slot:cell(desc)="row">
-          <b-form-input class="form-control" placeholder="Açıklama yazın"></b-form-input>
+          <b-form-input class="form-control" v-model="row.item.desc" placeholder="Açıklama yazın"></b-form-input>
       </template>
 
       <template v-slot:cell(purchaseUnitPrice)="row">
-          <format-money style="width: 80px" vclass="form-control text-right"></format-money>
+          <format-money style="width: 80px" value="0" v-model="row.item.purchaseUnitPrice" vclass="form-control text-right" @change="rowChange(row)"></format-money>
       </template>
 
       <template v-slot:cell(purchaseExchange)="row">
-          <format-money style="width: 80px" vclass="form-control text-right"></format-money>
+          <format-money style="width: 80px" value="0" v-model="row.item.purchaseExchange" vclass="form-control text-right" @change="rowChange(row)"></format-money>
       </template>
-
-    
 
     </b-table>
     <b-button size="sm ml-2 mb-2 mt-0 " @click="items.push({})">Yeni Satır</b-button>
@@ -89,7 +85,6 @@ export default {
           key: "key",
           label: "No",
           class: "text-center",
-
         },
         {
           key: "stock",
@@ -101,7 +96,6 @@ export default {
           key: "count",
           label: "Miktar",
           class: "text-center",
-
         },
         {
           key: "unit",
@@ -173,9 +167,32 @@ export default {
   methods: {
     rowChange: function (data) {
       let count = data.item.count == null ? data.item.count = 0 : data.item.count;
-      let unitPrice = data.item.unitPrice == null ? data.item.unitprice = 0 : data.item.unitPrice;
-      data.item.total = count * unitPrice
-    },
+      let unitPrice = data.item.unitprice == null ? data.item.unitprice = 0 : data.item.unitprice;
+      let kdv = data.item.kdv == null ? data.item.kdv = 0 : data.item.kdv
+      let kdvPrice = ((count*unitPrice)/100 * kdv)
+      let discount = data.item.discount == null? data.item.discount = 0: data.item.discount;
+      data.item.total = (count * unitPrice) + kdvPrice
+      
+      console.log("discount:"+discount)
+      //iskonto türünü hesaplayacağız ilk önce iskonto tipi alayım     
+      //  console.log(data.item.discountType)
+
+       if(data.item.discountType != null){
+         if(data.item.discountType == 2){
+           console.log("2 :  ")
+         }
+         else if(data.item.discountType == 3){
+
+           //iskonto sabit olunca kdv ile çarp öyle çıkar
+           console.log("3 : geldi")
+         }
+         console.log("null değil bu")
+       }
+       else{
+         console.log("null")
+       }
+     
+     },
     resultSelectSearchList(data){
       return data;
     }
