@@ -32,13 +32,10 @@
       </template>
 
       <template v-slot:cell(count)="row">
-        <!-- <b-form-input min="0" style="width: 60px" size="text-right" type="number"  autocomplete="off" @change="rowChange(row)"
-                      v-model.number="row.item.count"  ></b-form-input> -->
         <Number
           style="width: 60px"
           size="text-right"
           v-model.number="row.item.count"
-          value = 0
         ></Number>
       </template>
 
@@ -75,9 +72,9 @@
           v-model="row.item.discountType"
           @change="rowChange(row)"
         >
-          <option value="1">Yok</option>
-          <option value="2">Yüzde</option>
-          <option value="3">Sabit</option>
+          <option selected value="0">Yok</option>
+          <option value="1">Yüzde</option>
+          <option value="2">Sabit</option>
         </select>
       </template>
 
