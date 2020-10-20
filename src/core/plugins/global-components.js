@@ -2,13 +2,13 @@ import Vue from "vue";
 import odropdown from "@/view/components/dropdown";
 import ocustomselect from "@/view/components/customselect";
 import Collapse from "@/view/components/collapse";
-import SelectStockUnit from "@/view/components/define/SelectStockUnit"
-import SelectStockSearchList from "@/view/components/stock/SelectStockSearchList";
-import SelectCariSearchList from "@/view/components/define/SelectCariSearchList";
-import ExchangeList from "@/view/components/define/SelectExchange"
-import FormatedMoney from "@/view/components/input/formatedMoney";
+import SelectStockUnit from "@/view/components/input/SelectStockUnit"
+import SelectStockSearchList from "@/view/components/input/SelectStockSearchList";
+import SelectCariSearchList from "@/view/components/input/SelectCariSearchList";
+import ExchangeList from "@/view/components/input/SelectExchange"
+import FormatedMoney from "@/view/components/input/FormatMoney/FormatedMoney";
 import Modal from "@/view/components/modal"
-import Number from "@/view/components/input/Number"
+import Number from "@/view/components/input/InputNumber"
 
 Vue.component('odropdown',odropdown);
 Vue.component('ocustomselect',ocustomselect);
