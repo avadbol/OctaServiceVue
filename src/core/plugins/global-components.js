@@ -9,14 +9,16 @@ import ExchangeList from "@/view/components/input/SelectExchange"
 import FormatedMoney from "@/view/components/input/FormatMoney/FormatedMoney";
 import Modal from "@/view/components/modal"
 import Number from "@/view/components/input/InputNumber"
+import SelectDiscountType from "@/view/components/input/SelectDiscountType"
 
-Vue.component('odropdown',odropdown);
-Vue.component('ocustomselect',ocustomselect);
-Vue.component('Collapse',Collapse);
-Vue.component('SelectStockUnit',SelectStockUnit);
-Vue.component('SelectStockSearchList',SelectStockSearchList)
-Vue.component('SelectCariSearchList',SelectCariSearchList)
-Vue.component('FormatMoney',FormatedMoney)
-Vue.component('modal',Modal)
-Vue.component('Exchange',ExchangeList)
+Vue.component('odropdown', odropdown);
+Vue.component('ocustomselect', ocustomselect);
+Vue.component('Collapse', Collapse);
+Vue.component('SelectStockUnit', SelectStockUnit);
+Vue.component('SelectStockSearchList', SelectStockSearchList)
+Vue.component('SelectCariSearchList', SelectCariSearchList)
+Vue.component('FormatMoney', FormatedMoney)
+Vue.component('modal', Modal)
+Vue.component('Exchange', ExchangeList)
 Vue.component('Number', Number)
+Vue.component('SelectDiscountType', SelectDiscountType)

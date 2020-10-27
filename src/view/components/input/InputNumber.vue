@@ -4,7 +4,6 @@
       type="number"
       class="form-control"
       :value="value"
-      @change="change"
       @input="$emit('input', $event.target.value)"
     />
   </div>

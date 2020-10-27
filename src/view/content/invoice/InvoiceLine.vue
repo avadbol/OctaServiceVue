@@ -5,8 +5,12 @@
       :fields="fields"
       class="table table-borderless table-striped invoiceTable"
     >
-      <template v-slot:cell(action)="data">
-        <b-button class="btn-sm" v-b-tooltip.hover.bottom="'Sil'" variant=""
+      <template v-slot:cell(action)="row">
+        <b-button
+          class="btn-sm"
+          v-b-tooltip.hover.bottom="'Sil'"
+          variant=""
+          @click="rowDelete(row)"
           ><span class="fas fa-trash"></span
         ></b-button>
       </template>
@@ -67,19 +71,16 @@
       </template>
 
       <template v-slot:cell(discountType)="row">
-        <select
-          class="form-control"
-          v-model="row.item.discountType"
+        <SelectDiscountType
+          style="width=120px"
           @change="rowChange(row)"
-        >
-          <option selected value="0">Yok</option>
-          <option value="1">Yüzde</option>
-          <option value="2">Sabit</option>
-        </select>
+          v-model="row.item.discountType"
+        ></SelectDiscountType>
       </template>
 
       <template v-slot:cell(discount)="row">
         <format-money
+          v-show="row.item.discountType > 0"
           style="width: 80px"
           v-model="row.item.discount"
           :value="0"
@@ -112,11 +113,12 @@
           class="form-control"
           v-model="row.item.desc"
           placeholder="Açıklama yazın"
+          autocomplete="off"
         ></b-form-input>
       </template>
 
       <template v-slot:cell(purchaseUnitPrice)="row">
-        <format-money
+<!--        <format-money-->
           style="width: 80px"
           value="0"
           v-model="row.item.purchaseUnitPrice"
@@ -259,6 +261,11 @@ export default {
     },
     resultSelectSearchList(data) {
       return data;
+    },
+    rowDelete: function (index) {
+      console.log(index)
+      this.$delete(this.items, index.index);
+      this.items.splice(1,1)
     },
   },
 };
