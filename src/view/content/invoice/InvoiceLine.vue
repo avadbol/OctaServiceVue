@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-table
+    <b-table @change="alert('degisti')"
       :items="items"
       :fields="fields"
       class="table table-borderless table-striped invoiceTable"
@@ -270,6 +270,9 @@ export default {
     rowDelete: function (payload) {
       this.$delete(this.items, payload.index);
     },
+    tableChange:function(){
+      console.log("tablo değişti!1")
+    }
   },
 };
 </script>
