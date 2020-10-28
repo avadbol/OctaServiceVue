@@ -5,6 +5,8 @@
       class="form-control"
       :value="value"
       @input="$emit('input', $event.target.value)"
+      @change="change()"
+      min=0
     />
   </div>
 </template>
@@ -18,6 +20,11 @@ export default {
       default: 0,
     },
   },
+  methods:{
+    change(){
+      this.$emit('change')
+    }
+},
   created() {
     this.$emit("input", this.value);
   }

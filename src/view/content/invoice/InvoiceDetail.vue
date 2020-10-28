@@ -1,10 +1,8 @@
 <template>
   <div class="row m-1">
-    <div class="col-md-6 p-0 p-1 ">
+    <div class="col-md-6 p-0 p-1">
       <div class="card">
-        <div class="card-header text-dark">
-          Evrak Bilgisi
-        </div>
+        <div class="card-header text-dark">Evrak Bilgisi</div>
         <div class="form-row">
           <div class="col-md-12">
             <div class="form-group">
@@ -60,15 +58,15 @@
     </div>
     <div class="col-md-6 p-0 p-1">
       <div class="card">
-        <div class="card-header text-dark">
-          Cari Bilgisi
-        </div>
+        <div class="card-header text-dark">Cari Bilgisi</div>
         <div class="form-row">
           <div class="col-md-12">
             <div class="form-group">
               <b-input-group prepend="Cari Kodu" size="sm">
-                    <SelectCariSearchList  :input-class="'form-control'" :button-class="'btn-primary btn-sm'"></SelectCariSearchList>
-
+                <SelectCariSearchList
+                  :input-class="'form-control'"
+                  :button-class="'btn-primary btn-sm'"
+                ></SelectCariSearchList>
               </b-input-group>
             </div>
           </div>
@@ -81,7 +79,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-                <b-input-group prepend="İşlem Dövizi" size="sm">
+              <b-input-group prepend="İşlem Dövizi" size="sm">
                 <b-form-select
                   size="sm"
                   :options="exchangeGetlist"
@@ -124,10 +122,8 @@
     </div>
     <div class="col-md-12 p-0">
       <div class="card">
-        <div class="card-header text-dark">
-          Fatura Satırı
-        </div>
-        <invoice-line style="overflow-x: auto"></invoice-line>
+        <div class="card-header text-dark">Fatura Satırı</div>
+          <invoice-line style="overflow-x: auto"></invoice-line>
       </div>
     </div>
   </div>
@@ -135,29 +131,33 @@
 
 <script>
 import InvoiceLine from "@/view/content/invoice/InvoiceLine";
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "InvoiceDetail",
   components: {
-    InvoiceLine
+    InvoiceLine,
   },
-  created(){
+  created() {
     this.$store.dispatch("initExchanges");
   },
-  computed:{
+  computed: {
     ...mapGetters(["exchangeGetlist"]),
-
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
 .form-group {
-  margin-bottom: .1rem;
+  margin-bottom: 0.1rem;
 }
 
-.input-group-sm > .form-control, .input-group-sm > .custom-select, .input-group-sm > .input-group-prepend > .input-group-text, .input-group-sm > .input-group-append > .input-group-text, .input-group-sm > .input-group-prepend > .btn, .input-group-sm > .input-group-append > .btn {
+.input-group-sm > .form-control,
+.input-group-sm > .custom-select,
+.input-group-sm > .input-group-prepend > .input-group-text,
+.input-group-sm > .input-group-append > .input-group-text,
+.input-group-sm > .input-group-prepend > .btn,
+.input-group-sm > .input-group-append > .btn {
   width: 7.2rem;
 }
 </style>

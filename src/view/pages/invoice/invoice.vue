@@ -5,7 +5,7 @@
       <h5 class="component-header">Faturaları buradan takip edebilirsiniz</h5>
     </div>
     <div class="component-content">
-      <b-tabs lazy>
+      <b-tabs>
         <b-tab title="Fatura Oluştur">
           <invoice-create></invoice-create>
         </b-tab>
@@ -17,12 +17,12 @@
   </div>
 </template>
 <script>
-import InvoiceCreate from "./create"
-import InvoiceList from "./list"
+import InvoiceCreate from "./create";
+import InvoiceList from "./list";
 
 export default {
   name: "invoice",
-  components:{InvoiceCreate,InvoiceList}
-}
+  components: { InvoiceCreate, InvoiceList },
+};
 </script>
 

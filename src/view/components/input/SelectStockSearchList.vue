@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex">
-    <input type="form-control" ref="inputStock" :class="inputClass" @input="inputResultItem($event)">
+    <input type="form-control" :id="randonId()" ref="inputStock" :class="inputClass" @change="inputChange()" @input="inputResultItem($event)">
     <button @click="modelClicked" class="btn" :class="buttonClass"><i class="fa fa-search"></i></button>
     <b-modal :id="setrandomId()"  size="xl" ref="stockListModal" hide-footer title="🖱️ Stok Listesi">
       <stock-list @selectItem="selectResultItem"></stock-list>
@@ -40,6 +40,9 @@ export default {
     },
     modelClicked(){
       this.$bvModal.show(this.modalId)
+    },
+    inputChange(){
+      this.$emit('change')
     }
   },
   components:{
@@ -48,6 +51,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+ 

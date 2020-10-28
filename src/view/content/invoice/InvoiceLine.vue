@@ -5,7 +5,7 @@
       :fields="fields"
       class="table table-borderless table-striped invoiceTable"
     >
-      <template v-slot:cell(action)="row">
+      <!-- <template v-slot:cell(action)="row">
         <b-button
           class="btn-sm"
           v-b-tooltip.hover.bottom="'Sil'"
@@ -13,21 +13,20 @@
           @click="rowDelete(row)"
           ><span class="fas fa-trash"></span
         ></b-button>
-      </template>
+      </template> -->
 
       <template v-slot:cell(key)="row">
         <b-form-input
           size="sm text-center"
           style="width: 40px"
           disabled
-          v-model="row.index + 1"
+          v-model="row.index"
         ></b-form-input>
       </template>
 
       <template v-slot:cell(stock)="row">
         <SelectStockSearchList
           @result="resultSelectSearchList"
-          @change="rowChange(row)"
           style="width: 200px"
           :input-class="'form-control'"
           :button-class="'btn-primary btn-sm'"
@@ -40,6 +39,7 @@
           style="width: 60px"
           size="text-right"
           v-model.number="row.item.count"
+          v-on:change="rowChange(row)"
         ></Number>
       </template>
 
@@ -47,7 +47,6 @@
         <SelectStockUnit
           style="width: 100px"
           :classs="'form-control'"
-          @change="rowChange(row)"
           v-model="row.item.unit"
         ></SelectStockUnit>
       </template>
@@ -56,7 +55,6 @@
         <format-money
           style="width: 80px"
           v-model="row.item.unitprice"
-          @change="rowChange(row)"
           value="0"
           vclass="form-control text-right"
         ></format-money>
@@ -65,7 +63,6 @@
       <template v-slot:cell(exchange)="row">
         <Exchange
           :classs="'form-control text-right'"
-          @change="rowChange(row)"
           style="width: 80px"
         ></Exchange>
       </template>
@@ -73,7 +70,6 @@
       <template v-slot:cell(discountType)="row">
         <SelectDiscountType
           style="width=120px"
-          @change="rowChange(row)"
           v-model="row.item.discountType"
         ></SelectDiscountType>
       </template>
@@ -84,7 +80,6 @@
           style="width: 80px"
           v-model="row.item.discount"
           :value="0"
-          @change="rowChange(row)"
           vclass="form-control text-right"
         ></format-money>
       </template>
@@ -94,7 +89,6 @@
           style="width: 80px"
           v-model="row.item.kdv"
           :value="0"
-          @change="rowChange(row)"
           vclass="form-control text-right"
         ></format-money>
       </template>
@@ -104,7 +98,7 @@
           style="width: 80px"
           :value="0"
           vclass="form-control text-right"
-          @change="rowChange(row)"
+          v-model="row.item.total"
         ></format-money>
       </template>
 
@@ -118,12 +112,11 @@
       </template>
 
       <template v-slot:cell(purchaseUnitPrice)="row">
-<!--        <format-money-->
+        <format-money
           style="width: 80px"
           value="0"
           v-model="row.item.purchaseUnitPrice"
           vclass="form-control text-right"
-          @change="rowChange(row)"
         ></format-money>
       </template>
 
@@ -133,7 +126,6 @@
           value="0"
           v-model="row.item.purchaseExchange"
           vclass="form-control text-right"
-          @change="rowChange(row)"
         ></format-money>
       </template>
     </b-table>
@@ -149,11 +141,11 @@ export default {
   data() {
     return {
       fields: [
-        {
-          key: "action",
-          label: "İşlem",
-          class: "text-center",
-        },
+        // {
+        //   key: "action",
+        //   label: "İşlem",
+        //   class: "text-center",
+        // },
         {
           key: "key",
           label: "No",
@@ -229,43 +221,54 @@ export default {
   },
   methods: {
     rowChange: function (data) {
-      let count =
-        data.item.count == null ? (data.item.count = 0) : data.item.count;
-      let unitPrice =
-        data.item.unitprice == null
-          ? (data.item.unitprice = 0)
-          : data.item.unitprice;
-      let kdv = data.item.kdv == null ? (data.item.kdv = 0) : data.item.kdv;
+      console.log("rowChanged!!!")
+      console.log(data.item)
+
+      let count = data.item.count;
+
+      let unitPrice = data.item.unitprice;
+
+      let kdv = data.item.kdv;
+
       let kdvPrice = ((count * unitPrice) / 100) * kdv;
+      
       let discount =
         data.item.discount == null
           ? (data.item.discount = 0)
           : data.item.discount;
-      data.item.total = count * unitPrice + kdvPrice;
 
-      console.log("discount:" + discount);
+
+      data.item.total = count * unitPrice;
+
+      // data.item.total = data.item.count * data.item.unitPrice
+
+      // console.log("discount:" + discount);
       //iskonto türünü hesaplayacağız ilk önce iskonto tipi alayım
       //  console.log(data.item.discountType)
 
-      if (data.item.discountType != null) {
-        if (data.item.discountType == 2) {
-          console.log("2 :  ");
-        } else if (data.item.discountType == 3) {
-          //iskonto sabit olunca kdv ile çarp öyle çıkar
-          console.log("3 : geldi");
-        }
-        console.log("null değil bu");
-      } else {
-        console.log("null");
-      }
+      // if (data.item.discountType != null) {
+      //   if (data.item.discountType == 1) {
+      //     console.log("2 :  ");
+      //   } else if (data.item.discountType == 2) {
+      //     //iskonto sabit olunca kdv ile çarp öyle çıkar
+      //     console.log(data.item.discount)
+
+      //     var discountKdvTotal = ((data.item.discount)*100)/data.item.kdv
+      //     data.item.total = data.item.total - discountKdvTotal
+          
+
+      //     // console.log("3 : geldi");
+      //   }
+      //   // console.log("null değil bu");
+      // } else {
+      //   // console.log("null");
+      // }
     },
     resultSelectSearchList(data) {
       return data;
     },
-    rowDelete: function (index) {
-      console.log(index)
-      this.$delete(this.items, index.index);
-      this.items.splice(1,1)
+    rowDelete: function (payload) {
+      this.$delete(this.items, payload.index);
     },
   },
 };
@@ -273,15 +276,16 @@ export default {
 
 
 <style>
-.invoiceTable thead tr {
+/* .invoiceTable thead tr {
   border-bottom: 1px solid black;
 }
 .invoiceTable thead tr th div {
   font-size: 10px;
   font-weight: bold;
-}
+} */
 
-.invoiceTable .form-control {
-  /* //min-width: 50px; */
+ /*.invoiceTable .form-control {
+  //min-width: 50px;
 }
+ */
 </style>
