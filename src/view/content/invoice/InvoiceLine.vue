@@ -1,6 +1,7 @@
 <template>
   <div>
-    <b-table @change="alert('degisti')"
+    <b-table
+      @change="alert('degisti')"
       :items="items"
       :fields="fields"
       class="table table-borderless table-striped invoiceTable"
@@ -20,7 +21,7 @@
           size="sm text-center"
           style="width: 40px"
           disabled
-          v-model="row.index"
+          v-model="row.index + 1"
         ></b-form-input>
       </template>
 
@@ -39,7 +40,6 @@
           style="width: 60px"
           size="text-right"
           v-model.number="row.item.count"
-          v-on:change="rowChange(row)"
         ></Number>
       </template>
 
@@ -99,6 +99,7 @@
           :value="0"
           vclass="form-control text-right"
           v-model="row.item.total"
+          :change="rowChange(row)"
         ></format-money>
       </template>
 
@@ -129,9 +130,71 @@
         ></format-money>
       </template>
     </b-table>
-    <b-button size="sm ml-2 mb-2 mt-0 " @click="items.push({})"
-      >Yeni Satır</b-button
-    >
+    <div>
+      <b-button size="sm ml-2 mb-2 mt-0 " @click="items.push({})"
+        >Yeni Satır</b-button
+      >
+      <b-button
+        class="btn-primary"
+        size="sm ml-2 mb-2 m-0 "
+        @click="rowDeleteLastItem()"
+        >Son Satır Sil</b-button
+      >
+    </div>
+    <div v-if="items.length > 0" class="float-right">
+      <table style="font-size: 0.8rem">
+        <tbody>
+          <tr>
+            <td class="text-right">Toplam Tutar</td>
+            <td>
+              <FormatMoney
+                vclass="form-control text-right input-sm"
+                :value="0"
+                v-model="invoice.total"
+              ></FormatMoney>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-right">Toplam İskonto</td>
+            <td>
+              <FormatMoney
+                :value="0"
+                vclass="form-control text-right input-sm"
+              ></FormatMoney>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-right">
+              Hesaplanan Katma Değer Vergiler Toplam Tutar
+            </td>
+            <td>
+              <FormatMoney
+                :value="0"
+                vclass="form-control text-right input-sm"
+              ></FormatMoney>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-right">Vergiler Dahil Toplam Tutar</td>
+            <td>
+              <FormatMoney
+                :value="0"
+                vclass="form-control text-right input-sm"
+              ></FormatMoney>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-right">Ödenecek Tutar</td>
+            <td>
+              <FormatMoney
+                :value="0"
+                vclass="form-control text-right input-sm"
+              ></FormatMoney>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -217,12 +280,12 @@ export default {
         },
       ],
       items: [],
+      invioice: [{ total: 1 }, { aratoplam: 10 }],
     };
   },
   methods: {
     rowChange: function (data) {
-      console.log("rowChanged!!!")
-      console.log(data.item)
+      console.log("rowChanged!!!");
 
       let count = data.item.count;
 
@@ -231,38 +294,30 @@ export default {
       let kdv = data.item.kdv;
 
       let kdvPrice = ((count * unitPrice) / 100) * kdv;
-      
+
       let discount =
         data.item.discount == null
           ? (data.item.discount = 0)
           : data.item.discount;
 
+      data.item.total = count * unitPrice + kdvPrice;
 
-      data.item.total = count * unitPrice;
+      if (data.item.discountType != null) {
+        if (data.item.discountType == 1) {
+          var discountKDV = (data.item.discount / 100) * data.item.kdv;
+          data.item.total =
+            data.item.total - (discountKDV + data.item.discount);
+        } else if (data.item.discountType == 2) {
+          var discountKDV = (data.item.discount / 100) * data.item.kdv;
+          data.item.total =
+            data.item.total - (discountKDV + data.item.discount);
+        }
+        // console.log("null değil bu");
+      } else {
+        // console.log("null");
+      }
 
-      // data.item.total = data.item.count * data.item.unitPrice
-
-      // console.log("discount:" + discount);
-      //iskonto türünü hesaplayacağız ilk önce iskonto tipi alayım
-      //  console.log(data.item.discountType)
-
-      // if (data.item.discountType != null) {
-      //   if (data.item.discountType == 1) {
-      //     console.log("2 :  ");
-      //   } else if (data.item.discountType == 2) {
-      //     //iskonto sabit olunca kdv ile çarp öyle çıkar
-      //     console.log(data.item.discount)
-
-      //     var discountKdvTotal = ((data.item.discount)*100)/data.item.kdv
-      //     data.item.total = data.item.total - discountKdvTotal
-          
-
-      //     // console.log("3 : geldi");
-      //   }
-      //   // console.log("null değil bu");
-      // } else {
-      //   // console.log("null");
-      // }
+      this.rowSum();
     },
     resultSelectSearchList(data) {
       return data;
@@ -270,24 +325,35 @@ export default {
     rowDelete: function (payload) {
       this.$delete(this.items, payload.index);
     },
-    tableChange:function(){
-      console.log("tablo değişti!1")
-    }
+    rowDeleteLastItem() {
+      console.log("function start!!");
+      this.$delete(this.items, this.items.length - 1);
+    },
+    rowSum() {
+      if (this.items > 0) {
+        var totalSum = 0;
+        this.items.foreach((e) => {
+          totalSum += e.total;
+        });
+
+        this.invoice.total = totalSum;
+      }
+    },
   },
 };
 </script>
 
 
 <style>
-/* .invoiceTable thead tr {
+.invoiceTable thead tr {
   border-bottom: 1px solid black;
 }
 .invoiceTable thead tr th div {
   font-size: 10px;
   font-weight: bold;
-} */
+}
 
- /*.invoiceTable .form-control {
+/*.invoiceTable .form-control {
   //min-width: 50px;
 }
  */
