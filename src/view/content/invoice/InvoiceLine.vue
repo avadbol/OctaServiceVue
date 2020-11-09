@@ -1,10 +1,10 @@
 <template>
   <div>
     <b-table
-      @change="alert('degisti')"
-      :items="items"
-      :fields="fields"
-      class="table table-borderless table-striped invoiceTable"
+        @change="alert('degisti')"
+        :items="items"
+        :fields="fields"
+        class="table table-borderless table-striped invoiceTable"
     >
       <!-- <template v-slot:cell(action)="row">
         <b-button
@@ -18,180 +18,180 @@
 
       <template v-slot:cell(key)="row">
         <b-form-input
-          size="sm text-center"
-          style="width: 40px"
-          disabled
-          v-model="row.index + 1"
+            size="sm text-center"
+            style="width: 40px"
+            disabled
+            v-model="row.index + 1"
         ></b-form-input>
       </template>
 
       <template v-slot:cell(stock)="row">
         <SelectStockSearchList
-          @result="resultSelectSearchList"
-          style="width: 200px"
-          :input-class="'form-control'"
-          :button-class="'btn-primary btn-sm'"
-          v-model="row.item.stock"
+            @result="resultSelectSearchList"
+            style="width: 200px"
+            :input-class="'form-control'"
+            :button-class="'btn-primary btn-sm'"
+            v-model="row.item.stock"
         ></SelectStockSearchList>
       </template>
 
       <template v-slot:cell(count)="row">
         <Number
-          style="width: 60px"
-          size="text-right"
-          v-model.number="row.item.count"
+            style="width: 60px"
+            size="text-right"
+            v-model.number="row.item.count"
         ></Number>
       </template>
 
       <template v-slot:cell(unit)="row">
         <SelectStockUnit
-          style="width: 100px"
-          :classs="'form-control'"
-          v-model="row.item.unit"
+            style="width: 100px"
+            :classs="'form-control'"
+            v-model="row.item.unit"
         ></SelectStockUnit>
       </template>
 
       <template v-slot:cell(unitPrice)="row">
         <format-money
-          style="width: 80px"
-          v-model="row.item.unitprice"
-          value="0"
-          vclass="form-control text-right"
+            style="width: 80px"
+            v-model="row.item.unitprice"
+            value="0"
+            vclass="form-control text-right"
         ></format-money>
       </template>
 
       <template v-slot:cell(exchange)="row">
         <Exchange
-          :classs="'form-control text-right'"
-          style="width: 80px"
+            :classs="'form-control text-right'"
+            style="width: 80px"
         ></Exchange>
       </template>
 
       <template v-slot:cell(discountType)="row">
         <SelectDiscountType
-          style="width=120px"
-          v-model="row.item.discountType"
+            style="width=120px"
+            v-model="row.item.discountType"
         ></SelectDiscountType>
       </template>
 
       <template v-slot:cell(discount)="row">
         <format-money
-          v-show="row.item.discountType > 0"
-          style="width: 80px"
-          v-model="row.item.discount"
-          :value="0"
-          vclass="form-control text-right"
+            v-show="row.item.discountType > 0"
+            style="width: 80px"
+            v-model="row.item.discount"
+            :value="0"
+            vclass="form-control text-right"
         ></format-money>
       </template>
 
       <template v-slot:cell(kdv)="row">
         <format-money
-          style="width: 80px"
-          v-model="row.item.kdv"
-          :value="0"
-          vclass="form-control text-right"
+            style="width: 80px"
+            v-model="row.item.kdv"
+            :value="0"
+            vclass="form-control text-right"
         ></format-money>
       </template>
 
       <template v-slot:cell(total)="row">
         <format-money
-          style="width: 80px"
-          :value="0"
-          vclass="form-control text-right"
-          v-model="row.item.total"
-          :change="rowChange(row)"
+            style="width: 80px"
+            :value="0"
+            vclass="form-control text-right"
+            v-model="row.item.total"
+            :change="rowChange(row)"
         ></format-money>
       </template>
 
       <template v-slot:cell(desc)="row">
         <b-form-input
-          class="form-control"
-          v-model="row.item.desc"
-          placeholder="Açıklama yazın"
-          autocomplete="off"
+            class="form-control"
+            v-model="row.item.desc"
+            placeholder="Açıklama yazın"
+            autocomplete="off"
         ></b-form-input>
       </template>
 
       <template v-slot:cell(purchaseUnitPrice)="row">
-        <format-money
-          style="width: 80px"
-          value="0"
-          v-model="row.item.purchaseUnitPrice"
-          vclass="form-control text-right"
+        <!--        <format-money-->
+        style="width: 80px"
+        value="0"
+        v-model="row.item.purchaseUnitPrice"
+        vclass="form-control text-right"
         ></format-money>
       </template>
 
       <template v-slot:cell(purchaseExchange)="row">
         <format-money
-          style="width: 80px"
-          value="0"
-          v-model="row.item.purchaseExchange"
-          vclass="form-control text-right"
+            style="width: 80px"
+            value="0"
+            v-model="row.item.purchaseExchange"
+            vclass="form-control text-right"
         ></format-money>
       </template>
     </b-table>
     <div>
       <b-button size="sm ml-2 mb-2 mt-0 " @click="items.push({})"
-        >Yeni Satır</b-button
+      >Yeni Satır</b-button
       >
       <b-button
-        class="btn-primary"
-        size="sm ml-2 mb-2 m-0 "
-        @click="rowDeleteLastItem()"
-        >Son Satır Sil</b-button
+          class="btn-primary"
+          size="sm ml-2 mb-2 m-0 "
+          @click="rowDeleteLastItem()"
+      >Son Satır Sil</b-button
       >
     </div>
     <div v-if="items.length > 0" class="float-right">
       <table style="font-size: 0.8rem">
         <tbody>
-          <tr>
-            <td class="text-right">Toplam Tutar</td>
-            <td>
-              <FormatMoney
+        <tr>
+          <td class="text-right">Toplam Tutar</td>
+          <td>
+            <FormatMoney
                 vclass="form-control text-right input-sm"
                 :value="0"
                 v-model="invoice.total"
-              ></FormatMoney>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-right">Toplam İskonto</td>
-            <td>
-              <FormatMoney
+            ></FormatMoney>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-right">Toplam İskonto</td>
+          <td>
+            <FormatMoney
                 :value="0"
                 vclass="form-control text-right input-sm"
-              ></FormatMoney>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-right">
-              Hesaplanan Katma Değer Vergiler Toplam Tutar
-            </td>
-            <td>
-              <FormatMoney
+            ></FormatMoney>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-right">
+            Hesaplanan Katma Değer Vergiler Toplam Tutar
+          </td>
+          <td>
+            <FormatMoney
                 :value="0"
                 vclass="form-control text-right input-sm"
-              ></FormatMoney>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-right">Vergiler Dahil Toplam Tutar</td>
-            <td>
-              <FormatMoney
+            ></FormatMoney>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-right">Vergiler Dahil Toplam Tutar</td>
+          <td>
+            <FormatMoney
                 :value="0"
                 vclass="form-control text-right input-sm"
-              ></FormatMoney>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-right">Ödenecek Tutar</td>
-            <td>
-              <FormatMoney
+            ></FormatMoney>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-right">Ödenecek Tutar</td>
+          <td>
+            <FormatMoney
                 :value="0"
                 vclass="form-control text-right input-sm"
-              ></FormatMoney>
-            </td>
-          </tr>
+            ></FormatMoney>
+          </td>
+        </tr>
         </tbody>
       </table>
     </div>
@@ -296,9 +296,9 @@ export default {
       let kdvPrice = ((count * unitPrice) / 100) * kdv;
 
       let discount =
-        data.item.discount == null
-          ? (data.item.discount = 0)
-          : data.item.discount;
+          data.item.discount == null
+              ? (data.item.discount = 0)
+              : data.item.discount;
 
       data.item.total = count * unitPrice + kdvPrice;
 
@@ -306,11 +306,11 @@ export default {
         if (data.item.discountType == 1) {
           var discountKDV = (data.item.discount / 100) * data.item.kdv;
           data.item.total =
-            data.item.total - (discountKDV + data.item.discount);
+              data.item.total - (discountKDV + data.item.discount);
         } else if (data.item.discountType == 2) {
           var discountKDV = (data.item.discount / 100) * data.item.kdv;
           data.item.total =
-            data.item.total - (discountKDV + data.item.discount);
+              data.item.total - (discountKDV + data.item.discount);
         }
         // console.log("null değil bu");
       } else {
