@@ -12,6 +12,12 @@
         <b-tab title="Fatura Listesi">
           <invoice-list></invoice-list>
         </b-tab>
+        <b-tab title="Satış Faturası">
+          <invoice-list></invoice-list>
+        </b-tab>
+        <b-tab title="Alış Faturası">
+          <invoice-list></invoice-list>
+        </b-tab>
       </b-tabs>
     </div>
   </div>
