@@ -5,7 +5,7 @@
       <h5 class="component-header">Faturaları buradan takip edebilirsiniz</h5>
     </div>
     <div class="component-content">
-      <b-tabs>
+      <!-- <b-tabs>
         <b-tab title="Fatura Oluştur">
           <invoice-create></invoice-create>
         </b-tab>
@@ -18,7 +18,8 @@
         <b-tab title="Alış Faturası">
           <invoice-list></invoice-list>
         </b-tab>
-      </b-tabs>
+      </b-tabs> -->
+      <invoice-list></invoice-list>
     </div>
   </div>
 </template>

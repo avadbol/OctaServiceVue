@@ -3,6 +3,7 @@
     <input
       type="number"
       class="form-control"
+      :class="vclass"
       :value="value"
       @input="$emit('input', $event.target.value)"
       @change="change()"
@@ -19,6 +20,10 @@ export default {
       type: Number,
       default: 0,
     },
+    vclass:{
+      default:null,
+      type:String
+    }
   },
   methods:{
     change(){

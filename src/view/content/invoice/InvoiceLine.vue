@@ -37,9 +37,10 @@
 
       <template v-slot:cell(count)="row">
         <Number
-          style="width: 60px"
+          style="width: 80px"
           size="text-right"
           v-model.number="row.item.count"
+          vclass="text-right"
         ></Number>
       </template>
 
@@ -52,12 +53,13 @@
       </template>
 
       <template v-slot:cell(unitPrice)="row">
-        <format-money
+        <FormatMoney
           style="width: 80px"
           v-model="row.item.unitprice"
           value="0"
           vclass="form-control text-right"
-        ></format-money>
+        ></FormatMoney>
+        
       </template>
 
       <template v-slot:cell(exchange)="row">
@@ -75,32 +77,43 @@
       </template>
 
       <template v-slot:cell(discount)="row">
-        <format-money
-          v-show="row.item.discountType > 0"
-          style="width: 80px"
-          v-model="row.item.discount"
-          :value="0"
-          vclass="form-control text-right"
-        ></format-money>
+        <input
+          type="number"
+          v-model.number="row.item.discount"
+          value="0"
+          style="width: 100px"
+          min="0"
+          class="form-control text-right"
+        />
       </template>
 
       <template v-slot:cell(kdv)="row">
-        <format-money
+        <Number
           style="width: 80px"
-          v-model="row.item.kdv"
+          vclass="text-right"
+          v-model.number="row.item.kdv"
+        >
+        </Number>
+      </template>
+
+      <template v-slot:cell(kdvPrice)="row">
+        <FormatMoney
+          disabled
+          style="width: 80px"
           :value="0"
           vclass="form-control text-right"
-        ></format-money>
+          v-model="row.item.kdvPrice"
+        ></FormatMoney>
       </template>
 
       <template v-slot:cell(total)="row">
-        <format-money
+        <FormatMoney
           style="width: 80px"
           :value="0"
           vclass="form-control text-right"
           v-model="row.item.total"
           :change="rowChange(row)"
-        ></format-money>
+        ></FormatMoney>
       </template>
 
       <template v-slot:cell(desc)="row">
@@ -113,21 +126,21 @@
       </template>
 
       <template v-slot:cell(purchaseUnitPrice)="row">
-        <format-money
+        <FormatMoney
           style="width: 80px"
           value="0"
           v-model="row.item.purchaseUnitPrice"
           vclass="form-control text-right"
-        ></format-money>
+        ></FormatMoney>
       </template>
 
       <template v-slot:cell(purchaseExchange)="row">
-        <format-money
+        <FormatMoney
           style="width: 80px"
           value="0"
           v-model="row.item.purchaseExchange"
           vclass="form-control text-right"
-        ></format-money>
+        ></FormatMoney>
       </template>
     </b-table>
     <div>
@@ -149,7 +162,7 @@
             <td>
               <FormatMoney
                 vclass="form-control text-right input-sm"
-                v-model.number="invoice.total"
+                v-model.number="invoice.totalSub"
                 value="0"
               ></FormatMoney>
             </td>
@@ -172,24 +185,17 @@
               <FormatMoney
                 :value="0"
                 vclass="form-control text-right input-sm"
+                v-model.number="invoice.totalKdvPrice"
               ></FormatMoney>
             </td>
           </tr>
           <tr>
-            <td class="text-right">Vergiler Dahil Toplam Tutar</td>
+            <td class="text-right">Toplam Tutar</td>
             <td>
               <FormatMoney
                 :value="0"
                 vclass="form-control text-right input-sm"
-              ></FormatMoney>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-right">Ödenecek Tutar</td>
-            <td>
-              <FormatMoney
-                :value="0"
-                vclass="form-control text-right input-sm"
+                v-model="invoice.total"
               ></FormatMoney>
 
               {{ invoice }}
@@ -260,6 +266,11 @@ export default {
           label: "Kdv",
           class: "text-center",
         },
+        {
+          key: "kdvPrice",
+          label: "Kdv Tutar",
+          class: "text-center",
+        },
 
         {
           key: "total",
@@ -283,7 +294,7 @@ export default {
         },
       ],
       items: [],
-      invoice: { total: 0, totalDiscount: 0, totalKDV:0 },
+      invoice: { total: 0, totalDiscount: 0, totalKdvPrice: 0, totalSub:0 },
     };
   },
   methods: {
@@ -297,6 +308,8 @@ export default {
       let kdv = data.item.kdv;
 
       let kdvPrice = ((count * unitPrice) / 100) * kdv;
+
+      data.item.kdvPrice = kdvPrice;
 
       let discount =
         data.item.discount == null
@@ -327,31 +340,30 @@ export default {
       this.$delete(this.items, payload.index);
     },
     rowDeleteLastItem() {
-      console.log("function start!!");
       this.$delete(this.items, this.items.length - 1);
     },
     rowSum() {
-      console.log("evet burası çalışıyor");
       if (this.items.length > 0) {
         //////////////////////////////
-        var totalSum = 0;
-        var totalDiscount = 0
-        var totalKdv = 0
-
+        var totalSub = 0;
+        var totalDiscount = 0;
+        var totalKdvPrice = 0;
+        var total = 0
 
         this.items.forEach((e) => {
-          totalSum += e.total;
-          totalDiscount += e.discount
-          totalKdv =+ e.kdvTotal
-
-          console.log("totalDiscount:"+totalDiscount)
-          console.log("totalKdv: "+totalKdv)
+          totalSub += e.total;
+          totalDiscount += e.discount;
+          totalKdvPrice = +e.kdvPrice;
         });
 
-        this.invoice.total = totalSum;
-        this.invoice.totalDiscount = totalDiscount
-        
-        /////////////////////////////         
+        this.invoice.totalSub = totalSub;
+        this.invoice.totalDiscount = totalDiscount;
+        this.invoice.totalKdvPrice = totalKdvPrice;
+  
+
+        this.invoice.total = (totalSub + totalKdvPrice) - totalDiscount
+
+        /////////////////////////////
       }
     },
   },
