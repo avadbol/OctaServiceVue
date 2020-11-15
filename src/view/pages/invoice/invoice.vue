@@ -5,31 +5,50 @@
       <h5 class="component-header">Faturaları buradan takip edebilirsiniz</h5>
     </div>
     <div class="component-content">
-      <!-- <b-tabs>
-        <b-tab title="Fatura Oluştur">
-          <invoice-create></invoice-create>
-        </b-tab>
-        <b-tab title="Fatura Listesi">
-          <invoice-list></invoice-list>
-        </b-tab>
-        <b-tab title="Satış Faturası">
-          <invoice-list></invoice-list>
-        </b-tab>
-        <b-tab title="Alış Faturası">
-          <invoice-list></invoice-list>
-        </b-tab>
-      </b-tabs> -->
-      <invoice-list></invoice-list>
+      <div class="row m-0">
+        <div class="content-head">
+          <div class="col-md-12">
+            <div class="d-flex">
+              <div
+                @click="selectedComponent = 'invoiceCreate'"
+                class="btn btn-primary mr-1"
+                v-b-tooltip.hover.bottom="'Yeni Fatura'"
+              >
+                <span class="fa fa-plus"></span>
+              </div>
+
+              <div
+                @click="selectedComponent = 'invoiceList'"
+                class="btn btn-primary mr-1"
+                v-b-tooltip.hover.bottom="'Listeyi Güncelle'"
+              >
+                <span class="fas fa-sync"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2">
+        <component :is="selectedComponent">
+      </component>
+      </div>
+ 
     </div>
   </div>
 </template>
 <script>
-import InvoiceCreate from "./create";
-import InvoiceList from "./list";
+import invoiceCreate from "./create";
+import invoiceList from "./list";
 
 export default {
   name: "invoice",
-  components: { InvoiceCreate, InvoiceList },
+  components: { invoiceCreate, invoiceList },
+  data() {
+    return {
+      selectedComponent: "invoiceList",
+    };
+  },
 };
 </script>
 
