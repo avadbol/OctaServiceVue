@@ -197,8 +197,6 @@
                 vclass="form-control text-right input-sm"
                 v-model="invoice.total"
               ></FormatMoney>
-
-              {{ invoice }}
             </td>
           </tr>
         </tbody>
